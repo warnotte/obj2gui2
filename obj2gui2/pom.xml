@@ -23,6 +23,31 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
+			
+			
+			<plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.7</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <configuration>
+              <target>
+ 
+                <copy todir="e:\\" >
+					<fileset dir="etc" >
+					<include name="**/*"/>
+					</fileset>
+				</copy>
+ 
+              </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
 		</plugins>
 	</build>
 
@@ -57,5 +82,8 @@
 
 
 	</dependencies>
+	
+	
+	
 
 </project>
