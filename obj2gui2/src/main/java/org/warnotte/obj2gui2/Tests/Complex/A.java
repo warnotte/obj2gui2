@@ -5,12 +5,12 @@ import java.io.File;
 import java.util.Calendar;
 import java.util.Date;
 
-import org.warnotte.Swing.Component.JWColor;
 import org.warnotte.obj2gui2.PROPERTY_LAYOUT;
 import org.warnotte.waxlib2.TemplatePropertyMerger.property_mode;
 import org.warnotte.waxlib2.TemplatePropertyMerger.Annotations.PROPERTY_FIELD_XXXABLE;
 import org.warnotte.waxlib2.TemplatePropertyMerger.Annotations.PROPERTY_interface;
 import org.warnotte.waxlib2.TemplatePropertyMerger.Annotations.PROPERTY_interface.gui_type;
+import org.warnotte.waxlibswingcomponents.Swing.Component.JWColor;
 
 
 /**

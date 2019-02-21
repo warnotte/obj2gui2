@@ -3,9 +3,9 @@ package org.warnotte.obj2gui2.Plugins.tests;
 import java.awt.Font;
 import java.lang.reflect.Method;
 
-import org.warnotte.Swing.Component.JFontChooserCombo;
 import org.warnotte.obj2gui2.JPanelMagique;
 import org.warnotte.obj2gui2.Plugins.OBJ2GUIPlug;
+import org.warnotte.waxlibswingcomponents.Swing.Component.JFontChooserCombo;
 
 
 /**

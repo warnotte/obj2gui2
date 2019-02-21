@@ -4,9 +4,9 @@ import java.lang.reflect.Method;
 
 import javax.vecmath.Vector2d;
 
-import org.warnotte.Swing.Component.GUI_Vector2d;
 import org.warnotte.obj2gui2.JPanelMagique;
 import org.warnotte.obj2gui2.Plugins.OBJ2GUIPlug;
+import org.warnotte.waxlibswingcomponents.Swing.Component.GUI_Vector2d;
 
 
 /**

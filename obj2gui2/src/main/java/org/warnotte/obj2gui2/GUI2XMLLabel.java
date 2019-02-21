@@ -40,12 +40,11 @@ import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
-
-import org.warnotte.FileChooser.FileChooser;
 import org.warnotte.waxlib2.Logs.Logs;
-import org.warnotte.Swing.Component.JColorChooserButton;
-import org.warnotte.Swing.Component.WaxSlider.WFlatSlider;
-import org.warnotte.Swing.Component.WaxSlider.WRoundSlider;
+import org.warnotte.waxlibswingcomponents.FileChooser.FileChooser;
+import org.warnotte.waxlibswingcomponents.Swing.Component.JColorChooserButton;
+import org.warnotte.waxlibswingcomponents.Swing.Component.WaxSlider.WFlatSlider;
+import org.warnotte.waxlibswingcomponents.Swing.Component.WaxSlider.WRoundSlider;
 
 // TODO : Penser a enventuelement faire un systeme de gestion des classes 
 // TODO : Dans le sens ou 2 classes != peuvent avoir une variable au meme nom mais dont le label et le tooltips pourrait devoir �tre diff�rent.
@@ -258,7 +257,7 @@ public class GUI2XMLLabel
 
 		// passed fileWriter to write content in specified file  
 		xmlOutput.setFormat(Format.getPrettyFormat());
-		xmlOutput.getFormat().setEncoding("iso-8859-1");
+		xmlOutput.getFormat().setEncoding("utf-8");
 		xmlOutput.output(document, new FileWriter(filename));
 
 		return true;

@@ -73,13 +73,7 @@ import org.apache.log4j.Logger;
 import org.jdesktop.swingx.JXDatePicker;
 import org.jdom2.JDOMException;
 import org.warnotte.waxlib2.Identifiable.Identifiable;
-import org.warnotte.Dialog.DialogDivers;
-import org.warnotte.FileChooser.FileChooser;
 import org.warnotte.waxlib2.Logs.Logs;
-import org.warnotte.Swing.Component.JColorChooserButton;
-import org.warnotte.Swing.Component.JWColor;
-import org.warnotte.Swing.Component.GlassPanes.InfiniteProgressGlassPane;
-import org.warnotte.Swing.Component.WaxSlider.WFlatSlider;
 import org.warnotte.obj2gui2.ArrayGeneratorForsingleObject.TableMagiquePlugin1D;
 import org.warnotte.obj2gui2.ArrayGeneratorForsingleObject.TableMagiquePlugin2D;
 import org.warnotte.obj2gui2.Plugins.OBJ2GUIPlug;
@@ -90,6 +84,12 @@ import org.warnotte.waxlib2.TemplatePropertyMerger.TemplatePropertyMergerV2;
 import org.warnotte.waxlib2.TemplatePropertyMerger.Annotations.PROPERTY_FIELD_XXXABLE;
 import org.warnotte.waxlib2.TemplatePropertyMerger.Annotations.PROPERTY_interface;
 import org.warnotte.waxlib2.TemplatePropertyMerger.Annotations.PROPERTY_interface.gui_type;
+import org.warnotte.waxlibswingcomponents.Dialog.DialogDivers;
+import org.warnotte.waxlibswingcomponents.FileChooser.FileChooser;
+import org.warnotte.waxlibswingcomponents.Swing.Component.JColorChooserButton;
+import org.warnotte.waxlibswingcomponents.Swing.Component.JWColor;
+import org.warnotte.waxlibswingcomponents.Swing.Component.GlassPanes.InfiniteProgressGlassPane;
+import org.warnotte.waxlibswingcomponents.Swing.Component.WaxSlider.WFlatSlider;
 
 // TODO : Y'a pas un leak avec les listener???? me semble qu'il y'a un truc louche ...
 // TODO : (Pas vraiment un truc qu'on a d�j� bcp utilis�) IL manque la communication parent->fils pour les maj d'interface (si un parent change une valeur et qu'un fils doit le savoir... cas de la class SON qui prends un KOPKOK en parametre dans le package Test )
