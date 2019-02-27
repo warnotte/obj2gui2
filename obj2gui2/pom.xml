@@ -4,52 +4,45 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.warnotte</groupId>
 	<artifactId>obj2gui2</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1.0</version>
 
 	<name>Wax Obj2gui2</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>7</maven.compiler.source>	
+		<maven.compiler.source>7</maven.compiler.source>
 		<maven.compiler.target>7</maven.compiler.target>
 	</properties>
 
 	<build>
 		<plugins>
-			<!-- <plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
-				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
-				</configuration>
-			</plugin>
-			 -->
-			
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-compiler-plugin</artifactId> 
+				<version>2.3.2</version> <configuration> <source>1.7</source> <target>1.7</target> 
+				</configuration> </plugin> -->
+
 			<plugin>
-        <artifactId>maven-antrun-plugin</artifactId>
-        <version>1.7</version>
-        <executions>
-          <execution>
-            <phase>package</phase>
-            <configuration>
-              <target>
- 
-                <copy todir="e:\\" >
-					<fileset dir="etc" >
-					<include name="**/*"/>
-					</fileset>
-				</copy>
- 
-              </target>
-            </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.7</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<configuration>
+							<target>
+
+								<copy todir="${basedir}/target/etc">
+									<fileset dir="etc">
+										<include name="**/*" />
+									</fileset>
+								</copy>
+
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -65,13 +58,13 @@
 		<dependency>
 			<groupId>org.warnotte</groupId>
 			<artifactId>waxlibswingcomponentsMVN</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.1.0</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.warnotte</groupId>
 			<artifactId>waxLib2</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.1.0</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.jdom/jdom2 -->
@@ -81,16 +74,16 @@
 			<version>2.0.6</version>
 		</dependency>
 
-<dependency>
-    <groupId>javax.vecmath</groupId>
-    <artifactId>vecmath</artifactId>
-    <version>1.5.2</version>
-</dependency>
+		<dependency>
+			<groupId>javax.vecmath</groupId>
+			<artifactId>vecmath</artifactId>
+			<version>1.5.2</version>
+		</dependency>
 
 
 	</dependencies>
-	
-	
-	
+
+
+
 
 </project>
