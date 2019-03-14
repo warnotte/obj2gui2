@@ -5,7 +5,6 @@
 	<groupId>org.warnotte</groupId>
 	<artifactId>obj2gui2</artifactId>
 	<version>0.1.0</version>
-
 	<name>Wax Obj2gui2</name>
 
 	<properties>

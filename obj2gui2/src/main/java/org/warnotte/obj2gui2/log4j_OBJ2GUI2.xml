@@ -39,7 +39,7 @@
 	</appender>
 
 
-	<appender name="SWING" class="WaxLibrary.Logs.TextAreaAppender">
+	<appender name="SWING" class="org.warnotte.waxlib2.Logs.TextAreaAppender">
 		<param name="Threshold" value="ALL" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<!-- The default pattern: Date Priority [Category] Message\n -->
