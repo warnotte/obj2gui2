@@ -22,6 +22,7 @@ public abstract class OBJ2GUIPlug<T, U>
 	//protected U component;
 	
 	private Class<T>	type;
+	Method 				method;
 	private Class<U>	component;
 	
 	// Ceci pourrait permettre de ne cible que certaines classe user et certaines m�thodes.
