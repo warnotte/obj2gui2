@@ -11,14 +11,12 @@ import javax.swing.JScrollPane;
 import org.warnotte.obj2gui2.JPanelMagique;
 import org.warnotte.obj2gui2.MyChangedEvent;
 import org.warnotte.obj2gui2.MyEventListener;
-import org.warnotte.waxlib2.Logs.Logs;
 
 public class test_main_calculatrice {
 
 	public static void main(String args[]) throws Exception
 	{
 		String file = JPanelMagique.class.getResource("log4j_OBJ2GUI2.xml").getFile();
-		Logs logs = new Logs("mainTest", new File(file));
 		
 		List<testCalculatrice> selection = new ArrayList<testCalculatrice>();
 		selection.add(new testCalculatrice());

@@ -27,11 +27,11 @@ import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
-import net.miginfocom.swing.MigLayout;
-
-import org.apache.log4j.Logger;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.warnotte.waxlib2.TemplatePropertyMerger.Annotations.PROPERTY_FIELD_XXXABLE;
+
+import net.miginfocom.swing.MigLayout;
 
 
 // TODO : Utiliser Classe c'est bien mais pour LBR5 par exemple le scantling a 2 variable Frame et 2 variable Stiffener et le truc ici
@@ -47,9 +47,8 @@ import org.warnotte.waxlib2.TemplatePropertyMerger.Annotations.PROPERTY_FIELD_XX
 public class JTreeMagique extends JPanel implements TreeSelectionListener, MyEventListener
 {
 
-	static Logger log = Logger.getLogger("JTreeMagique");
-	{
-	}
+	private static final Logger LOGGER = LogManager.getLogger("JTreeMagique");
+
 	
 	public static boolean PRINT_DEBUG = false;
 	
@@ -316,7 +315,7 @@ public class JTreeMagique extends JPanel implements TreeSelectionListener, MyEve
 			}
 		}
 		else
-			log.info("Class ("+objectClass+") is not editable content");
+			LOGGER.info("Class ("+objectClass+") is not editable content");
 		
 		
 		return parent;
@@ -351,7 +350,7 @@ public class JTreeMagique extends JPanel implements TreeSelectionListener, MyEve
 	public void refresh()
 	{
 		if (PRINT_DEBUG)
-			log.info("TREEMAGIQUE("+this.hashCode()+")::REFRESH::"+jtree.getLastSelectedPathComponent().toString());
+			LOGGER.info("TREEMAGIQUE("+this.hashCode()+")::REFRESH::"+jtree.getLastSelectedPathComponent().toString());
 	
 		// Va retenir des lists d'object du meme type selectionn�s.
 		HashMap<Class<?>, List<Object>> map = new HashMap<Class<?>, List<Object>>();
@@ -368,7 +367,7 @@ public class JTreeMagique extends JPanel implements TreeSelectionListener, MyEve
 			
 			if (objetclicked instanceof String)
 			{
-				log.info("Il manque un petit bazar ici... tu as cliqu� sur un string dans l'arbre.");
+				LOGGER.info("Il manque un petit bazar ici... tu as cliqu� sur un string dans l'arbre.");
 			}
 			
 			if ((objetclicked instanceof TreeNodeWax)==false)
@@ -476,7 +475,7 @@ public class JTreeMagique extends JPanel implements TreeSelectionListener, MyEve
         // Each listener occupies two elements - the first is the listener class
         // and the second is the listener instance
         if (PRINT_DEBUG)
-        	log.info("Sending Event Event ");
+        	LOGGER.info("Sending Event Event ");
         for (int i=0; i<listeners.length; i+=2) {
             if (listeners[i]==MyEventListener.class) {
             	//System.err.println("Transmit the event" +((MyEventListener)listeners[i+1]));
@@ -488,7 +487,7 @@ public class JTreeMagique extends JPanel implements TreeSelectionListener, MyEve
     @Override
 	public void myEventOccurred(MyChangedEvent evt) {
     	if (PRINT_DEBUG)
-    		log.info("TREEMAGIQUE("+this.hashCode()+")::EVENT OCCURED : "+evt);
+    		LOGGER.info("TREEMAGIQUE("+this.hashCode()+")::EVENT OCCURED : "+evt);
     	// Propage au parent qu'il y'a eu changement.
 		
     	int sel = 0;

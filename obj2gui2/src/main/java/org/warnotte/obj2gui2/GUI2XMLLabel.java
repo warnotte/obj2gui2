@@ -1,10 +1,8 @@
 package org.warnotte.obj2gui2;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -29,7 +27,8 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JViewport;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jdesktop.swingx.JXCollapsiblePane;
 import org.jdesktop.swingx.JXDatePicker;
 import org.jdesktop.swingx.JXTaskPane;
@@ -40,7 +39,6 @@ import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
-import org.warnotte.waxlib2.Logs.Logs;
 import org.warnotte.waxlibswingcomponents.FileChooser.FileChooser;
 import org.warnotte.waxlibswingcomponents.Swing.Component.JColorChooserButton;
 import org.warnotte.waxlibswingcomponents.Swing.Component.WaxSlider.WFlatSlider;
@@ -59,10 +57,8 @@ import org.warnotte.waxlibswingcomponents.Swing.Component.WaxSlider.WRoundSlider
 public class GUI2XMLLabel
 {
 
-	static Logger				log			= Logs.getLogger();		//"GUI2XMLLabel");
-	{
-		//	DOMConfigurator.configure(getClass().getResource("log4j_OBJ2GUI2.xml"));	
-	}
+	private static final Logger log = LogManager.getLogger("GUI2XMLLabel");
+	
 
 	private static GUI2XMLLabel	instance	= new GUI2XMLLabel();
 

@@ -15,7 +15,6 @@ import org.warnotte.obj2gui2.JPanelMagique;
 import org.warnotte.obj2gui2.MyChangedEvent;
 import org.warnotte.obj2gui2.MyEventListener;
 import org.warnotte.obj2gui2.Tests.SimpleType.Material;
-import org.warnotte.waxlib2.Logs.Logs;
 
 /**
  * @author Warnotte Renaud
@@ -38,7 +37,6 @@ public class MainBenchMark
 	public static void main(String[] args) throws IOException, JDOMException, Exception
 	{
 		String file = JPanelMagique.class.getResource("log4j_OBJ2GUI2.xml").getFile();
-		Logs logs = new Logs("mainTest", new File(file));
 		
 		list_mats = new ArrayList<Material>();
 		

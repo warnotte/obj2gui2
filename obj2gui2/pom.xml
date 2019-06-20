@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.warnotte</groupId>
 	<artifactId>obj2gui2</artifactId>
-	<version>0.1.0</version>
+	<version>0.5.0</version>
 	<name>Wax Obj2gui2</name>
 
 	<properties>
@@ -82,13 +82,13 @@
 		<dependency>
 			<groupId>org.warnotte</groupId>
 			<artifactId>waxlibswingcomponentsMVN</artifactId>
-			<version>0.1.0</version>
+			<version>0.5.0</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.warnotte</groupId>
 			<artifactId>waxLib2</artifactId>
-			<version>0.1.0</version>
+			<version>0.5.0</version>
 		</dependency>
 
 
@@ -98,6 +98,19 @@
 			<version>1.5.2</version>
 		</dependency>
 
+ 		
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.11.2</version>
+		</dependency>
+
+		
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.11.2</version>
+		</dependency>
 
 	</dependencies>
 

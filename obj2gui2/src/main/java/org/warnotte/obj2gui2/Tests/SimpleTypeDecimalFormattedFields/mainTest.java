@@ -19,7 +19,6 @@ import org.warnotte.obj2gui2.JPanelMagique;
 import org.warnotte.obj2gui2.JTreeMagique;
 import org.warnotte.obj2gui2.MyChangedEvent;
 import org.warnotte.obj2gui2.MyEventListener;
-import org.warnotte.waxlib2.Logs.Logs;
 import org.warnotte.waxlib2.TemplatePropertyMerger.TemplatePropertyMergerV2;
 
 /**
@@ -35,7 +34,6 @@ public class mainTest
 	public static void main(String[] args) throws Exception
 	{
 		String file = JPanelMagique.class.getResource("log4j_OBJ2GUI2.xml").getFile();
-		Logs logs = new Logs("mainTest", new File(file));
 		JPanelMagique.PRINT_DEBUG=true;
 		JTreeMagique.PRINT_DEBUG=true;
 		TemplatePropertyMergerV2.PRINT_DEBUG=false;

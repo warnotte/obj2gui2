@@ -67,18 +67,16 @@ import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
 
-import net.miginfocom.swing.MigLayout;
-
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jdesktop.swingx.JXDatePicker;
 import org.jdom2.JDOMException;
-import org.warnotte.waxlib2.Identifiable.Identifiable;
-import org.warnotte.waxlib2.Logs.Logs;
 import org.warnotte.obj2gui2.ArrayGeneratorForsingleObject.TableMagiquePlugin1D;
 import org.warnotte.obj2gui2.ArrayGeneratorForsingleObject.TableMagiquePlugin2D;
 import org.warnotte.obj2gui2.Plugins.OBJ2GUIPlug;
 import org.warnotte.obj2gui2.Validators.ValidationException;
 import org.warnotte.obj2gui2.Validators.Validator;
+import org.warnotte.waxlib2.Identifiable.Identifiable;
 import org.warnotte.waxlib2.TemplatePropertyMerger.ResultatMerge;
 import org.warnotte.waxlib2.TemplatePropertyMerger.TemplatePropertyMergerV2;
 import org.warnotte.waxlib2.TemplatePropertyMerger.Annotations.PROPERTY_FIELD_XXXABLE;
@@ -90,6 +88,8 @@ import org.warnotte.waxlibswingcomponents.Swing.Component.JColorChooserButton;
 import org.warnotte.waxlibswingcomponents.Swing.Component.JWColor;
 import org.warnotte.waxlibswingcomponents.Swing.Component.GlassPanes.InfiniteProgressGlassPane;
 import org.warnotte.waxlibswingcomponents.Swing.Component.WaxSlider.WFlatSlider;
+
+import net.miginfocom.swing.MigLayout;
 
 // TODO : Y'a pas un leak avec les listener???? me semble qu'il y'a un truc louche ...
 // TODO : (Pas vraiment un truc qu'on a d�j� bcp utilis�) IL manque la communication parent->fils pour les maj d'interface (si un parent change une valeur et qu'un fils doit le savoir... cas de la class SON qui prends un KOPKOK en parametre dans le package Test )
@@ -103,7 +103,7 @@ import org.warnotte.waxlibswingcomponents.Swing.Component.WaxSlider.WFlatSlider;
 public class JPanelMagique extends JPanel implements ActionListener, MyEventListener, ChangeListener, ItemListener, FocusListener, DocumentListener
 {
 
-	static Logger							log							= Logs.getLogger();		//Logger.getLogger(JPanelMagique.class);
+	private static final Logger log = LogManager.getLogger("JPanelMagique");
 
 	static Map<Class<?>, OBJ2GUIPlug<?, ?>>	map_plugins					= null;
 
@@ -304,7 +304,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 				final Object o = selection.get(i);
 				if (o == null)
 				{
-					Logs.getLogger().fatal("La selection contient un objet==null");
+					log.fatal("La selection contient un objet==null");
 					continue;
 				}
 				Class<?> Objectcls = o.getClass();
@@ -318,8 +318,8 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 				ResultatMerge rm = map_component_to_class.get(component);
 				if (rm == null)
 				{
-					Logs.getLogger().fatal("I cannot find in the HashMap something for the ComponentNamed : " + component.getName());
-					Logs.getLogger().fatal("I cannot find in the HashMap something for the Component : " + component);
+					log.fatal("I cannot find in the HashMap something for the ComponentNamed : " + component.getName());
+					log.fatal("I cannot find in the HashMap something for the Component : " + component);
 					//DialogDivers.Show_dialog("I cannot find in the HashMap something for the Component : "+component);
 					continue;
 				}
@@ -539,7 +539,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 			{
 				if (thread_callableMethod != null)
 					if (thread_callableMethod.isAlive() == true)
-						Logs.getLogger().fatal("You've tried to relaunch the CallableMethod Thread a " + "second time, and a previous is still running");
+						log.fatal("You've tried to relaunch the CallableMethod Thread a " + "second time, and a previous is still running");
 
 				thread_callableMethod = new Thread()
 				{
@@ -756,7 +756,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 
 			if (comp == null)
 			{
-				Logs.getLogger().fatal("Quelques chose ne se passe pas comme pr�vu, le composant nomm� : " + name + " n'est pas trouv�");
+				log.fatal("Quelques chose ne se passe pas comme pr�vu, le composant nomm� : " + name + " n'est pas trouv�");
 			}
 
 			refreshComponent(comp, rm, selection);
@@ -1611,7 +1611,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 			if (ret == false)
 			{
 				String errormsg = "Cannot create Directory " + dirForLabel;
-				Logs.getLogger().fatal(errormsg);
+				log.fatal(errormsg);
 				DialogDivers.Show_dialog(errormsg);
 			}
 		}
@@ -1801,27 +1801,27 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 					} catch (SecurityException e)
 					{
 						e.printStackTrace();
-						Logs.getLogger().fatal(e, e);
+						log.fatal(e, e);
 					} catch (InstantiationException e)
 					{
 						e.printStackTrace();
-						Logs.getLogger().fatal(e, e);
+						log.fatal(e, e);
 					} catch (IllegalAccessException e)
 					{
 						e.printStackTrace();
-						Logs.getLogger().fatal(e, e);
+						log.fatal(e, e);
 					} catch (IllegalArgumentException e)
 					{
 						e.printStackTrace();
-						Logs.getLogger().fatal(e, e);
+						log.fatal(e, e);
 					} catch (InvocationTargetException e)
 					{
 						e.printStackTrace();
-						Logs.getLogger().fatal(e, e);
+						log.fatal(e, e);
 					} catch (Exception e)
 					{
 						e.printStackTrace();
-						Logs.getLogger().fatal(e, e);
+						log.fatal(e, e);
 					}
 				}
 			});
@@ -1829,12 +1829,12 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 		{
 			boutonAddElement.setEnabled(false);
 			e1.printStackTrace();
-			Logs.getLogger().fatal(e1, e1);
+			log.fatal(e1, e1);
 		} catch (ClassNotFoundException e1)
 		{
 			boutonAddElement.setEnabled(false);
 			e1.printStackTrace();
-			Logs.getLogger().fatal(e1, e1);
+			log.fatal(e1, e1);
 		}
 
 		JButton boutonRemoveElement = new JButton(TEXT_BOUTON_REMOVE_ELEMENT);
@@ -2472,7 +2472,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	public static void registerPlugin(OBJ2GUIPlug<?, ?> plugin)
 	{
 		if (map_plugins.containsKey(plugin.getType()))
-			Logs.getLogger().info("Plugin already registered : " + plugin.getType());
+			log.info("Plugin already registered : " + plugin.getType());
 		else
 			map_plugins.put(plugin.getType(), plugin);
 	}
@@ -2616,7 +2616,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 				if (class1tmp == null)
 				{
 					String msg = "I cannot found variable " + listvariableName + " inside class " + class1.getName() + " or from parent classes";
-					Logs.getLogger().fatal(msg);
+					log.fatal(msg);
 					throw new Exception(msg);
 				}
 			}
@@ -2626,7 +2626,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 		if ((f.getType().isAssignableFrom(List.class)) == false)
 		{
 			String msg = "I found variable " + listvariableName + " inside class " + class1.getName() + " but it's not a List";
-			Logs.getLogger().fatal(msg);
+			log.fatal(msg);
 			throw new Exception(msg);
 		}
 
@@ -2644,13 +2644,13 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 		Map<String, String> mcls = map_title_border_for_list.get(class1);
 		if (mcls == null)
 		{
-			Logs.getLogger().fatal("map_title_border_for_list doesn't contains registered class " + class1);
+			log.fatal("map_title_border_for_list doesn't contains registered class " + class1);
 			throw new Exception("map_title_border_for_list doesn't contains registered class " + class1);
 		}
 		String ret = mcls.get(listvariableName);
 		if (ret == null)
 		{
-			Logs.getLogger().fatal("map_title_border_for_list doesn't contains key for " + listvariableName);
+			log.fatal("map_title_border_for_list doesn't contains key for " + listvariableName);
 			throw new Exception("map_title_border_for_list doesn't contains key for " + listvariableName);
 		}
 		return ret;

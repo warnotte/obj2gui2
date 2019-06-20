@@ -12,8 +12,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import org.apache.log4j.Logger;
-import org.apache.log4j.xml.DOMConfigurator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * @author Warnotte Renaud
@@ -22,10 +22,7 @@ import org.apache.log4j.xml.DOMConfigurator;
 public class JFrameTreeView extends JFrame implements WindowListener
 {
 
-	static Logger log = Logger.getLogger("JFrameTreeView");
-	{
-		//DOMConfigurator.configure(getClass().getResource("log4j_OBJ2GUI2.xml"));	
-	}
+	private static final Logger Log = LogManager.getLogger("JFrameTreeView");
 	
 	
 	/**
@@ -101,7 +98,7 @@ public class JFrameTreeView extends JFrame implements WindowListener
 	@Override
 	public void windowClosing(WindowEvent arg0)
 	{
-		log.info("This windows is closing :"+this);
+		Log.info("This windows is closing :"+this);
 		panelmagiqueparent.removeFrameTreeView(this);
 	}
 

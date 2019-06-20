@@ -5,11 +5,14 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.warnotte.obj2gui2.converterandtools;
-import org.warnotte.waxlib2.Logs.Logs;
 
 public class TableMagiqueModel2D extends TableMagiqueModelBase {
 
+	private static final Logger LOGGER = LogManager.getLogger("TableMagiqueModel2D");
+	
 	/**
 	 * 
 	 */
@@ -135,7 +138,7 @@ public class TableMagiqueModel2D extends TableMagiqueModelBase {
 		}
 		else
 		{
-			Logs.getLogger().fatal("Cannot converttt thats");
+			LOGGER.fatal("Cannot converttt thats");
 		}
 	}
 
@@ -148,7 +151,7 @@ public class TableMagiqueModel2D extends TableMagiqueModelBase {
 			else
 			if (name.startsWith("is")==true) name = name.substring(2);
 			else
-				Logs.getLogger().fatal("FUCKING DAMN corrige ca wax... fout une exception...");
+				LOGGER.fatal("FUCKING DAMN corrige ca wax... fout une exception...");
 				
 			if (varName.toLowerCase().equals(name.toLowerCase()))
 				return field[i];

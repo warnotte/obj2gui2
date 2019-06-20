@@ -24,10 +24,11 @@ module obj2gui2
 	requires WaxLibrary2;
 	requires java.desktop;
 	requires java.xml;
-	requires log4j;
+	requires transitive jdom2;
 	requires miglayout;
 	requires swingx.all;
 	requires vecmath;
 	requires waxlibswingcomponentsMVN;
-	requires jdom2;
+	requires transitive org.apache.logging.log4j;
+	requires transitive org.apache.logging.log4j.core;
 }

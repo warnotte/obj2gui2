@@ -21,7 +21,6 @@ import org.warnotte.obj2gui2.JTreeMagique;
 import org.warnotte.obj2gui2.MyChangedEvent;
 import org.warnotte.obj2gui2.MyEventListener;
 import org.warnotte.obj2gui2.Tests.SimpleType.Material;
-import org.warnotte.waxlib2.Logs.Logs;
 
 /**
  * @author warnotte Renaud
