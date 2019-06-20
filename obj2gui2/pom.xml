@@ -51,15 +51,16 @@
 					<execution>
 						<phase>package</phase>
 						<configuration>
-							<target>
-
+							<!-- <target>
+					
 								<copy todir="${basedir}/target/etc">
 									<fileset dir="etc">
 										<include name="**/*" />
 									</fileset>
 								</copy>
-
+							
 							</target>
+							-->
 						</configuration>
 						<goals>
 							<goal>run</goal>
