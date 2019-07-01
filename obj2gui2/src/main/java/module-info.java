@@ -5,7 +5,7 @@
  * @author Warnotte Renaud
  *
  */
-module obj2gui2
+module org.warnotte.obj2gui2
 {
 	exports org.warnotte.obj2gui2.Tests.mainEmbbeder;
 	exports org.warnotte.obj2gui2.Validators;
@@ -21,14 +21,14 @@ module obj2gui2
 	exports org.warnotte.obj2gui2.Tests.SimpleType;
 	exports org.warnotte.obj2gui2.Tests.SimpleTypeDecimalFormattedFields;
 
-	requires transitive WaxLibrary2;
+	requires org.warnotte.waxlib2;
 	requires java.desktop;
 	requires java.xml;
-	requires transitive jdom2;
-	requires transitive miglayout;
-	requires transitive swingx.all;
-	requires transitive vecmath;
-	requires transitive waxlibswingcomponentsMVN;
-	requires transitive org.apache.logging.log4j;
-	requires transitive org.apache.logging.log4j.core;
+	requires jdom2;
+	requires miglayout;
+	requires swingx.all;
+	requires vecmath;
+	requires org.warnotte.waxlibswingcomponentsMVN;
+	requires org.apache.logging.log4j;
+	requires org.apache.logging.log4j.core;
 }
