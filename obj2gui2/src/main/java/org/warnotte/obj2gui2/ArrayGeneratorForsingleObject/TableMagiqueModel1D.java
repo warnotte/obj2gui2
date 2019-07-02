@@ -111,7 +111,7 @@ public class TableMagiqueModel1D extends TableMagiqueModelBase {
 	 * @throws IllegalAccessException
 	 * @throws InvocationTargetException
 	 */
-	private void setValueForThatObject(Object[] value, Class compType, Object obj_to_set) throws IllegalAccessException, InvocationTargetException
+	private void setValueForThatObject(Object[] value, Class<?> compType, Object obj_to_set) throws IllegalAccessException, InvocationTargetException
 	{
 		if (compType==double.class)
 		{
@@ -141,7 +141,7 @@ public class TableMagiqueModel1D extends TableMagiqueModelBase {
 			LOGGER.fatal("Cannot converttt thats");
 		}
 	}
-
+/*
 	private Field findFieldNamed(String varName) {
 		Field field[] = parent.get(0).getClass().getDeclaredFields();
 		
@@ -159,7 +159,7 @@ public class TableMagiqueModel1D extends TableMagiqueModelBase {
 		
 		return null;
 	}
-
+*/
 
 	public Object[] getValues() {
 		try {
@@ -236,7 +236,7 @@ public class TableMagiqueModel1D extends TableMagiqueModelBase {
 	 */
 	public void removeRows(int[] rows)
 	{
-		List list = new ArrayList(Arrays.asList(getValues()));
+		List list = new ArrayList<>(Arrays.asList(getValues()));
 		for (int i = rows.length-1; i >= 0; i--)
 		{
 			int idx = rows[i];

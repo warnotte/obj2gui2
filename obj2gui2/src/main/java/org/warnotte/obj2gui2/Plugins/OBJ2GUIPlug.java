@@ -3,10 +3,7 @@
  */
 package org.warnotte.obj2gui2.Plugins;
 
-import java.util.Date;
-import java.util.List;
 import java.lang.reflect.Method;
-import java.lang.reflect.ParameterizedType;
 
 import javax.swing.JComponent;
 
@@ -40,7 +37,7 @@ public abstract class OBJ2GUIPlug<T, U>
    }
 	
 	/**
-	 * Cr�e un composant avec la value, et ajoute un listener (a implementer toi m�me);
+	 * Crée un composant avec la value, et ajoute un listener (a implementer toi même);
 	 * @param value
 	 * @param panel_parent
 	 * @return

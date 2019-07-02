@@ -6,7 +6,7 @@ import org.warnotte.waxlib2.Identifiable.Identifiable;
 /**
  * 
  * Classe qui va permettre d'assigner une list d'element (qui derivent Indentifiable) 
- * � une variable d'une classe (de type int qui sert d'id).
+ * à une variable d'une classe (de type int qui sert d'id).
  * 
  * Permet d'afficher les combobox en servant un peu de role de modele.
  * @author Warnotte Renaud.

@@ -10,7 +10,7 @@ public class converterandtools {
 	public static Object resizeArray1D(Object array, int newSize)
 	{
 		int oldSize = java.lang.reflect.Array.getLength(array);
-		Class elementType = array.getClass().getComponentType();
+		Class<?> elementType = array.getClass().getComponentType();
 		Object newArray = java.lang.reflect.Array.newInstance(elementType, newSize);
 		int preserveLength = Math.min(oldSize, newSize);
 		if (preserveLength > 0)

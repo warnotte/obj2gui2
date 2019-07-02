@@ -453,7 +453,7 @@ public class GUI2XMLLabel
 			} else if (cp instanceof JPanel)
 				recursToPanel(cp, depth + 1);
 			else if (VERBOSE == true)
-				log.warn("Component non ger� : " + cp.getClass().getName());
+				log.warn("Component non geré : " + cp.getClass().getName());
 		}
 	}
 }

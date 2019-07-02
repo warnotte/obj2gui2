@@ -3,7 +3,6 @@
  */
 package org.warnotte.obj2gui2;
 
-import javax.swing.JComponent;
 import javax.swing.JFormattedTextField;
 import javax.swing.text.DefaultFormatterFactory;
 

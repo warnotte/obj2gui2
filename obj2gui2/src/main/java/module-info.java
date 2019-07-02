@@ -21,7 +21,7 @@ module org.warnotte.obj2gui2
 	exports org.warnotte.obj2gui2.Tests.SimpleType;
 	exports org.warnotte.obj2gui2.Tests.SimpleTypeDecimalFormattedFields;
 
-	requires org.warnotte.waxlib2;
+	requires transitive org.warnotte.waxlib2;
 	requires java.desktop;
 	requires java.xml;
 	requires jdom2;

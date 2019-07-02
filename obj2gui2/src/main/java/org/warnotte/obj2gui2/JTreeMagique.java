@@ -346,7 +346,6 @@ public class JTreeMagique extends JPanel implements TreeSelectionListener, MyEve
 	/**
 	 * Effectue un refresh du panel magique contenu dans la fenetre avec l'arbre.
 	 */
-	@SuppressWarnings("unchecked")
 	public void refresh()
 	{
 		if (PRINT_DEBUG)
@@ -527,8 +526,8 @@ public class JTreeMagique extends JPanel implements TreeSelectionListener, MyEve
 	    // Traverse children
 	    TreeNode node = (TreeNode)parent.getLastPathComponent();
 	    if (node.getChildCount() >= 0) {
-	        for (Enumeration e=node.children(); e.hasMoreElements(); ) {
-	            TreeNode n = (TreeNode)e.nextElement();
+	        for (Enumeration<? extends TreeNode> e=node.children(); e.hasMoreElements(); ) {
+	            TreeNode n = e.nextElement();
 	            TreePath path = parent.pathByAddingChild(n);
 	            expandAll(tree, path, expand);
 	        }

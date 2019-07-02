@@ -111,7 +111,7 @@ public class TableMagiqueModel2D extends TableMagiqueModelBase {
 	 * @throws IllegalAccessException
 	 * @throws InvocationTargetException
 	 */
-	private void setValueForThatObject(Object[][] value, Class compType, Object obj_to_set) throws IllegalAccessException, InvocationTargetException
+	private void setValueForThatObject(Object[][] value, Class<?> compType, Object obj_to_set) throws IllegalAccessException, InvocationTargetException
 	{
 		if (compType==double.class)
 		{
@@ -141,7 +141,7 @@ public class TableMagiqueModel2D extends TableMagiqueModelBase {
 			LOGGER.fatal("Cannot converttt thats");
 		}
 	}
-
+/*
 	private Field findFieldNamed(String varName) {
 		Field field[] = parent.get(0).getClass().getDeclaredFields();
 		
@@ -158,7 +158,7 @@ public class TableMagiqueModel2D extends TableMagiqueModelBase {
 		}
 		return null;
 	}
-
+*/
 
 	public Object[][] getValues() {
 		try {
@@ -213,7 +213,7 @@ public class TableMagiqueModel2D extends TableMagiqueModelBase {
 		Object objetreference = getObjetReference();
 		
 		Object val = get.invoke(objetreference);
-		Object vals [][] = getValues();
+		//Object vals [][] = getValues();
 		
 		Class<?> compType = get.getReturnType().getComponentType();
 

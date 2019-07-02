@@ -1,113 +1,120 @@
 package org.warnotte.obj2gui2;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+
 import java.text.ParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
-import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
-import javax.swing.JTextField;
 import javax.swing.text.DefaultFormatter;
 
 /**
  * A regular expression based implementation of AbstractFormatter.
  */
-public class RegexFormatter extends DefaultFormatter {
-  private Pattern pattern;
+public class RegexFormatter extends DefaultFormatter
+{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5747089766673675266L;
 
-  private Matcher matcher;
+	private Pattern pattern;
 
-  public RegexFormatter() {
-    super();
-  }
+	private Matcher matcher;
 
-  /**
-   * Creates a regular expression based AbstractFormatter.
-   * pattern specifies the regular expression that will be used
-   * to determine if a value is legal.
-   */
-  public RegexFormatter(String pattern) throws PatternSyntaxException {
-    this();
-    setPattern(Pattern.compile(pattern));
-  //  setAllowsInvalid(false);
-    setOverwriteMode(false);
-  }
+	public RegexFormatter()
+	{
+		super();
+	}
 
-  /**
-   * Creates a regular expression based AbstractFormatter.
-   * pattern specifies the regular expression that will be used
-   * to determine if a value is legal.
-   */
-  public RegexFormatter(Pattern pattern) {
-    this();
-    setPattern(pattern);
-  }
+	/**
+	 * Creates a regular expression based AbstractFormatter. pattern specifies
+	 * the regular expression that will be used to determine if a value is
+	 * legal.
+	 */
+	public RegexFormatter(String pattern) throws PatternSyntaxException
+	{
+		this();
+		setPattern(Pattern.compile(pattern));
+		//  setAllowsInvalid(false);
+		setOverwriteMode(false);
+	}
 
-  /**
-   * Sets the pattern that will be used to determine if a value is legal.
-   */
-  public void setPattern(Pattern pattern) {
-    this.pattern = pattern;
-  }
+	/**
+	 * Creates a regular expression based AbstractFormatter. pattern specifies
+	 * the regular expression that will be used to determine if a value is
+	 * legal.
+	 */
+	public RegexFormatter(Pattern pattern)
+	{
+		this();
+		setPattern(pattern);
+	}
 
-  /**
-   * Returns the Pattern used to determine if a value is legal.
-   */
-  public Pattern getPattern() {
-    return pattern;
-  }
+	/**
+	 * Sets the pattern that will be used to determine if a value is legal.
+	 */
+	public void setPattern(Pattern pattern)
+	{
+		this.pattern = pattern;
+	}
 
-  /**
-   * Sets the Matcher used in the most recent test if a value is
-   * legal.
-   */
-  protected void setMatcher(Matcher matcher) {
-    this.matcher = matcher;
-  }
+	/**
+	 * Returns the Pattern used to determine if a value is legal.
+	 */
+	public Pattern getPattern()
+	{
+		return pattern;
+	}
 
-  /**
-   * Returns the Matcher from the most test.
-   */
-  protected Matcher getMatcher() {
-    return matcher;
-  }
+	/**
+	 * Sets the Matcher used in the most recent test if a value is legal.
+	 */
+	protected void setMatcher(Matcher matcher)
+	{
+		this.matcher = matcher;
+	}
 
-  /**
-   * Parses text returning an arbitrary Object. Some formatters
-   * may return null.
-   * 
-   * If a Pattern has been specified and the text completely
-   * matches the regular expression this will invoke setMatcher.
-   * 
-   * @throws ParseException
-   *           if there is an error in the conversion
-   * @param text
-   *          String to convert
-   * @return Object representation of text
-   */
-  @Override
-public Object stringToValue(String text) throws ParseException {
-	  
-	System.err.println("Received text : "+text);
-    Pattern pattern = getPattern();
+	/**
+	 * Returns the Matcher from the most test.
+	 */
+	protected Matcher getMatcher()
+	{
+		return matcher;
+	}
 
-    if (pattern != null) {
-    	Matcher matcher = pattern.matcher(text);
-        
-      if (matcher.matches()) {
-        setMatcher(matcher);
-        System.err.println("Pattern match :)");
-        return super.stringToValue(text);
-      }
-      System.err.println("Pattern did not match :(");
-      //return text;
-      throw new ParseException("Pattern did not match", 0);
-      
-    }
-    return text;
-  }
+	/**
+	 * Parses text returning an arbitrary Object. Some formatters may return
+	 * null. If a Pattern has been specified and the text completely matches the
+	 * regular expression this will invoke setMatcher.
+	 * 
+	 * @throws ParseException
+	 *             if there is an error in the conversion
+	 * @param text
+	 *            String to convert
+	 * @return Object representation of text
+	 */
+	@Override
+	public Object stringToValue(String text) throws ParseException
+	{
+
+		System.err.println("Received text : " + text);
+		Pattern pattern = getPattern();
+
+		if (pattern != null)
+		{
+			Matcher matcher = pattern.matcher(text);
+
+			if (matcher.matches())
+			{
+				setMatcher(matcher);
+				System.err.println("Pattern match :)");
+				return super.stringToValue(text);
+			}
+			System.err.println("Pattern did not match :(");
+			//return text;
+			throw new ParseException("Pattern did not match", 0);
+
+		}
+		return text;
+	}
 }

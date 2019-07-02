@@ -366,13 +366,13 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 							if ((newSystem == true) || (value.equals(valeur_differentes) == false))
 							{
 								if ((valueClass == float.class) || (valueClass == Float.class))
-									value = new Float("" + value.toString().replace(",", "."));
+									value = Float.parseFloat("" + value.toString().replace(",", "."));
 								if ((valueClass == double.class) || (valueClass == Double.class))
-									value = new Double("" + value.toString().replace(",", "."));
+									value = Double.parseDouble("" + value.toString().replace(",", "."));
 								if ((valueClass == long.class) || (valueClass == Long.class))
-									value = new Long("" + value.toString().replace(",", "."));
+									value = Long.parseLong("" + value.toString().replace(",", "."));
 								if ((valueClass == int.class) || (valueClass == Integer.class))
-									value = new Integer("" + value.toString().replace(",", "."));
+									value = Integer.parseInt("" + value.toString().replace(",", "."));
 							}
 							//value = new Integer(""+new Float(""+value));
 						} else if (component instanceof JCheckBox)
@@ -389,13 +389,13 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 							value = componentM.getValue();
 
 							if ((valueClass == float.class) || (valueClass == Float.class))
-								value = new Float("" + value);
+								value = Float.parseFloat("" + value);
 							if ((valueClass == double.class) || (valueClass == Double.class))
-								value = new Double("" + value);
+								value = Double.parseDouble("" + value);
 							if ((valueClass == long.class) || (valueClass == Long.class))
-								value = new Long("" + value);
+								value = Long.parseLong("" + value);
 							if ((valueClass == int.class) || (valueClass == Integer.class))
-								value = new Integer("" + new Float("" + value).intValue());
+								value = Integer.parseInt("" + new Float("" + value).intValue());
 
 						} else if (component instanceof JSlider)
 						{
@@ -403,13 +403,13 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 							value = componentM.getValue();
 
 							if ((valueClass == float.class) || (valueClass == Float.class))
-								value = new Float("" + value);
+								value = Float.parseFloat("" + value);
 							if ((valueClass == double.class) || (valueClass == Double.class))
-								value = new Double("" + value);
+								value = Double.parseDouble("" + value);
 							if ((valueClass == long.class) || (valueClass == Long.class))
-								value = new Long("" + value);
+								value = Long.parseLong("" + value);
 							if ((valueClass == int.class) || (valueClass == Integer.class))
-								value = new Integer("" + new Float("" + value).intValue());
+								value = Integer.parseInt("" + new Float("" + value).intValue());
 
 						} else if (component instanceof JXDatePicker)
 						{
@@ -534,7 +534,9 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 		try
 		{
 			final Method meth = Objectcls.getMethod(methodname);
-			boolean acc = meth.isAccessible();
+			
+			//boolean acc = meth.isAccessible();
+			boolean acc = meth.canAccess(objectBinded);
 			if (annot_pb.threadedMethod() == true)
 			{
 				if (thread_callableMethod != null)
@@ -800,7 +802,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 		// TODO : Et les plugin ici ???!
 		OBJ2GUIPlug<?, ?> plugin = getPlugin(rm.getNom().getReturnType());
 
-		Class<?> returnType = rm.getNom().getReturnType();
+		//Class<?> returnType = rm.getNom().getReturnType();
 
 		component.setBackground(Color.white);
 
@@ -896,7 +898,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 			{
 				//	componentM.setBackground(Color.orange);
 			}
-			double val = new Double("" + value);
+			double val = Double.parseDouble("" + value);
 			componentM.setValue((int) (val * componentM.getDivider()), false);
 		} else if (component instanceof JSlider)
 		{
@@ -906,7 +908,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 			{
 				//	componentM.setBackground(Color.orange);
 			}
-			double val = new Double("" + value);
+			double val = Double.parseDouble("" + value);
 			componentM.setValue((int) (val)); // Pb si divider ... ?
 		} else if (component instanceof JCheckBox)
 		{
@@ -922,9 +924,9 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 			}
 			if (value == null)
 				value = false;
-			componentM.setSelected(new Boolean("" + value));
+			componentM.setSelected(Boolean.parseBoolean("" + value));
 		} else
-		// Faut exploser ca dans une methode priv�e ...
+		// Faut exploser ca dans une methode privée ...
 		if (component instanceof JComboBox)
 		{
 			JComboBox<?> componentM = (JComboBox<?>) component;
@@ -968,13 +970,13 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 
 								if (bind != null)
 								{
-									Identifiable id = getIdentifiableFromList(bind.list_mats, new Integer("" + value));
+									Identifiable id = getIdentifiableFromList(bind.list_mats, Integer.parseInt("" + value));
 									if (id != null)
 										componentM.setSelectedItem(id);
 									else
 										componentM.setSelectedIndex(-1);
 								} else
-									componentM.setSelectedIndex(new Long("" + value).intValue());
+									componentM.setSelectedIndex(Integer.parseInt("" + value));
 							} catch (IllegalArgumentException e)
 							{
 								log.fatal(e, e);
@@ -1294,7 +1296,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 		panel.setLayout(new MigLayout("wrap 1, fill", "[grow,fill]", "[fill, grow]"));
 		PROPERTY_MIGLAYOUT class_layout_annotation = obj.getClass().getAnnotation(PROPERTY_MIGLAYOUT.class);
 
-		GridLayout gl = new GridLayout(0, 2);
+		//GridLayout gl = new GridLayout(0, 2);
 
 		if (class_layout_annotation != null)
 			AssigneLayoutToPanel(panel.panelFields, class_layout_annotation);
@@ -1341,11 +1343,14 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 
 			if (class_layout_annotation != null)
 			{
-				if (class_layout_annotation.labelPosition() == class_layout_annotation.labelPosition().LEFT)
+				class_layout_annotation.labelPosition();
+				if (class_layout_annotation.labelPosition() == lblposition.LEFT)
 					label.setHorizontalAlignment(SwingConstants.LEFT);
-				if (class_layout_annotation.labelPosition() == class_layout_annotation.labelPosition().CENTER)
+				class_layout_annotation.labelPosition();
+				if (class_layout_annotation.labelPosition() == lblposition.CENTER)
 					label.setHorizontalAlignment(SwingConstants.CENTER);
-				if (class_layout_annotation.labelPosition() == class_layout_annotation.labelPosition().RIGHT)
+				class_layout_annotation.labelPosition();
+				if (class_layout_annotation.labelPosition() == lblposition.RIGHT)
 					label.setHorizontalAlignment(SwingConstants.RIGHT);
 			}
 
@@ -1472,7 +1477,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 							objFils.getClass().getGenericSuperclass();
 							//System.err.println("HOHO");
 
-							Class returnClass = fields[i].getType();
+							Class<?> returnClass = fields[i].getType();
 							if (Collection.class.isAssignableFrom(returnClass))
 							{
 								Type returnType = fields[i].getGenericType();
@@ -1776,9 +1781,9 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 		{
 			//System.err.println("Classe : "+bestType.getTypeName());
 			
-			Class bonneclasse = Class.forName(bestType.getTypeName());
+			Class<?> bonneclasse = Class.forName(bestType.getTypeName());
 			//System.err.println("Bonne Classe : "+bonneclasse);
-			final Constructor cst = bonneclasse.getConstructor();
+			final Constructor<?> cst = bonneclasse.getConstructor();
 			if (cst == null)
 				boutonAddElement.setEnabled(false);
 			boutonAddElement.addActionListener(new ActionListener()
@@ -2054,7 +2059,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 		if ((anot != null) && (anot.gui_type() == gui_type.FLATSLIDER))
 		{
 			float min = anot.min(), max = anot.max(), div = anot.divider();
-			double val = new Double("" + value);
+			double val = Double.parseDouble("" + value);
 			comp = new WFlatSlider((int) min, (int) max);
 			((WFlatSlider) comp).setDivider(div);
 			((WFlatSlider) comp).setValue((int) (val * div));
@@ -2066,7 +2071,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 		} else if ((anot != null) && (anot.gui_type() == gui_type.SLIDER))
 		{
 			float min = anot.min(), max = anot.max(), div = anot.divider();
-			double val = new Double("" + value);
+			double val = Double.parseDouble("" + value);
 			comp = new JSlider((int) min, (int) max);
 			//((JSlider)comp).setDivider(div);
 			((JSlider) comp).setValue((int) (val * div));
@@ -2106,7 +2111,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 		} else if ((anot != null) && (anot.gui_type() == gui_type.COMBO))
 		{
 			comp = new JComboBox<Object>();
-			((JComboBox) comp).setEditable(false);
+			((JComboBox<?>) comp).setEditable(false);
 			Binding bind = panel.getBinding(rm.getOwnerclass(), varName);
 			BindingEnum bindenum = panel.getBindingEnum(rm.getOwnerclass(), varName);
 			// Y'a un binding (parce que ID material par exemple)
@@ -2117,7 +2122,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 					Identifiable o = bind.list_mats.get(i);
 					((JComboBox<Object>) comp).insertItemAt(o, i);
 					if (rm.isEquals() == true)
-						if (new Long("" + value) == o.getId())
+						if (Long.parseLong("" + value) == o.getId())
 							((JComboBox<?>) comp).setSelectedIndex(i);
 				}
 			} else if (bindenum != null)
@@ -2127,7 +2132,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 					Object o = bindenum.list_mats[i];
 					((JComboBox<Object>) comp).insertItemAt(o, i);
 					if (rm.isEquals() == true)
-						if (new Long("" + value) == i + bindenum.getIndexoffset()) // + 1 d'imbecilerie de lbr5
+						if (Long.parseLong("" + value) == i + bindenum.getIndexoffset()) // + 1 d'imbecilerie de lbr5
 							((JComboBox<?>) comp).setSelectedIndex(i);
 				}
 			} else
@@ -2205,7 +2210,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 			{
 				comp = new JCheckBox();
 
-				((JCheckBox) comp).setSelected(new Boolean("" + value));
+				((JCheckBox) comp).setSelected(Boolean.parseBoolean("" + value));
 				if (rm.isEquals() == false)
 				{
 					//((JCheckBox)comp).setBackground(Color.orange);
@@ -2477,7 +2482,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 			map_plugins.put(plugin.getType(), plugin);
 	}
 
-	public static OBJ2GUIPlug<?, ?> getPlugin(Class cls)
+	public static OBJ2GUIPlug<?, ?> getPlugin(Class<?> cls)
 	{
 		return map_plugins.get(cls);
 	}
@@ -2485,12 +2490,12 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	public static OBJ2GUIPlug<?, ?> getPlugin(JComponent component)
 	{
 		Set<Entry<Class<?>, OBJ2GUIPlug<?, ?>>> set = map_plugins.entrySet();
-		for (Iterator<?> iterator = set.iterator(); iterator.hasNext();)
+		for (Iterator<Entry<Class<?>, OBJ2GUIPlug<?, ?>>> iterator = set.iterator(); iterator.hasNext();)
 		{
-			Entry<Class<?>, OBJ2GUIPlug<?, ?>> entry = (Entry<Class<?>, OBJ2GUIPlug<?, ?>>) iterator.next();
-			for (Iterator<?> iterator2 = set.iterator(); iterator2.hasNext();)
+			//Entry<Class<?>, OBJ2GUIPlug<?, ?>> entry = iterator.next();
+			for (Iterator<Entry<Class<?>, OBJ2GUIPlug<?, ?>>> iterator2 = set.iterator(); iterator2.hasNext();)
 			{
-				Entry<Class<?>, OBJ2GUIPlug<?, ?>> entry2 = (Entry<Class<?>, OBJ2GUIPlug<?, ?>>) iterator2.next();
+				Entry<Class<?>, OBJ2GUIPlug<?, ?>> entry2 = iterator2.next();
 				OBJ2GUIPlug<?, ?> plugin = entry2.getValue();
 				if (plugin.getComponent() == component.getClass())
 				{
@@ -2515,7 +2520,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 
 	// BETA : Validators;
 
-	public static Map<Class, Map<Method, Validator>> map_Validator = new HashMap<>();
+	public static Map<Class<?>, Map<Method, Validator<?>>> map_Validator = new HashMap<>();
 
 	/**
 	 * TODO : Ouais, mais Method, si on refactor, le programme va kister apres
@@ -2524,13 +2529,13 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	 * @param setMethod
 	 * @param validatorImpl
 	 */
-	public static <T, R> void registerValidator(Method setMethod, Validator validatorImpl)
+	public static <T, R> void registerValidator(Method setMethod, Validator<?> validatorImpl)
 	{
-		// Cherche si un truc existe d�j� pour l'objet en question;
+		// Cherche si un truc existe déjà pour l'objet en question;
 
-		Class parentClass = setMethod.getDeclaringClass();
+		Class<?> parentClass = setMethod.getDeclaringClass();
 
-		Map<Method, Validator> exi = map_Validator.get(parentClass);
+		Map<Method, Validator<?>> exi = map_Validator.get(parentClass);
 
 		if (exi == null)
 		{
@@ -2551,11 +2556,11 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	 */
 	private static void validateValue(Method setMeth, Object value) throws ValidationException
 	{
-		Class parentClass = setMeth.getDeclaringClass();
+		Class<?> parentClass = setMeth.getDeclaringClass();
 
 		System.err.println(parentClass + " MUST VALIDE SOMETHING SOMEWHERE with value = " + value + " for method = " + setMeth);
 
-		Map<Method, Validator> map_func = map_Validator.get(parentClass);
+		Map<Method, Validator<?>> map_func = map_Validator.get(parentClass);
 
 		// Pas de validateur donc c'est true....
 		if (map_func == null)
@@ -2572,15 +2577,15 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 
 	// Pour les label des bordures en fct du nom de la classe
 
-	static Map<Class, String>				map_title_border			= new HashMap<>();
-	static Map<Class, Map<String, String>>	map_title_border_for_list	= new HashMap<>();
+	static Map<Class<?>, String>				map_title_border			= new HashMap<>();
+	static Map<Class<?>, Map<String, String>>	map_title_border_for_list	= new HashMap<>();
 
-	public static void registerTitleBorder(Class cls, String label)
+	public static void registerTitleBorder(Class<?> cls, String label)
 	{
 		map_title_border.put(cls, label);
 	}
 
-	public static String getRegisteredTitleBorder(Class cls)
+	public static String getRegisteredTitleBorder(Class<?> cls)
 	{
 		String val = map_title_border.get(cls);
 		if (val == null)
