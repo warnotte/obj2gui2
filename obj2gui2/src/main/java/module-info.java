@@ -24,10 +24,10 @@ module obj2gui2
 	requires java.desktop;
 	requires java.xml;
 	requires jdom2;
-	requires miglayout.swing;
 	requires org.apache.logging.log4j;
 	requires org.warnotte.waxlib2;
 	requires org.warnotte.waxlibswingcomponentsMVN;
 	requires swingx.all;
 	requires vecmath;
+	requires com.miglayout.swing;
 }

@@ -91,6 +91,7 @@ import org.warnotte.waxlibswingcomponents.Swing.Component.WaxSlider.WFlatSlider;
 
 import net.miginfocom.swing.MigLayout;
 
+
 // TODO : Y'a pas un leak avec les listener???? me semble qu'il y'a un truc louche ...
 // TODO : (Pas vraiment un truc qu'on a d�j� bcp utilis�) IL manque la communication parent->fils pour les maj d'interface (si un parent change une valeur et qu'un fils doit le savoir... cas de la class SON qui prends un KOPKOK en parametre dans le package Test )
 // TODO : Le boolean newSystem qui g�re le fait d'affiche la derniere valeur du dernier objet selectionn�
