@@ -93,7 +93,7 @@ import net.miginfocom.swing.MigLayout;
 
 
 // TODO : Y'a pas un leak avec les listener???? me semble qu'il y'a un truc louche ...
-// TODO : (Pas vraiment un truc qu'on a d�j� bcp utilis�) IL manque la communication parent->fils pour les maj d'interface (si un parent change une valeur et qu'un fils doit le savoir... cas de la class SON qui prends un KOPKOK en parametre dans le package Test )
+// TODO : (Pas vraiment un truc qu'on a d�j� bcp utilisé) IL manque la communication parent->fils pour les maj d'interface (si un parent change une valeur et qu'un fils doit le savoir... cas de la class SON qui prends un KOPKOK en parametre dans le package Test )
 // TODO : Le boolean newSystem qui g�re le fait d'affiche la derniere valeur du dernier objet selectionn�
 //      : Ne fonctionne pas avec les lists ou table, en effet on dirait que le code utilisateur envoye les objets, mais dans l'ordre visuel de la table ou quoi
 
