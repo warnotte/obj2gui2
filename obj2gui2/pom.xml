@@ -110,6 +110,45 @@
 	</dependencies>
 
 
+<repositories>
+  <repository>
+    <id>gitlab-maven</id>
+    <url>https://gitlab.uliege.be/api/v4/projects/1592/packages/maven</url>
+  </repository>
+</repositories>
 
+<distributionManagement>
+  <repository>
+    <id>gitlab-maven</id>
+    <url>https://gitlab.uliege.be/api/v4/projects/1592/packages/maven</url>
+  </repository>
+
+  <snapshotRepository>
+    <id>gitlab-maven</id>
+    <url>https://gitlab.uliege.be/api/v4/projects/1592/packages/maven</url>
+  </snapshotRepository>
+</distributionManagement>
+
+<!-- This the .m2/settings.xml configuration  
+
+<settings>
+  <servers>
+    <server>
+      <id>gitlab-maven</id>
+      <configuration>
+        <httpHeaders>
+      
+          <property>
+            <name>Deploy-Token</name>
+            <value>i1xjuzvpcEpxsbSsBd9r</value>
+          </property>
+        </httpHeaders>
+      </configuration>
+    </server>
+  </servers>
+</settings>
+
+	
+ -->
 
 </project>
