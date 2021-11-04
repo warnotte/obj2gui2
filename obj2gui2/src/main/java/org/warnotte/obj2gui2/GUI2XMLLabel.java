@@ -1,8 +1,14 @@
 package org.warnotte.obj2gui2;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -26,6 +32,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JViewport;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -43,6 +50,8 @@ import org.warnotte.waxlibswingcomponents.FileChooser.FileChooser;
 import org.warnotte.waxlibswingcomponents.Swing.Component.JColorChooserButton;
 import org.warnotte.waxlibswingcomponents.Swing.Component.WaxSlider.WFlatSlider;
 import org.warnotte.waxlibswingcomponents.Swing.Component.WaxSlider.WRoundSlider;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 // TODO : Penser a enventuelement faire un systeme de gestion des classes 
 // TODO : Dans le sens ou 2 classes != peuvent avoir une variable au meme nom mais dont le label et le tooltips pourrait devoir �tre diff�rent.
@@ -153,12 +162,12 @@ public class GUI2XMLLabel
 	{
 	}
 
-	public static boolean LoadLabel(JPanel panel, String filename) throws IOException, JDOMException
+	public static boolean LoadLabel(JPanel panel, String filename) throws Exception
 	{
 		return getInstance().LoadLabelM(panel, filename);
 	}
 
-	public static boolean SaveLabel(JPanel panel, String filename) throws IOException
+	public static boolean SaveLabel(JPanel panel, String filename) throws Exception
 	{
 		return getInstance().SaveLabelM(panel, filename);
 	}
@@ -173,13 +182,15 @@ public class GUI2XMLLabel
 	 *            Le fichier XML contenant les Elements.
 	 * @throws IOException
 	 * @throws JDOMException
+	 * @throws SAXException 
+	 * @throws ParserConfigurationException 
 	 */
-	private boolean LoadLabelM(JPanel panel, String filename) throws IOException, JDOMException
+	private boolean LoadLabelM(JPanel panel, String filename) throws IOException, JDOMException, SAXException
 	{
 		labels_map.clear();
 		tooltips_map.clear();
 
-		SAXBuilder sxb = new SAXBuilder();
+		
 
 		File file = new File(filename);
 		if (file.exists() == false)
@@ -187,7 +198,17 @@ public class GUI2XMLLabel
 			log.warn("Warning i cannot read " + filename + " so i don't load Labels");
 			return false;
 		}
-		document = sxb.build(file);
+		
+		InputStream inputStream= new FileInputStream(filename);
+		InputStreamReader inputReader = new InputStreamReader(inputStream,"UTF-8");
+		InputSource inputSource = new InputSource(inputReader);
+		inputSource.setEncoding("UTF-8");
+		SAXBuilder sxb = new SAXBuilder();
+		//document = sxb.build(file);
+		
+		document = sxb.build(inputSource);
+		
+		
 
 		racine = document.getRootElement();
 
@@ -204,6 +225,9 @@ public class GUI2XMLLabel
 				log.warn("Attention une cle est null dans le fichier " + filename);
 			labels_map.put(cle, label);
 			tooltips_map.put(cle, tooltips);
+			
+		//	log.warn("GUI2XML : Read ["+label+"]");
+			
 		}
 		recursToPanel(panel, 0);
 		return true;
@@ -246,6 +270,8 @@ public class GUI2XMLLabel
 			element.setAttribute("label", label_value);
 			element.setAttribute("tooltips", tips_value);
 
+			//log.warn("GUI2XML : Write ["+label_value+"]");
+			
 			elements.addContent(element);
 		}
 
@@ -254,7 +280,8 @@ public class GUI2XMLLabel
 		// passed fileWriter to write content in specified file  
 		xmlOutput.setFormat(Format.getPrettyFormat());
 		xmlOutput.getFormat().setEncoding("utf-8");
-		xmlOutput.output(document, new FileWriter(filename));
+		OutputStreamWriter fstream = new OutputStreamWriter(new FileOutputStream(filename), StandardCharsets.UTF_8);
+		xmlOutput.output(document,fstream/* new FileWriter(filename)*/);
 
 		return true;
 	}
@@ -358,7 +385,7 @@ public class GUI2XMLLabel
 			} else
 			{
 				if (VERBOSE == true)
-					log.warn("Component non ger� : " + cp.getClass().getName());
+					log.warn("Component non geré : " + cp.getClass().getName());
 			}
 		}
 	}

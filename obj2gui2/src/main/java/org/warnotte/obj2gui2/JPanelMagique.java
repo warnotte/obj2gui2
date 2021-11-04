@@ -1602,7 +1602,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	 * @throws JDOMException
 	 * @throws IOException
 	 */
-	private static void ChargeLabelXMLEtCreeLabelXMLSiExistePasEtUpdateLeFichierPourNouveauChamps(JPanel panel, String fileclassname) throws IOException, JDOMException
+	private static void ChargeLabelXMLEtCreeLabelXMLSiExistePasEtUpdateLeFichierPourNouveauChamps(JPanel panel, String fileclassname) throws Exception
 	{
 		// Une fois que notre panel contenant les elements de base (non recursive) alors on tente de charger son fichier xml pour les label
 		// Ou on sauve un par defaut puis on le charge.
@@ -2349,7 +2349,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	 * @throws JDOMException
 	 * @throws IOException
 	 */
-	public void LoadLabel(String string) throws IOException, JDOMException
+	public void LoadLabel(String string) throws Exception
 	{
 		if (string != null)
 		{
