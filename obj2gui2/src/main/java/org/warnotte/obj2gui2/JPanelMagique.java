@@ -1804,6 +1804,8 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 						if (jliste.getModel().getSize() == 0)
 							boutonEdit.setEnabled(false);
 
+						panel_parent.fireMyEvent(new MyChangedEvent(this, null));
+
 					} catch (SecurityException e)
 					{
 						e.printStackTrace();
@@ -1863,6 +1865,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 					try
 					{
 						panel_parent.refresh();
+						panel_parent.fireMyEvent(new MyChangedEvent(this, null));
 					} catch (Exception e)
 					{
 						// TODO Auto-generated catch block
