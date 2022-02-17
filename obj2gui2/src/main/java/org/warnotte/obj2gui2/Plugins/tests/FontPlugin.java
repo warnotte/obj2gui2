@@ -5,7 +5,8 @@ import java.lang.reflect.Method;
 
 import org.warnotte.obj2gui2.JPanelMagique;
 import org.warnotte.obj2gui2.Plugins.OBJ2GUIPlug;
-import org.warnotte.waxlibswingcomponents.Swing.Component.JFontChooserCombo;
+
+import io.github.warnotte.waxlib3.waxlibswingcomponents.Swing.Component.JFontChooserCombo;
 
 
 /**

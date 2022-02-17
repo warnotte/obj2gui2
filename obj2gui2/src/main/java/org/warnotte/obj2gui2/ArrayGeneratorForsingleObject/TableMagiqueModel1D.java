@@ -1,6 +1,5 @@
 package org.warnotte.obj2gui2.ArrayGeneratorForsingleObject;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;

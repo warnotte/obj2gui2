@@ -3,7 +3,6 @@
  */
 package org.warnotte.obj2gui2.Tests.Complex;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;

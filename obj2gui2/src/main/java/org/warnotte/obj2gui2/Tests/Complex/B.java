@@ -4,10 +4,11 @@ import java.util.List;
 
 import org.warnotte.obj2gui2.PROPERTY_FIELD_LISTABLE;
 import org.warnotte.obj2gui2.PROPERTY_LAYOUT;
-import org.warnotte.waxlib2.TemplatePropertyMerger.property_mode;
-import org.warnotte.waxlib2.TemplatePropertyMerger.Annotations.PROPERTY_FIELD_XXXABLE;
-import org.warnotte.waxlib2.TemplatePropertyMerger.Annotations.PROPERTY_interface;
-import org.warnotte.waxlib2.TemplatePropertyMerger.Annotations.PROPERTY_interface.gui_type;
+
+import io.github.warnotte.waxlib3.waxlib2.TemplatePropertyMerger.property_mode;
+import io.github.warnotte.waxlib3.waxlib2.TemplatePropertyMerger.Annotations.PROPERTY_FIELD_XXXABLE;
+import io.github.warnotte.waxlib3.waxlib2.TemplatePropertyMerger.Annotations.PROPERTY_interface;
+import io.github.warnotte.waxlib3.waxlib2.TemplatePropertyMerger.Annotations.PROPERTY_interface.gui_type;
 
 /**
  * @author Warnotte Renaud

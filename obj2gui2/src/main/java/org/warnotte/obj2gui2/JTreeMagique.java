@@ -29,8 +29,8 @@ import javax.swing.tree.TreePath;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.warnotte.waxlib2.TemplatePropertyMerger.Annotations.PROPERTY_FIELD_XXXABLE;
 
+import io.github.warnotte.waxlib3.waxlib2.TemplatePropertyMerger.Annotations.PROPERTY_FIELD_XXXABLE;
 import net.miginfocom.swing.MigLayout;
 
 
@@ -148,9 +148,10 @@ public class JTreeMagique extends JPanel implements TreeSelectionListener, MyEve
 		// R�cupere le nom de la classe
 		//String VarName = selection.get(0).getClass().getName();
 		String VarName = selection.get(0).toString();
-				// Refiltre un peu le nom de la variable
-				if (VarName.contains("."))
-					VarName = VarName.substring(VarName.lastIndexOf(".")+1);
+		// Refiltre un peu le nom de la variable
+		// TODO : Ce truc ne fonctionne pas comme je voudrais mais pourquoi ais-je fait ça ?
+		if (VarName.contains("."))
+			VarName = VarName.substring(VarName.lastIndexOf(".")+1);
 		
 				TreeNode arbre = getClassTree(selection,VarName, panel.getMapSons());
 		panel.jtree = new JTree(arbre);
@@ -294,6 +295,7 @@ public class JTreeMagique extends JPanel implements TreeSelectionListener, MyEve
 								if (objFils.get(k)!=null)
 								selFils.add(objFils.get(k));
 								String VarName = objFils.get(k).toString();
+								// TODO : Ce truc ne fonctionne pas comme je voudrais mais pourquoi ais-je fait ça ?
 								if (VarName.contains("."))
 									VarName = VarName.substring(VarName.lastIndexOf(".")+1);
 

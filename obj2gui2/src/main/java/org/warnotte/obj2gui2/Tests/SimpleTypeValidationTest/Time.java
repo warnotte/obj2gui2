@@ -5,8 +5,9 @@ import java.util.regex.Pattern;
 
 import org.warnotte.obj2gui2.PROPERTY_MIGLAYOUT;
 import org.warnotte.obj2gui2.PROPERTY_MIG_GRID;
-import org.warnotte.waxlib2.TemplatePropertyMerger.property_mode;
-import org.warnotte.waxlib2.TemplatePropertyMerger.Annotations.PROPERTY_interface;
+
+import io.github.warnotte.waxlib3.waxlib2.TemplatePropertyMerger.property_mode;
+import io.github.warnotte.waxlib3.waxlib2.TemplatePropertyMerger.Annotations.PROPERTY_interface;
 
 @PROPERTY_MIGLAYOUT(LayoutConstraints = "ins 0", ColumnConstraints = "fill,grow", RowConstraints = "")
 public class Time {

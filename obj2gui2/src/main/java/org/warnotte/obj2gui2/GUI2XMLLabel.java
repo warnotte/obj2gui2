@@ -3,7 +3,6 @@ package org.warnotte.obj2gui2;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -46,12 +45,13 @@ import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
-import org.warnotte.waxlibswingcomponents.FileChooser.FileChooser;
-import org.warnotte.waxlibswingcomponents.Swing.Component.JColorChooserButton;
-import org.warnotte.waxlibswingcomponents.Swing.Component.WaxSlider.WFlatSlider;
-import org.warnotte.waxlibswingcomponents.Swing.Component.WaxSlider.WRoundSlider;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+
+import io.github.warnotte.waxlib3.waxlibswingcomponents.FileChooser.FileChooser;
+import io.github.warnotte.waxlib3.waxlibswingcomponents.Swing.Component.JColorChooserButton;
+import io.github.warnotte.waxlib3.waxlibswingcomponents.Swing.Component.WaxSlider.WFlatSlider;
+import io.github.warnotte.waxlib3.waxlibswingcomponents.Swing.Component.WaxSlider.WRoundSlider;
 
 // TODO : Penser a enventuelement faire un systeme de gestion des classes 
 // TODO : Dans le sens ou 2 classes != peuvent avoir une variable au meme nom mais dont le label et le tooltips pourrait devoir �tre diff�rent.

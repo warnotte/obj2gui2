@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
-import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -25,7 +24,8 @@ import org.warnotte.obj2gui2.MyEventListener;
 import org.warnotte.obj2gui2.Validators.ValidationException;
 import org.warnotte.obj2gui2.Validators.Validator;
 import org.warnotte.obj2gui2.Validators.ValidatorImpl;
-import org.warnotte.waxlib2.TemplatePropertyMerger.TemplatePropertyMergerV2;
+
+import io.github.warnotte.waxlib3.waxlib2.TemplatePropertyMerger.TemplatePropertyMergerV2;
 
 /**
  * @author warnotte Renaud
