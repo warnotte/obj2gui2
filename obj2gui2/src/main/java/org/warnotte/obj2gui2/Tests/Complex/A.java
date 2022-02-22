@@ -7,10 +7,10 @@ import java.util.Date;
 
 import org.warnotte.obj2gui2.PROPERTY_LAYOUT;
 
-import io.github.warnotte.waxlib3.waxlib2.TemplatePropertyMerger.property_mode;
-import io.github.warnotte.waxlib3.waxlib2.TemplatePropertyMerger.Annotations.PROPERTY_FIELD_XXXABLE;
-import io.github.warnotte.waxlib3.waxlib2.TemplatePropertyMerger.Annotations.PROPERTY_interface;
-import io.github.warnotte.waxlib3.waxlib2.TemplatePropertyMerger.Annotations.PROPERTY_interface.gui_type;
+import io.github.warnotte.waxlib3.core.TemplatePropertyMerger.property_mode;
+import io.github.warnotte.waxlib3.core.TemplatePropertyMerger.Annotations.PROPERTY_FIELD_XXXABLE;
+import io.github.warnotte.waxlib3.core.TemplatePropertyMerger.Annotations.PROPERTY_interface;
+import io.github.warnotte.waxlib3.core.TemplatePropertyMerger.Annotations.PROPERTY_interface.gui_type;
 import io.github.warnotte.waxlib3.waxlibswingcomponents.Swing.Component.JWColor;
 
 

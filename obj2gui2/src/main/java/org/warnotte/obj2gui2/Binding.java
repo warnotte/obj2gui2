@@ -1,7 +1,7 @@
 package org.warnotte.obj2gui2;
 import java.util.List;
 
-import io.github.warnotte.waxlib3.waxlib2.Identifiable.Identifiable;
+import io.github.warnotte.waxlib3.core.Identifiable.Identifiable;
 
 /**
  * 

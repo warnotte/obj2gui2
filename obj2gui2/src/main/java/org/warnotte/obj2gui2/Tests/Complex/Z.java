@@ -1,5 +1,5 @@
 package org.warnotte.obj2gui2.Tests.Complex;
-import io.github.warnotte.waxlib3.waxlib2.TemplatePropertyMerger.Annotations.PROPERTY_FIELD_XXXABLE;
+import io.github.warnotte.waxlib3.core.TemplatePropertyMerger.Annotations.PROPERTY_FIELD_XXXABLE;
 
 /**
  * 

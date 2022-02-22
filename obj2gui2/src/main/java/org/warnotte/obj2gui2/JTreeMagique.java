@@ -30,7 +30,7 @@ import javax.swing.tree.TreePath;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import io.github.warnotte.waxlib3.waxlib2.TemplatePropertyMerger.Annotations.PROPERTY_FIELD_XXXABLE;
+import io.github.warnotte.waxlib3.core.TemplatePropertyMerger.Annotations.PROPERTY_FIELD_XXXABLE;
 import net.miginfocom.swing.MigLayout;
 
 

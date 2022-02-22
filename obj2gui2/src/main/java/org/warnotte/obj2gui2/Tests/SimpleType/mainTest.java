@@ -22,7 +22,7 @@ import org.warnotte.obj2gui2.JTreeMagique;
 import org.warnotte.obj2gui2.MyChangedEvent;
 import org.warnotte.obj2gui2.MyEventListener;
 
-import io.github.warnotte.waxlib3.waxlib2.TemplatePropertyMerger.TemplatePropertyMergerV2;
+import io.github.warnotte.waxlib3.core.TemplatePropertyMerger.TemplatePropertyMergerV2;
 
 /**
  * @author warnotte Renaud

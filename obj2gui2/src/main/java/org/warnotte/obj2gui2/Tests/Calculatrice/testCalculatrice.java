@@ -3,8 +3,8 @@ package org.warnotte.obj2gui2.Tests.Calculatrice;
 
 import org.warnotte.obj2gui2.PROPERTY_button;
 
-import io.github.warnotte.waxlib3.waxlib2.TemplatePropertyMerger.property_mode;
-import io.github.warnotte.waxlib3.waxlib2.TemplatePropertyMerger.Annotations.PROPERTY_interface;
+import io.github.warnotte.waxlib3.core.TemplatePropertyMerger.property_mode;
+import io.github.warnotte.waxlib3.core.TemplatePropertyMerger.Annotations.PROPERTY_interface;
 
 public class testCalculatrice extends CalculatriceBase {
 		

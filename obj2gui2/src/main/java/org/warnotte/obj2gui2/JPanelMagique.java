@@ -76,12 +76,12 @@ import org.warnotte.obj2gui2.Plugins.OBJ2GUIPlug;
 import org.warnotte.obj2gui2.Validators.ValidationException;
 import org.warnotte.obj2gui2.Validators.Validator;
 
-import io.github.warnotte.waxlib3.waxlib2.Identifiable.Identifiable;
-import io.github.warnotte.waxlib3.waxlib2.TemplatePropertyMerger.ResultatMerge;
-import io.github.warnotte.waxlib3.waxlib2.TemplatePropertyMerger.TemplatePropertyMergerV2;
-import io.github.warnotte.waxlib3.waxlib2.TemplatePropertyMerger.Annotations.PROPERTY_FIELD_XXXABLE;
-import io.github.warnotte.waxlib3.waxlib2.TemplatePropertyMerger.Annotations.PROPERTY_interface;
-import io.github.warnotte.waxlib3.waxlib2.TemplatePropertyMerger.Annotations.PROPERTY_interface.gui_type;
+import io.github.warnotte.waxlib3.core.Identifiable.Identifiable;
+import io.github.warnotte.waxlib3.core.TemplatePropertyMerger.ResultatMerge;
+import io.github.warnotte.waxlib3.core.TemplatePropertyMerger.TemplatePropertyMergerV2;
+import io.github.warnotte.waxlib3.core.TemplatePropertyMerger.Annotations.PROPERTY_FIELD_XXXABLE;
+import io.github.warnotte.waxlib3.core.TemplatePropertyMerger.Annotations.PROPERTY_interface;
+import io.github.warnotte.waxlib3.core.TemplatePropertyMerger.Annotations.PROPERTY_interface.gui_type;
 import io.github.warnotte.waxlib3.waxlibswingcomponents.Dialog.DialogDivers;
 import io.github.warnotte.waxlib3.waxlibswingcomponents.FileChooser.FileChooser;
 import io.github.warnotte.waxlib3.waxlibswingcomponents.Swing.Component.JColorChooserButton;

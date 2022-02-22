@@ -6,8 +6,8 @@ package org.warnotte.obj2gui2.Tests.MigLayout;
 import org.warnotte.obj2gui2.PROPERTY_MIGLAYOUT;
 import org.warnotte.obj2gui2.PROPERTY_MIG_GRID;
 
-import io.github.warnotte.waxlib3.waxlib2.TemplatePropertyMerger.property_mode;
-import io.github.warnotte.waxlib3.waxlib2.TemplatePropertyMerger.Annotations.PROPERTY_interface;
+import io.github.warnotte.waxlib3.core.TemplatePropertyMerger.property_mode;
+import io.github.warnotte.waxlib3.core.TemplatePropertyMerger.Annotations.PROPERTY_interface;
 
 /**
  * @author Warnotte Renaud
