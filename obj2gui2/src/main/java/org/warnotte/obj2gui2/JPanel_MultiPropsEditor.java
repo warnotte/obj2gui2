@@ -19,9 +19,6 @@ import javax.swing.JScrollPane;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.warnotte.obj2gui2.JPanelMagique;
-import org.warnotte.obj2gui2.MyChangedEvent;
-import org.warnotte.obj2gui2.MyEventListener;
 
 /**
  * @author Warnotte Renaud
@@ -47,6 +44,7 @@ public class JPanel_MultiPropsEditor extends JPanel implements MyEventListener
 	JScrollPane scrollPane;
 	private List<?>	selection = new ArrayList<>();
 	
+
 	/**
 	 * Create the panel.
 	 * @param gui_ViewerMPX 
@@ -99,7 +97,18 @@ public class JPanel_MultiPropsEditor extends JPanel implements MyEventListener
 		getPanel_boutons().setVisible(false);
 	}
 	
+	
 	public void setTaskProperties(List<Object> selection)
+	{
+		setTaskProperties(selection, true, null, null, true, false);
+	}
+
+	public void setTaskProperties(List<Object> selection,  boolean recursive, final List<Binding> binds)
+	{
+		setTaskProperties(selection, recursive, binds, null, true, false);
+	}
+
+	public void setTaskProperties(final List<?> selection, boolean recursive, final List<Binding> binds, final List<BindingEnum> bindsEnum, boolean OnlyAnnotatedMethods, boolean showTreeViewButtons)
 	{
 		/*
 		if (this.selection.containsAll(selection))
@@ -137,7 +146,7 @@ public class JPanel_MultiPropsEditor extends JPanel implements MyEventListener
 				for (Iterator<?> iterator = sets.iterator(); iterator.hasNext();)
 				{
 					Entry<Class<?>, List<Object>> entry =  (Entry<Class<?>, List<Object>>) iterator.next();
-					JPanelMagique jm = JPanelMagique.GenerateJPanelFromSelectionAndBindings(null, entry.getValue(), true, null, null, true, false);
+					JPanelMagique jm = JPanelMagique.GenerateJPanelFromSelectionAndBindings(null, entry.getValue(), true, binds, null, true, false);
 					jm.addMyEventListener(this);
 					panel_all.add(jm);
 				}
