@@ -1,8 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.warnotte</groupId>
+	<groupId>io.github.warnotte</groupId>
 	<artifactId>obj2gui2</artifactId>
 	<version>1.0.0</version>
 	<name>Wax Obj2gui2</name>
@@ -14,7 +12,7 @@
 		<!-- <maven.compiler.source>11</maven.compiler.source> <maven.compiler.target>9</maven.compiler.target> -->
 		<maven.compiler.release>11</maven.compiler.release>
 	</properties>
-	
+
 	<licenses>
 		<license>
 			<name>gpl_v3</name>
@@ -36,7 +34,7 @@
 		<name>Renaud Warnotte</name>
 		<url>https://renaud.warnotte.be</url>
 	</organization>
-	
+
 	<scm>
 		<url>https://github.com/warnotte/obj2gui2.git</url>
 		<connection>scm:git:github.com/warnotte/obj2gui2.git</connection>
@@ -50,10 +48,10 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
-	
+
 			</plugin>
-		
-						<plugin>
+
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.22.2</version>
@@ -83,7 +81,7 @@
 					</dependency>
 				</dependencies>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-failsafe-plugin</artifactId>
@@ -94,8 +92,7 @@
 					</argLine>
 				</configuration>
 			</plugin>
-			
-			 
+
 
 			<plugin>
 				<artifactId>maven-antrun-plugin</artifactId>
@@ -121,25 +118,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			
-			
-			
-			
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-release-plugin</artifactId>
-				<version>3.0.0-M5</version>
-				<configuration>
-					<tagNameFormat>@{project.version}</tagNameFormat>
-				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>org.apache.maven.shared</groupId>
-						<artifactId>maven-invoker</artifactId>
-						<version>2.2</version>
-					</dependency>
-				</dependencies>
-			</plugin>
 
 			<!-- Il faut ajouter ceci dans les paramètre de la VM -Dgpg.passphrase=mypassphrase -->
 			<!--  https://maven.apache.org/plugins/maven-gpg-plugin/usage.html -->
@@ -156,7 +134,7 @@
 						</goals>
 					</execution>
 				</executions>
-				
+
 			</plugin>
 
 			<plugin>
@@ -178,6 +156,7 @@
 					<doclint>none</doclint>
 				</configuration>
 			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
@@ -203,7 +182,7 @@
 			<plugin>
 				<groupId>org.sonatype.plugins</groupId>
 				<artifactId>nexus-staging-maven-plugin</artifactId>
-				<version>1.6.8</version> <!-- Des bug avec les version suivante semblent exister -->
+				<version>1.6.9</version> <!-- Des bug avec les version suivante semblent exister -->
 				<extensions>true</extensions>
 				<configuration>
 					<serverId>ossrh</serverId>
@@ -225,18 +204,18 @@
 
 		<!-- https://mvnrepository.com/artifact/com.miglayout/miglayout-swing -->
 		<!--  Deja dans WaxlibSwingcomponents -->
-	<!-- 	<dependency>
+		<!-- 	<dependency>
 		    <groupId>com.miglayout</groupId>
 		    <artifactId>miglayout-swing</artifactId>
 		    <version>5.2</version>
 		</dependency> -->
-		
+
 		<dependency>
-    <groupId>io.github.warnotte</groupId>
-    <artifactId>waxlib3</artifactId>
-    <version>0.0.1.2</version>
-</dependency>
-<!--  
+			<groupId>io.github.warnotte</groupId>
+			<artifactId>waxlib3</artifactId>
+			<version>0.0.1.2</version>
+		</dependency>
+		<!--  
 		<dependency>
 			<groupId>org.warnotte</groupId>
 			<artifactId>waxlibswingcomponentsMVN</artifactId>
@@ -256,12 +235,11 @@
 			<version>1.5.2</version>
 		</dependency>
 
- 		
 
 	</dependencies>
 
 
-<distributionManagement>
+	<distributionManagement>
 		<snapshotRepository>
 			<id>ossrh</id>
 			<url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
@@ -271,7 +249,7 @@
 			<url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
 	</distributionManagement>
-<!--
+	<!--
 <repositories>
   <repository>
     <id>gitlab-maven</id>
@@ -291,7 +269,7 @@
   </snapshotRepository>
 </distributionManagement>
 -->
-<!-- This the .m2/settings.xml configuration  
+	<!-- This the .m2/settings.xml configuration  
 
 <settings>
   <servers>
