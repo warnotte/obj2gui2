@@ -4,14 +4,45 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.warnotte</groupId>
 	<artifactId>obj2gui2</artifactId>
-	<version>0.6.0</version>
+	<version>1.0.0</version>
 	<name>Wax Obj2gui2</name>
+	<description>This library aimed to generated swing interface base on introspection and annotation of DTOs</description>
+	<url>https://github.com/warnotte/obj2gui2</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- <maven.compiler.source>11</maven.compiler.source> <maven.compiler.target>9</maven.compiler.target> -->
 		<maven.compiler.release>11</maven.compiler.release>
 	</properties>
+	
+	<licenses>
+		<license>
+			<name>gpl_v3</name>
+			<url>https://www.gnu.org/licenses/gpl-3.0.html</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Renaud Warnotte</name>
+			<email>renaud@warnotte.be</email>
+			<organization>Renaud Warnotte</organization>
+			<organizationUrl>https://renaud.warnotte.be</organizationUrl>
+		</developer>
+	</developers>
+
+	<organization>
+		<name>Renaud Warnotte</name>
+		<url>https://renaud.warnotte.be</url>
+	</organization>
+	
+	<scm>
+		<url>https://github.com/warnotte/obj2gui2.git</url>
+		<connection>scm:git:github.com/warnotte/obj2gui2.git</connection>
+		<developerConnection>scm:git:git@github.com:warnotte/obj2gui2.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
 
 	<build>
 		<plugins>
@@ -68,6 +99,96 @@
 					</execution>
 				</executions>
 			</plugin>
+			
+			
+			
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>3.0.0-M5</version>
+				<configuration>
+					<tagNameFormat>@{project.version}</tagNameFormat>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.shared</groupId>
+						<artifactId>maven-invoker</artifactId>
+						<version>2.2</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+
+			<!-- Il faut ajouter ceci dans les paramètre de la VM -Dgpg.passphrase=mypassphrase -->
+			<!--  https://maven.apache.org/plugins/maven-gpg-plugin/usage.html -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>3.0.1</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+				
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.3.1</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<source>9</source>
+					<detectJavaApiLink>false</detectJavaApiLink>
+					<additionalparam>-Xdoclint:none</additionalparam>
+					<doclint>none</doclint>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.2.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>flatten-maven-plugin</artifactId> 
+				<version>1.1.0</version> <configuration> <updatePomFile>true</updatePomFile> 
+				<flattenMode>oss</flattenMode> <pomElements> <distributionManagement>remove</distributionManagement> 
+				<repositories>remove</repositories> </pomElements> </configuration> <executions> 
+				<execution> <id>flatten</id> <phase>process-resources</phase> <goals> <goal>flatten</goal> 
+				</goals> </execution> <execution> <id>flatten.clean</id> <phase>clean</phase> 
+				<goals> <goal>clean</goal> </goals> </execution> </executions> </plugin> -->
+
+
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>1.6.8</version> <!-- Des bug avec les version suivante semblent exister -->
+				<extensions>true</extensions>
+				<configuration>
+					<serverId>ossrh</serverId>
+					<nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+					<autoReleaseAfterClose>true</autoReleaseAfterClose>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -118,6 +239,17 @@
 	</dependencies>
 
 
+<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
+<!--
 <repositories>
   <repository>
     <id>gitlab-maven</id>
@@ -136,7 +268,7 @@
     <url>https://gitlab.uliege.be/api/v4/projects/1592/packages/maven</url>
   </snapshotRepository>
 </distributionManagement>
-
+-->
 <!-- This the .m2/settings.xml configuration  
 
 <settings>
