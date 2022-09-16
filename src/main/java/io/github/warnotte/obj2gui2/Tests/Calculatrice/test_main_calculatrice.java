@@ -16,8 +16,7 @@ public class test_main_calculatrice {
 
 	public static void main(String args[]) throws Exception
 	{
-		String file = JPanelMagique.class.getResource("log4j_OBJ2GUI2.xml").getFile();
-		
+			
 		List<testCalculatrice> selection = new ArrayList<testCalculatrice>();
 		selection.add(new testCalculatrice());
 		JPanelMagique panel = JPanelMagique.GenerateJPanelFromSelectionAndBindings(selection, null, null);

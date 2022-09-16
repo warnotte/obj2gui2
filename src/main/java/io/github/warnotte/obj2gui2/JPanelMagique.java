@@ -1174,15 +1174,14 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 		}
 	}
 
+
 	/**
 	 * This method will generate a JPanel that will contains all annotated
 	 * fields and methods software developper has choosen.
-	 * 
-	 * @param selection2
+	 * @param selection
 	 * @param binds
-	 * @param bindsEnum
-	 * @param object
 	 * @return
+	 * @throws Exception
 	 */
 	public static JPanelMagique GenerateJPanelFromSelectionAndBindings(List<?> selection, List<Binding> binds) throws Exception
 	{

@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.warnotte</groupId>
 	<artifactId>obj2gui2</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<name>Wax Obj2gui2</name>
 	<description>This library aimed to generated swing interface base on introspection and annotation of DTOs</description>
 	<url>https://github.com/warnotte/obj2gui2</url>
@@ -196,38 +196,10 @@
 	<dependencies>
 
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.8.2</version>
-			<scope>test</scope>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/com.miglayout/miglayout-swing -->
-		<!--  Deja dans WaxlibSwingcomponents -->
-		<!-- 	<dependency>
-		    <groupId>com.miglayout</groupId>
-		    <artifactId>miglayout-swing</artifactId>
-		    <version>5.2</version>
-		</dependency> -->
-
-		<dependency>
 			<groupId>io.github.warnotte</groupId>
 			<artifactId>waxlib3</artifactId>
 			<version>0.0.1.2</version>
 		</dependency>
-		<!--  
-		<dependency>
-			<groupId>org.warnotte</groupId>
-			<artifactId>waxlibswingcomponentsMVN</artifactId>
-			<version>0.5.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.warnotte</groupId>
-			<artifactId>waxLib2</artifactId>
-			<version>0.5.0</version>
-		</dependency>
--->
 
 		<dependency>
 			<groupId>javax.vecmath</groupId>
@@ -249,6 +221,6 @@
 			<url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
 	</distributionManagement>
-	
+
 
 </project>

@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import io.github.warnotte.obj2gui2.PROPERTY_LAYOUT;
+import io.github.warnotte.obj2gui2.PROPERTY_MIGLAYOUT;
 import io.github.warnotte.waxlib3.core.TemplatePropertyMerger.property_mode;
 import io.github.warnotte.waxlib3.core.TemplatePropertyMerger.Annotations.PROPERTY_FIELD_XXXABLE;
 import io.github.warnotte.waxlib3.core.TemplatePropertyMerger.Annotations.PROPERTY_interface;
@@ -16,7 +17,8 @@ import io.github.warnotte.waxlib3.waxlibswingcomponents.Swing.Component.JWColor;
 /**
  * @author Warnotte Renaud.
  */
-@PROPERTY_LAYOUT(type = PROPERTY_LAYOUT.Type.BoxLayout, BoxLayout_property = PROPERTY_LAYOUT.Type_BoxLayout.Y)
+//@PROPERTY_LAYOUT(type = PROPERTY_LAYOUT.Type.BoxLayout, BoxLayout_property = PROPERTY_LAYOUT.Type_BoxLayout.Y)
+//@PROPERTY_MIGLAYOUT(LayoutConstraints = "", ColumnConstraints = "fill,grow", RowConstraints = "fill,grow")
 public class A
 {
 	// Divers test pour les type simple primitif
