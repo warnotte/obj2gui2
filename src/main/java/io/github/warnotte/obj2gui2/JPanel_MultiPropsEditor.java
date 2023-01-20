@@ -45,7 +45,8 @@ public class JPanel_MultiPropsEditor extends JPanel implements MyEventListener
 	JScrollPane scrollPane;
 	private List<?>	selection = new ArrayList<>();
 	
-
+	public static String text_nothing_selected = "Nothing selected";
+	
 	/**
 	 * Create the panel.
 	 * @param gui_ViewerMPX 
@@ -77,9 +78,9 @@ public class JPanel_MultiPropsEditor extends JPanel implements MyEventListener
 		cardlayout = new CardLayout();
 		noselectionpanel = new JPanel();
 		noselectionpanel.setLayout(	new java.awt.GridBagLayout());
-		JLabel label = new JLabel("Nothing selected"); //$NON-NLS-1$
-		label.setFont(new Font("Tahoma", Font.BOLD, 16)); //$NON-NLS-1$
-		noselectionpanel.add(label);
+		JLabel label_nothingselected = new JLabel(text_nothing_selected); //$NON-NLS-1$
+		label_nothingselected.setFont(new Font("Tahoma", Font.BOLD, 16)); //$NON-NLS-1$
+		noselectionpanel.add(label_nothingselected);
 		
 		centre.setLayout(cardlayout);
 		scrollPane = new JScrollPane();
