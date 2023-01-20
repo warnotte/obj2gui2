@@ -36,7 +36,7 @@ public class mainTest
 	 */
 	public static void main(String[] args) throws Exception
 	{
-		String file = JPanelMagique.class.getResource("log4j_OBJ2GUI2.xml").getFile();
+//		String file = JPanelMagique.class.getResource("log4j_OBJ2GUI2.xml").getFile();
 		JPanelMagique.PRINT_DEBUG=true;
 		JTreeMagique.PRINT_DEBUG=true;
 		TemplatePropertyMergerV2.PRINT_DEBUG=false;

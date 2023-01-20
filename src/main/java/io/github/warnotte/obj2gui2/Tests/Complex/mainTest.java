@@ -1,6 +1,9 @@
 package io.github.warnotte.obj2gui2.Tests.Complex;
 
+import java.awt.AWTEvent;
 import java.awt.BorderLayout;
+import java.awt.Toolkit;
+import java.awt.event.AWTEventListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -41,6 +44,22 @@ public class mainTest
 	//	JTreeMagique.PRINT_DEBUG=true;
 	//	TemplatePropertyMergerV2.PRINT_DEBUG=false;
 		CreateExemple();
+		
+		Toolkit.getDefaultToolkit().addAWTEventListener(new AWTEventListener() {
+	        public void eventDispatched(AWTEvent e) {
+	        	System.err.println(">> "+e.getSource());
+	        	
+	        	if (e.getSource() instanceof JScrollPane) {
+	        		System.err.println("Name = "+((JScrollPane)e.getSource()).getName());
+	        	}
+/*	        	if (e.getSource() instanceof JButton) {
+	                JButton button = (JButton) e.getSource();
+
+	                Log(button.getText());
+	            }*/
+	        }
+	    }, AWTEvent.MOUSE_EVENT_MASK);
+		
 	}
 
 	/**

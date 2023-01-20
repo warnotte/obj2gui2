@@ -1292,7 +1292,9 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 
 		// Layouting
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-		panel.setLayout(new MigLayout("wrap 1, fill", "[grow,fill]", "[fill, grow]"));
+		panel.setLayout(new MigLayout("wrap 1", "[grow,fill]", "[fill, grow]"));
+		panel.setLayout(new MigLayout("wrap 1", "[grow,fill]", ""));
+		
 		PROPERTY_MIGLAYOUT class_layout_annotation = obj.getClass().getAnnotation(PROPERTY_MIGLAYOUT.class);
 
 		//GridLayout gl = new GridLayout(0, 2);
@@ -1301,8 +1303,22 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 			AssigneLayoutToPanel(panel.panelFields, class_layout_annotation);
 		else
 		{
+//			MigLayout ml = new MigLayout("fill, gap 0, insets 0 0 0 0", "[right]rel[grow,fill]", "[fill, grow]1[fill, grow]");
 			MigLayout ml = new MigLayout("fill, gap 0, insets 0 0 0 0", "[right]rel[grow,fill]", "[fill, grow]1[fill, grow]");
+			
+			//ml = new MigLayout("", "[right]rel[grow,fill]", "[top]1[top]");
+			
+			//ml=new MigLayout("wrap 2, fill", "[grow,fill]", "[fill, grow]");
+			//ml=new MigLayout("", "[grow][]", "[grow]");
+
+			
+			
 			panel.panelFields.setLayout(ml);
+			
+			//panel.panelFields.setLayout(new BoxLayout(panel.panelFields, BoxLayout.Y_AXIS));
+			
+			
+
 		}
 
 		panel.panelSons.setLayout(new BoxLayout(panel.panelSons, BoxLayout.Y_AXIS));
@@ -1747,8 +1763,8 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 
 		JPanel panelfilsboutons = new JPanel();
 		panelfilsboutons.setLayout(new MigLayout());
-
-		panelfils.add(new JScrollPane(jliste), "cell 0 0, grow");
+		JScrollPane	scrollpanellist = new JScrollPane(jliste);
+		panelfils.add(scrollpanellist, "cell 0 0, grow");
 		panelfils.add(panelfilsboutons, "cell 1 0, grow");
 
 		final JButton boutonEdit = new JButton(TEXT_BOUTON_VIEW_EDIT);

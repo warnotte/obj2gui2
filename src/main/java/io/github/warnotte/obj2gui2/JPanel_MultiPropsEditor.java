@@ -2,6 +2,7 @@ package io.github.warnotte.obj2gui2;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -82,7 +83,8 @@ public class JPanel_MultiPropsEditor extends JPanel implements MyEventListener
 		
 		centre.setLayout(cardlayout);
 		scrollPane = new JScrollPane();
-		
+		scrollPane.setName("ScrollPaneOfMultipropseditor");
+		//scrollPane.setBackground(Color.BLUE);
 		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 		
 		centre.add(scrollPane, "FULL"); //$NON-NLS-1$
