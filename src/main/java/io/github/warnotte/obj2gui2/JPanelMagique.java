@@ -1467,6 +1467,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 				anot = fields[i].getAnnotation(PROPERTY_FIELD_LISTABLE.class);
 				//Class clazzDetected = null;
 
+				
 				if (anot != null)
 				{
 					//	List selection_fils = new ArrayList();
@@ -1490,12 +1491,28 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 						{
 							objFils.getClass().getGenericInterfaces();
 							objFils.getClass().getGenericSuperclass();
-							//System.err.println("HOHO");
-
+							
 							Class<?> returnClass = fields[i].getType();
 							if (Collection.class.isAssignableFrom(returnClass))
 							{
 								Type returnType = fields[i].getGenericType();
+								
+								/**
+								 * Ajout du 25-01-2023
+								 */
+								if (objFils.getClass().getGenericSuperclass() instanceof ParameterizedType)
+								{
+									ParameterizedType paramType = (ParameterizedType) objFils.getClass().getGenericSuperclass();
+									Type[] argTypes = paramType.getActualTypeArguments();
+									if (argTypes.length > 0)
+									{
+										bestType = argTypes[0];
+									}
+								}
+								/**
+								 * FIN Ajout du 25-01-2023
+								 */
+								
 								if (returnType instanceof ParameterizedType)
 								{
 									ParameterizedType paramType = (ParameterizedType) returnType;
