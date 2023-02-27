@@ -84,29 +84,52 @@ public class mainTest
 		JPanelMagique.registerValidator(ObjectExemple.class.getMethod("setAslider", double.class), new ValidatorImpl());
 		JPanelMagique.registerValidator(ObjectExemple.class.getMethod("setA", double.class), new ValidatorImpl());
 		
-		// Definition rappide avec override (valeur double doit etre entre 0.25 et 0.75)
+	/*	// Definition rappide avec override (valeur double doit etre entre 0.25 et 0.75)
 		JPanelMagique.registerValidator(ObjectExemple.class.getMethod("setAa", double.class), 
-				new Validator<Double>(){
+				new Validator<ObjectExemple, Double>(){
 
 					@Override
-					public void valideValue(Double value) throws ValidationException
+					public boolean valideValue(ObjectExemple o, Double value) throws ValidationException
 					{
 						if ((value < 0.25) || (value > 0.75))
 							throw new ValidationException("Value must be between 0.25 and 0.75");
+						return true;
+					}
+			
+		}
+		);*/
+		
+		// Definition rappide avec override (valeur double doit etre entre 0.25 et 0.75)
+		JPanelMagique.registerValidator(ObjectExemple.class.getMethod("setAa", double.class), 
+				new Validator<ObjectExemple, Double>(){
+
+					@Override
+					public Double valideValue(ObjectExemple o, Double value) throws ValidationException
+					{
+						
+						if (value < 0.25)
+						{
+							throw new ValidationException("Invalid value, revert");
+						}
+						if (value > 0.75)
+								value=0.75;
+						return value;
 					}
 			
 		}
 		);
 		
+		
 		// Definition rappide avec override (Ouvrier max 10 jours de travail);
 		JPanelMagique.registerValidator(Time.class.getMethod("setDays_", int.class), 
-				new Validator<Integer>(){
+				new Validator<ObjectExemple, Integer>(){
 
 					@Override
-					public void valideValue(Integer value) throws ValidationException
+					public Integer valideValue(ObjectExemple o, Integer value) throws ValidationException
 					{
 						if (value>10)
 							throw new ValidationException("Les ouvriers ne peuvent pas travailler plus de 10 jours");
+						return value;
 					}
 			
 		}
@@ -116,14 +139,15 @@ public class mainTest
 				final Object mainBenchMark = new MainBenchMark();
 				// Definition rappide avec override (Ouvrier max 10 jours de travail);
 				JPanelMagique.registerValidator(Time.class.getMethod("setDays_", int.class), 
-						new Validator<Integer>(){
+						new Validator<ObjectExemple, Integer>(){
 
 							@Override
-							public void valideValue(Integer value) throws ValidationException
+							public Integer valideValue(ObjectExemple o, Integer value) throws ValidationException
 							{
 								// Je prends hashCode pour avoir une methode qui retourne un truc (ca aurait put etre nbr jour max du projet)
 								if (value>mainBenchMark.hashCode())
 									throw new ValidationException("Les ouvriers ne peuvent pas travailler plus de 10 jours");
+								return value;
 							}
 					
 				}
@@ -133,14 +157,15 @@ public class mainTest
 				
 				// Definition rappide avec override (Ouvrier max 10 jours de travail);
 				JPanelMagique.registerValidator(ObjectExemple.class.getMethod("setMaterial_id", long.class), 
-						new Validator<Long>(){
+						new Validator<ObjectExemple, Long>(){
 
 							@Override
-							public void valideValue(Long value) throws ValidationException
+							public Long valideValue(ObjectExemple o, Long value) throws ValidationException
 							{
 								// Je prends hashCode pour avoir une methode qui retourne un truc (ca aurait put etre nbr jour max du projet)
 								if (value==5)
 									throw new ValidationException("On fournit plus ce materiel");
+								return value;
 							}
 					
 				}
@@ -148,21 +173,21 @@ public class mainTest
 				
 				// Definition rappide avec override (Ouvrier max 10 jours de travail);
 				JPanelMagique.registerValidator(ObjectExemple.class.getMethod("setMaterial_id2", long.class), 
-						new Validator<Long>(){
+						new Validator<ObjectExemple, Long>(){
 
 							@Override
-							public void valideValue(Long value) throws ValidationException
+							public Long valideValue(ObjectExemple o, Long value) throws ValidationException
 							{
 								for (int i = 0; i < list_mats.size(); i++)
 								{
-									Material o = list_mats.get(i);
-									long id = o.getId();
+									Material m = list_mats.get(i);
+									long id = m.getId();
 									if (id==value)
 									{
 										// Je prends hashCode pour avoir une methode qui retourne un truc (ca aurait put etre nbr jour max du projet)
 										if (value==5)
 											throw new ValidationException("On fournit plus ce materiel");
-										return;
+										
 									}
 								}
 								throw new ValidationException("Cet id n'existe pas!");

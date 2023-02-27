@@ -451,8 +451,8 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 							{
 								try
 								{
-									validateValue(setMeth, value);
-									setMeth.invoke(o, value);
+									Object fixedValue = validateValue(o, setMeth, value);
+									setMeth.invoke(o, fixedValue);
 								} catch (ValidationException e1)
 								{
 									DialogDivers.Show_dialog(e1, e1.getMessage());
@@ -2555,7 +2555,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 
 	// BETA : Validators;
 
-	public static Map<Class<?>, Map<Method, Validator<?>>> map_Validator = new HashMap<>();
+	public static Map<Class<?>, Map<Method, Validator<?, ?>>> map_Validator = new HashMap<>();
 
 	/**
 	 * TODO : Ouais, mais Method, si on refactor, le programme va kister apres
@@ -2564,13 +2564,13 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	 * @param setMethod
 	 * @param validatorImpl
 	 */
-	public static <T, R> void registerValidator(Method setMethod, Validator<?> validatorImpl)
+	public static <T, R> void registerValidator(Method setMethod, Validator<?, ?> validatorImpl)
 	{
 		// Cherche si un truc existe déjà pour l'objet en question;
 
 		Class<?> parentClass = setMethod.getDeclaringClass();
 
-		Map<Method, Validator<?>> exi = map_Validator.get(parentClass);
+		Map<Method, Validator<?, ?>> exi = map_Validator.get(parentClass);
 
 		if (exi == null)
 		{
@@ -2582,6 +2582,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	}
 
 	/**
+	 * @param  
 	 * @param <T>
 	 * @param <R>
 	 * @param class1
@@ -2589,25 +2590,26 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	 * @param value
 	 * @throws ValidationException
 	 */
-	private static void validateValue(Method setMeth, Object value) throws ValidationException
+	private static Object validateValue(Object object, Method setMeth, Object value) throws ValidationException
 	{
 		Class<?> parentClass = setMeth.getDeclaringClass();
 
 		System.err.println(parentClass + " MUST VALIDE SOMETHING SOMEWHERE with value = " + value + " for method = " + setMeth);
 
-		Map<Method, Validator<?>> map_func = map_Validator.get(parentClass);
+		Map<Method, Validator<?, ?>> map_func = map_Validator.get(parentClass);
 
 		// Pas de validateur donc c'est true....
 		if (map_func == null)
-			return;
+			return value;
 
 		Validator validateur = map_func.get(setMeth);
 
 		if (validateur != null)
 		{
-			validateur.valideValue(value);
+			return validateur.valideValue(object, value);
 		}
-		return;
+		return validateur;
+		
 	}
 
 	// Pour les label des bordures en fct du nom de la classe
