@@ -13,7 +13,7 @@ public class ValidatorImpl<O, T extends Double> implements Validator<O, T>
 	 * @see GuiGenerator.Validator#valideValue()
 	 */
 	
-	public T valideValue(O o, T value ) throws ValidationException
+	public T valideValue(O o, T oldValue, T value ) throws ValidationException
 	{
 		System.err.println("i'll validate = "+value);// TODO Auto-generated method stub
 		

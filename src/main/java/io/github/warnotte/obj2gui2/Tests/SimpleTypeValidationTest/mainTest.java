@@ -104,7 +104,7 @@ public class mainTest
 				new Validator<ObjectExemple, Double>(){
 
 					@Override
-					public Double valideValue(ObjectExemple o, Double value) throws ValidationException
+					public Double valideValue(ObjectExemple o, Double oldvalue, Double value) throws ValidationException
 					{
 						
 						if (value < 0.25)
@@ -125,7 +125,7 @@ public class mainTest
 				new Validator<ObjectExemple, Integer>(){
 
 					@Override
-					public Integer valideValue(ObjectExemple o, Integer value) throws ValidationException
+					public Integer valideValue(ObjectExemple o, Integer oldvalue, Integer value) throws ValidationException
 					{
 						if (value>10)
 							throw new ValidationException("Les ouvriers ne peuvent pas travailler plus de 10 jours");
@@ -142,7 +142,7 @@ public class mainTest
 						new Validator<ObjectExemple, Integer>(){
 
 							@Override
-							public Integer valideValue(ObjectExemple o, Integer value) throws ValidationException
+							public Integer valideValue(ObjectExemple o, Integer oldvalue, Integer value) throws ValidationException
 							{
 								// Je prends hashCode pour avoir une methode qui retourne un truc (ca aurait put etre nbr jour max du projet)
 								if (value>mainBenchMark.hashCode())
@@ -160,7 +160,7 @@ public class mainTest
 						new Validator<ObjectExemple, Long>(){
 
 							@Override
-							public Long valideValue(ObjectExemple o, Long value) throws ValidationException
+							public Long valideValue(ObjectExemple o, Long oldvalue, Long value) throws ValidationException
 							{
 								// Je prends hashCode pour avoir une methode qui retourne un truc (ca aurait put etre nbr jour max du projet)
 								if (value==5)
@@ -176,7 +176,7 @@ public class mainTest
 						new Validator<ObjectExemple, Long>(){
 
 							@Override
-							public Long valideValue(ObjectExemple o, Long value) throws ValidationException
+							public Long valideValue(ObjectExemple o, Long oldvalue, Long value) throws ValidationException
 							{
 								for (int i = 0; i < list_mats.size(); i++)
 								{

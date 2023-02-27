@@ -330,6 +330,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 				String name = rm.getNom().getName().substring(offset);
 
 				Method setMeth = rm.getHasSet();
+				
 
 				if (setMeth != null)
 				{
@@ -451,8 +452,10 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 							{
 								try
 								{
+									
+									Object oldValue = rm.getNom().invoke(selection.get(selection.size()-1), null);
 									// TODO : Je me demande s'il ne faudrait pas avoir aussi la OldValue au cas ou ... ça pourrait être interessant.
-									Object fixedValue = validateValue(o, setMeth, value);
+									Object fixedValue = validateValue(o, setMeth, oldValue, value);
 									setMeth.invoke(o, fixedValue);
 								} catch (ValidationException e1)
 								{
@@ -2591,7 +2594,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	 * @param value
 	 * @throws ValidationException
 	 */
-	private static Object validateValue(Object object, Method setMeth, Object value) throws ValidationException
+	private static Object validateValue(Object object, Method setMeth, Object oldValue, Object value) throws ValidationException
 	{
 		Class<?> parentClass = setMeth.getDeclaringClass();
 
@@ -2608,7 +2611,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 		if (validateur != null)
 		{
 			// TODO : Je me demande s'il ne faudrait pas avoir aussi la OldValue au cas ou ... ça pourrait être interessant.
-			return validateur.valideValue(object, value);
+			return validateur.valideValue(object, oldValue, value);
 		}
 		return validateur;
 		
