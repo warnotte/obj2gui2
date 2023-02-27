@@ -451,6 +451,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 							{
 								try
 								{
+									// TODO : Je me demande s'il ne faudrait pas avoir aussi la OldValue au cas ou ... ça pourrait être interessant.
 									Object fixedValue = validateValue(o, setMeth, value);
 									setMeth.invoke(o, fixedValue);
 								} catch (ValidationException e1)
@@ -2606,6 +2607,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 
 		if (validateur != null)
 		{
+			// TODO : Je me demande s'il ne faudrait pas avoir aussi la OldValue au cas ou ... ça pourrait être interessant.
 			return validateur.valideValue(object, value);
 		}
 		return validateur;

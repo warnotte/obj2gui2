@@ -18,5 +18,6 @@ public interface Validator<O, T>
 	 * @return
 	 * @throws ValidationException
 	 */
+	// TODO : Je me demande s'il ne faudrait pas avoir aussi la OldValue au cas ou ... ça pourrait être interessant.
 	public T valideValue(O o, T value) throws ValidationException;
 }
