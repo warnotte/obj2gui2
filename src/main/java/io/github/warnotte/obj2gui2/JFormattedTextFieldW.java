@@ -37,7 +37,7 @@ public class JFormattedTextFieldW extends JFormattedTextField
 	public void setText(String value)
 	{
 		if (value.length()==0){
-			System.err.println("TOTO");
+			//System.err.println("TOTO");
 			return;
 		}
 			
