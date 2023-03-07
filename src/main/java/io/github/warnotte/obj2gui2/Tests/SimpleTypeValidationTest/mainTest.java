@@ -187,7 +187,7 @@ public class mainTest
 										// Je prends hashCode pour avoir une methode qui retourne un truc (ca aurait put etre nbr jour max du projet)
 										if (value==5)
 											throw new ValidationException("On fournit plus ce materiel");
-										
+										return value;
 									}
 								}
 								throw new ValidationException("Cet id n'existe pas!");

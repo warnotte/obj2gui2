@@ -2597,23 +2597,21 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	private static Object validateValue(Object object, Method setMeth, Object oldValue, Object value) throws ValidationException
 	{
 		Class<?> parentClass = setMeth.getDeclaringClass();
-
-		System.err.println(parentClass + " MUST VALIDE SOMETHING SOMEWHERE with value = " + value + " for method = " + setMeth);
-
 		Map<Method, Validator<?, ?>> map_func = map_Validator.get(parentClass);
 
 		// Pas de validateur donc c'est true....
 		if (map_func == null)
 			return value;
-
+		
 		Validator validateur = map_func.get(setMeth);
 
 		if (validateur != null)
 		{
+			System.err.println(parentClass + " MUST VALIDE SOMETHING SOMEWHERE with value = " + value + " for method = " + setMeth);
 			// TODO : Je me demande s'il ne faudrait pas avoir aussi la OldValue au cas ou ... ça pourrait être interessant.
 			return validateur.valideValue(object, oldValue, value);
 		}
-		return validateur;
+		return value;
 		
 	}
 
