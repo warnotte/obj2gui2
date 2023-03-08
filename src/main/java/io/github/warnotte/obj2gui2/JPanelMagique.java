@@ -2667,8 +2667,10 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 			}
 		}
 
+
 		// Detecte si on est bien sur un type "List".
-		if ((f.getType().isAssignableFrom(List.class)) == false)
+		if ( ((f.getType().isAssignableFrom(List.class)) == false) && (Collection.class.isAssignableFrom(f.getType())==false))
+		//if ((f.getType().isAssignableFrom(List.class)) == false)	
 		{
 			String msg = "I found variable " + listvariableName + " inside class " + class1.getName() + " but it's not a List";
 			log.fatal(msg);
