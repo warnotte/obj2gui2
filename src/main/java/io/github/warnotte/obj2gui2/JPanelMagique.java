@@ -2689,14 +2689,16 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 		Map<String, String> mcls = map_title_border_for_list.get(class1);
 		if (mcls == null)
 		{
-			log.fatal("map_title_border_for_list doesn't contains registered class " + class1);
-			throw new Exception("map_title_border_for_list doesn't contains registered class " + class1);
+			
+			String str = String.format("JPanelMagique.registerTitleBorderForList(%s, \"%s\", \"%s\");", class1, listvariableName, "The text you want" );
+			log.fatal("map_title_border_for_list doesn't contains registered class " + class1+ " for the variable list named : "+listvariableName+ " --- "+str);
+			throw new Exception("map_title_border_for_list doesn't contains registered class " + class1+ " for the variable list named : "+listvariableName+ " --- "+str);
 		}
 		String ret = mcls.get(listvariableName);
 		if (ret == null)
 		{
-			log.fatal("map_title_border_for_list doesn't contains key for " + listvariableName);
-			throw new Exception("map_title_border_for_list doesn't contains key for " + listvariableName);
+			log.fatal("map_title_border_for_list doesn't contains key for " + listvariableName + " on class "+class1);
+			throw new Exception("map_title_border_for_list doesn't contains key for " + listvariableName + " on class "+class1);
 		}
 		return ret;
 	}
