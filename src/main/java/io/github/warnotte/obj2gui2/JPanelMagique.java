@@ -97,8 +97,8 @@ import net.miginfocom.swing.MigLayout;
 //      : Ne fonctionne pas avec les lists ou table, en effet on dirait que le code utilisateur envoye les objets, mais dans l'ordre visuel de la table ou quoi
 
 /**
- * @author Warnotte Renaud 2011-2016
- * @date 2011-2016
+ * @author Warnotte Renaud 2011-2023
+ * @date 2011-2023
  */
 public class JPanelMagique extends JPanel implements ActionListener, MyEventListener, ChangeListener, ItemListener, FocusListener, DocumentListener
 {
@@ -113,7 +113,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	public static boolean					newSystem					= true;
 
 	// Pour les textfield avec des flottant (par exemple), on affiche tjrs a l'ancienne avec uniquement un POINT
-	// comme s�parateur, sinon on formatte avec la Locale.
+	// comme séparateur, sinon on formatte avec la Locale.
 	public static boolean					formatTextFieldWithDotOnly	= true;
 
 	static String							valeur_differentes			= "Differents values";
@@ -293,6 +293,9 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
+		if (e.getID()==ActionEvent.ACTION_PERFORMED) {
+			System.err.println("****");
+		}
 		if (PRINT_DEBUG == true)
 			log.info("JPanelMagique::actionPerformed(" + e + ")");
 
@@ -454,6 +457,20 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 								{
 									
 									Object oldValue = rm.getNom().invoke(selection.get(selection.size()-1), null);
+									/**
+									 * ADDITION MAURICIO 20-09-2023
+									 */
+									// Si c'est la même valeur qu'avant (dans le cas du lost focus et qu'on a rien changé) ET
+									// Qu'on a pas appuyé sur ENTER (cas d'une multiselection si on veux appliquer la valeur du dernier objet selectionné a tout les autres objets).
+									if ((value.equals(oldValue)) && ((e.getID()!=ActionEvent.ACTION_PERFORMED)))
+									{
+										if (PRINT_DEBUG==true)
+											log.debug("Value hasn't changed");
+										return;
+									}
+									/**
+									 * FIN ADDITION
+									 */
 									// TODO : Je me demande s'il ne faudrait pas avoir aussi la OldValue au cas ou ... ça pourrait être interessant.
 									Object fixedValue = validateValue(o, setMeth, oldValue, value);
 									setMeth.invoke(o, fixedValue);
@@ -464,7 +481,8 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 									break;
 								}
 							} else
-								log.info("Valeurs diff�rentes alors je ne sette pas les valeurs");
+								if (PRINT_DEBUG==true)
+									log.info("Valeurs différentes alors je ne sette pas les valeurs");
 						}
 					} catch (IllegalArgumentException e1)
 					{
@@ -1417,6 +1435,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 		}
 
 		// S'arrange pour pouvoir utiliser tab et passer d'un champ a l'autre...
+		// TODO : Not sure it's usefull
 		panel.panelFields.setFocusTraversalPolicy(null);
 		panel.panelFields.setFocusCycleRoot(true);
 		panel.panelFields.setFocusTraversalKeysEnabled(true);
@@ -2350,7 +2369,11 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 					((JTextField) comp).setText(valeur_differentes);
 				}
 				((JTextField) comp).addActionListener(panel);
-				if (newSystem == false) // -> Sinon ca pose des probleme si on clique dans la case puis qu'on perds le focus ca set les valeurs.
+				/**
+				 * ADDITION MAURICIO 20-09-2023
+				 * Remove the comment if something weird ...
+				 */
+				//if (newSystem == false) // -> WARNING Sinon ca pose des probleme si on clique dans la case puis qu'on perds le focus ca set les valeurs.
 					((JTextField) comp).addFocusListener(panel);
 			}
 		}
@@ -2446,7 +2469,18 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	@Override
 	public void focusGained(FocusEvent e)
 	{
-
+		
+		/**
+		 * ADDITION MAURICIO 20-09-2023
+		 * Remove the comment if something weird ...
+		 * Normalement ceci devrait pas poser de problèmes
+		 */
+		Component comp = e.getComponent();
+		if (comp instanceof JTextField)
+		{
+			((JTextField)comp).selectAll();
+		}
+		
 	}
 
 	/*
@@ -2456,6 +2490,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	@Override
 	public void focusLost(FocusEvent arg0)
 	{
+		//System.err.println("Lost "+arg0);
 		actionPerformed(new ActionEvent(arg0.getSource(), 0, "FocusLost"));
 	}
 
