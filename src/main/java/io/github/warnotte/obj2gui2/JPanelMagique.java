@@ -294,7 +294,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	public void actionPerformed(ActionEvent e)
 	{
 		if (e.getID()==ActionEvent.ACTION_PERFORMED) {
-			System.err.println("****");
+			//System.err.println("****");
 		}
 		if (PRINT_DEBUG == true)
 			log.info("JPanelMagique::actionPerformed(" + e + ")");
