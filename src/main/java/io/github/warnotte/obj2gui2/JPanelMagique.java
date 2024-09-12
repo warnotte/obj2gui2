@@ -76,7 +76,7 @@ import io.github.warnotte.obj2gui2.ArrayGeneratorForsingleObject.TableMagiquePlu
 import io.github.warnotte.obj2gui2.Plugins.OBJ2GUIPlug;
 import io.github.warnotte.obj2gui2.Validators.ValidationException;
 import io.github.warnotte.obj2gui2.Validators.Validator;
-import io.github.warnotte.waxlib3.core.Identifiable.Identifiable;
+//import io.github.warnotte.waxlib3.core.Identifiable.Identifiable;
 import io.github.warnotte.waxlib3.core.TemplatePropertyMerger.ResultatMerge;
 import io.github.warnotte.waxlib3.core.TemplatePropertyMerger.TemplatePropertyMergerV2;
 import io.github.warnotte.waxlib3.core.TemplatePropertyMerger.Annotations.PROPERTY_FIELD_XXXABLE;
@@ -1045,11 +1045,15 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 			component.setBackground(Color.orange);
 	}
 
-	private Identifiable getIdentifiableFromList(List<? extends Identifiable> list_mats, Integer integer)
+	private Identifiable getIdentifiableFromList(List<?> list_mats, Integer integer)
 	{
 		for (int i = 0; i < list_mats.size(); i++)
-			if (list_mats.get(i).getId() == integer.intValue())
-				return list_mats.get(i);
+		{
+			Object o = list_mats.get(i);
+			Identifiable identif = (Identifiable)o;
+			if (identif.getId() == integer.intValue())
+				return identif;
+		}
 		return null;
 	}
 
@@ -2177,7 +2181,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 			{
 				for (int i = 0; i < bind.list_mats.size(); i++)
 				{
-					Identifiable o = bind.list_mats.get(i);
+					Identifiable o = (Identifiable) bind.list_mats.get(i);
 					((JComboBox<Object>) comp).insertItemAt(o, i);
 					if (rm.isEquals() == true)
 						if (Long.parseLong("" + value) == o.getId())
