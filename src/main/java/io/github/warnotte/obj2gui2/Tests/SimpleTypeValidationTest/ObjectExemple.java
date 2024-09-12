@@ -69,7 +69,7 @@ public class ObjectExemple
 	File	file_directory2	= new File("unknown");
 	File	file_directory3	= null;
 
-	long material_id = (int)(Math.random()*5);
+	int material_id = (int)(Math.random()*5);
 	
 
 	// Quelques test avec JWColor (equivalent du color mais avec un setter, oui c'est con je sais ... l'id�e est que je ne voulais recreer une nouvelle instance de color mais bien garder la meme pour conserver sa r�ference)
@@ -444,20 +444,20 @@ public class ObjectExemple
 	
 	
 	@PROPERTY_interface(Operation=property_mode.PROPERTY_MERGEABLE, gui_type=gui_type.COMBO)
-	public synchronized long getMaterial_id()
+	public synchronized int getMaterial_id()
 	{
 		return material_id;
 	}
 	@PROPERTY_interface(Operation=property_mode.PROPERTY_MERGEABLE)
-	public synchronized long getMaterial_id2()
+	public synchronized int getMaterial_id2()
 	{
 		return material_id;
 	}
-	public synchronized void setMaterial_id(long material_id)
+	public synchronized void setMaterial_id(int material_id)
 	{
 		this.material_id = material_id;
 	}
-	public synchronized void setMaterial_id2(long material_id)
+	public synchronized void setMaterial_id2(int material_id)
 	{
 		this.material_id = material_id;
 	}

@@ -156,11 +156,11 @@ public class mainTest
 				// Dummy class for test (could be waterwayNetwork).
 				
 				// Definition rappide avec override (Ouvrier max 10 jours de travail);
-				JPanelMagique.registerValidator(ObjectExemple.class.getMethod("setMaterial_id", long.class), 
-						new Validator<ObjectExemple, Long>(){
+				JPanelMagique.registerValidator(ObjectExemple.class.getMethod("setMaterial_id", int.class), 
+						new Validator<ObjectExemple, Integer>(){
 
 							@Override
-							public Long valideValue(ObjectExemple o, Long oldvalue, Long value) throws ValidationException
+							public Integer valideValue(ObjectExemple o, Integer oldvalue, Integer value) throws ValidationException
 							{
 								// Je prends hashCode pour avoir une methode qui retourne un truc (ca aurait put etre nbr jour max du projet)
 								if (value==5)
@@ -172,11 +172,11 @@ public class mainTest
 				);
 				
 				// Definition rappide avec override (Ouvrier max 10 jours de travail);
-				JPanelMagique.registerValidator(ObjectExemple.class.getMethod("setMaterial_id2", long.class), 
-						new Validator<ObjectExemple, Long>(){
+				JPanelMagique.registerValidator(ObjectExemple.class.getMethod("setMaterial_id2", int.class), 
+						new Validator<ObjectExemple, Integer>(){
 
 							@Override
-							public Long valideValue(ObjectExemple o, Long oldvalue, Long value) throws ValidationException
+							public Integer valideValue(ObjectExemple o, Integer oldvalue, Integer value) throws ValidationException
 							{
 								for (int i = 0; i < list_mats.size(); i++)
 								{

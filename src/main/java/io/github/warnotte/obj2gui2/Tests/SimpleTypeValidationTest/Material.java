@@ -1,5 +1,6 @@
 package io.github.warnotte.obj2gui2.Tests.SimpleTypeValidationTest;
-import io.github.warnotte.waxlib3.core.Identifiable.Identifiable;
+
+import io.github.warnotte.obj2gui2.Identifiable;
 
 /**
  * 
@@ -9,8 +10,9 @@ import io.github.warnotte.waxlib3.core.Identifiable.Identifiable;
  * @author Warnotte Renaud
  *
  */
-public class Material extends Identifiable
+public class Material implements Identifiable
 {
+	int id;
 	/**
 	 * 
 	 */
@@ -20,9 +22,9 @@ public class Material extends Identifiable
 	 * @param ID
 	 * @param string 
 	 */
-	public Material(long ID, String string)
+	public Material(int ID, String string)
 	{
-		super(ID);
+		this.id = ID;
 		this.named = string;
 	}
 	public synchronized String getNamed()
@@ -37,6 +39,16 @@ public class Material extends Identifiable
 	@Override
 	public String toString() {
 		return "Material [named=" + named + "]";
+	}
+	
+	@Override
+	public int getId() {
+		return id;
+	}
+	@Override
+	public void setId(int id) {
+		this.id= id;
+		
 	}
 	
 	
