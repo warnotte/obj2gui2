@@ -93,8 +93,8 @@ import net.miginfocom.swing.MigLayout;
 
 
 // TODO : Y'a pas un leak avec les listener???? me semble qu'il y'a un truc louche ...
-// TODO : (Pas vraiment un truc qu'on a d�j� bcp utilisé) IL manque la communication parent->fils pour les maj d'interface (si un parent change une valeur et qu'un fils doit le savoir... cas de la class SON qui prends un KOPKOK en parametre dans le package Test )
-// TODO : Le boolean newSystem qui g�re le fait d'affiche la derniere valeur du dernier objet selectionn�
+// TODO : (Pas vraiment un truc qu'on a déjà bcp utilisé) IL manque la communication parent->fils pour les maj d'interface (si un parent change une valeur et qu'un fils doit le savoir... cas de la class SON qui prends un KOPKOK en parametre dans le package Test )
+// TODO : Le boolean newSystem qui gére le fait d'affiche la derniere valeur du dernier objet selectionné
 //      : Ne fonctionne pas avec les lists ou table, en effet on dirait que le code utilisateur envoye les objets, mais dans l'ordre visuel de la table ou quoi
 
 /**
@@ -162,7 +162,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	private static final long					serialVersionUID					= 5026589469585370696L;
 
 	/**
-	 * La selection que l'on a pass� au panneau. Elle va reservir au moment de
+	 * La selection que l'on a passé au panneau. Elle va reservir au moment de
 	 * retransmettre un changement de valeur a tout les elements de cette liste.
 	 */
 	private List<?>								selection;
@@ -173,7 +173,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	private Map<JComponent, ResultatMerge>		map_component_to_class				= new HashMap<JComponent, ResultatMerge>();
 
 	/**
-	 * Lien pour relier un bouton a une methode de la classe vis�e.
+	 * Lien pour relier un bouton a une methode de la classe visée.
 	 */
 	private final Map<JButton, PROPERTY_button>	map_button_to_method				= new HashMap<JButton, PROPERTY_button>();
 
@@ -201,7 +201,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	private String								XMLLabelFile						= null;
 
 	/**
-	 * Retiens que l'on ne veux que les methods annotat�e et pas le systeme
+	 * Retiens que l'on ne veux que les methods annotatée et pas le systeme
 	 * "magique".
 	 */
 	private boolean								OnlyAnnotatedMethods				= true;
@@ -257,7 +257,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 		super.finalize();
 		if (parent != null)
 			parent.removeMyEventListener(this);
-		// Pas sure que ca soit necessaire, normalement un parent est pass� a chaque fils (en th�orie) et le fils demande au pere de supprimer l'event listener.
+		// Pas sure que ca soit necessaire, normalement un parent est passé a chaque fils (en théorie) et le fils demande au pere de supprimer l'event listener.
 		for (int i = 0; i < panelSons.getComponentCount(); i++)
 			((JPanelMagique) panelSons.getComponent(i)).removeMyEventListener(this);
 	}
@@ -461,7 +461,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 						}
 						if (value != null)
 						{
-							// Apparement avec un TextField qui contient un simple string, si on va dans la case et que c'est en orange et marqu� "Valeurs diff�rentes" alors on sette �a pour tout les objets ce qui est une erreur monumentale...
+							// Apparement avec un TextField qui contient un simple string, si on va dans la case et que c'est en orange et marqué "Valeurs différentes" alors on sette éa pour tout les objets ce qui est une erreur monumentale...
 							if ((newSystem == true) || (value.equals(valeur_differentes) == false))
 							{
 								try
@@ -685,7 +685,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	 * d'[Identifiable] (les Material doit extends Identifiable)
 	 * 
 	 * @param list_mats
-	 *            La liste de r�f�rence.
+	 *            La liste de référence.
 	 * @param class1
 	 * @param string
 	 */
@@ -754,7 +754,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 		if ((selection != null) && (selection.size() != 0))
 		{
 			final Object obj = selection.get(0);
-			// R�cupere le nom de la classe
+			// Récupere le nom de la classe
 			String VarName = obj.getClass().getName();
 			// Refiltre un peu le nom de la variable
 			if (VarName.contains("."))
@@ -791,7 +791,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 
 			if (comp == null)
 			{
-				log.fatal("Quelques chose ne se passe pas comme pr�vu, le composant nomm� : " + name + " n'est pas trouv�");
+				log.fatal("Quelques chose ne se passe pas comme prévu, le composant nommé : " + name + " n'est pas trouvé");
 			}
 
 			refreshComponent(comp, rm, selection);
@@ -1325,10 +1325,10 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 			return panel;
 		}
 		;
-		// On prends un objet de reference. (on espere que la liste ne contients que des objets du m�me type).
+		// On prends un objet de reference. (on espere que la liste ne contients que des objets du méme type).
 		final Object obj = selection.get(0);
 
-		// R�cupere le nom de la classe
+		// Récupere le nom de la classe
 		String VarName = obj.getClass().getName();
 		// Refiltre un peu le nom de la variable
 		if (VarName.contains("."))
@@ -1475,7 +1475,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 		panel.panelFields.setFocusTraversalKeysEnabled(true);
 		panel.panelFields.setFocusTraversalPolicyProvider(true);
 
-		// Charge les labels a partir du fichier XML si celui ci existe (sinon le cr�e).
+		// Charge les labels a partir du fichier XML si celui ci existe (sinon le crée).
 		ChargeLabelXMLEtCreeLabelXMLSiExistePasEtUpdateLeFichierPourNouveauChamps(panel.panelFields, obj.getClass().getName());
 
 		// Detecter s'il y'a des fils
@@ -1529,11 +1529,11 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 				{
 					//	List selection_fils = new ArrayList();
 					DefaultListModel<Object> dlm = new DefaultListModel<Object>();
-					// TODO : C'est peut �tre pas une bonne id�e de vouloir mettre != objets dans la liste car apres on ne sais plus quel objet appartient a quel autre objet.
+					// TODO : C'est peut étre pas une bonne idée de vouloir mettre != objets dans la liste car apres on ne sais plus quel objet appartient a quel autre objet.
 					//for (int j = 0; j < selection.size(); j++)
 					//{
 
-					Object objM = selection.get(0/* j */); // Indisponibilities (l'objet p�re)
+					Object objM = selection.get(0/* j */); // Indisponibilities (l'objet pére)
 					fields[i].setAccessible(true);
 					if (PRINT_DEBUG)
 						log.info("Field = " + fields[i]);
@@ -1697,11 +1697,11 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 		String LABEL_XML_DIRECTORY1 = LABEL_XML_DIRECTORY + "/obj2gui_Labels/" + Locale.getDefault().getLanguage() + "/";
 
 		File dirForLabel = new File(LABEL_XML_DIRECTORY1);
-		// Si le repertoire n'existe pas alors on tente de le cr�er
+		// Si le repertoire n'existe pas alors on tente de le créer
 		if (dirForLabel.exists() == false)
 		{
 			boolean ret = dirForLabel.mkdirs();
-			// Si la cr�ation ne marche pas
+			// Si la création ne marche pas
 			if (ret == false)
 			{
 				String errormsg = "Cannot create Directory " + dirForLabel;
@@ -1718,14 +1718,14 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 		// On charge les labels (qui existent quoiqu'il arrive).
 		// panel.panelFields.LoadLabel(label_filename);
 		GUI2XMLLabel.LoadLabel(panel, label_filename);
-		// Resauve le fichier car entre temps on a peut etre rajout� des variable dans une classe ou quoi...
+		// Resauve le fichier car entre temps on a peut etre rajouté des variable dans une classe ou quoi...
 		if (activateAutoSaveAutoUpdate == true)
 			GUI2XMLLabel.SaveLabel(panel, label_filename);
 	}
 
 	/**
-	 * Cr�e un bouton qui va creer une fenetre avec une arbre pour editer les
-	 * propri�t�s des objets.
+	 * Crée un bouton qui va creer une fenetre avec une arbre pour editer les
+	 * propriétés des objets.
 	 * 
 	 * @param selection
 	 * @param binds
@@ -1979,7 +1979,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	 */
 	protected static void ViewEditElementFromListable(JPanelMagique panel_parent, JList<Object> jliste)
 	{
-		// TODO : Ici aussi il faut faire attention au types diff�rents.
+		// TODO : Ici aussi il faut faire attention au types différents.
 		List<?> objs = jliste.getSelectedValuesList();
 		log.info("Selection : " + objs.size());
 
@@ -2090,7 +2090,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 		Object value = rm.getValue();
 
 		// TODO : Ceci permettrait de ne plus avoir de "Valeurs differentes" mais d'afficher la valeur pour le
-		// dernier objet selectionn�.
+		// dernier objet selectionné.
 		if (newSystem)
 		{
 			Object lastSelectedObject = selection2.get(selection2.size() - 1);
