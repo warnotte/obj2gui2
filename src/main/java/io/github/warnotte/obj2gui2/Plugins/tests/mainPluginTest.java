@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 
 import io.github.warnotte.obj2gui2.Binding;
@@ -27,6 +28,16 @@ import io.github.warnotte.obj2gui2.Tests.SimpleType.Material;
 public class mainPluginTest
 {
 
+	static List<Material> list_mats2 = new ArrayList<Material>();
+	static
+	{
+		list_mats2.add(new Material(1, "SteelA"));
+		list_mats2.add(new Material(5, "SteelB"));
+		list_mats2.add(new Material(8, "SteelC"));
+		list_mats2.add(new Material(9, "SteelD"));
+		list_mats2.add(new Material(11, "SteelE"));
+		
+	}
 	/**
 	 * @param args
 	 * @throws Exception 
@@ -34,8 +45,11 @@ public class mainPluginTest
 	public static void main(String[] args) throws Exception
 	{
 		final A a = new A();
+		final A b = new A();
+		b.setRef_MaterialCombo(9);
 		List<A> tps = new ArrayList<>();
 		tps.add(a);
+		tps.add(b);
 		
 		// Pour la classe A on a besoin d'avoir une liste de reference...
 		List<Material> list_mats = new ArrayList<Material>();
@@ -56,6 +70,10 @@ public class mainPluginTest
 		JPanelMagique.registerPlugin(plugin3);
 		//JPanelMagique.registerPlugin(plugin4);
 		//JPanelMagique.registerPlugin(plugin1);
+		
+		MaterialCombobox pluginN2 = new MaterialCombobox(A.class, "ref_MaterialCombo");
+		JPanelMagique.registerPlugin2(pluginN2);
+		
 		
 		// This will help OBJ2GUI to assign an Object (from a list of Identifiable) to the value.
 		final ArrayList<Binding> binds = new ArrayList<Binding>();

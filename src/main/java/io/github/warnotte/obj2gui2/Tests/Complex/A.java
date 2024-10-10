@@ -62,6 +62,8 @@ public class A
 	JWColor	colorGreen		= new JWColor(0, 255, 0);
 	JWColor	colorBlue		= new JWColor(0, 0, 255);
 
+	int ref_MaterialCombo = 1;
+	
 	public A()
 	{
 
@@ -322,11 +324,19 @@ public class A
 	}
 	
 	
+	@PROPERTY_interface(Operation = property_mode.PROPERTY_MERGEABLE, orderDisplay=1)
+	public int getRef_MaterialCombo() {
+		return ref_MaterialCombo;
+	}
+
+	public void setRef_MaterialCombo(int ref_MaterialCombo) {
+		this.ref_MaterialCombo = ref_MaterialCombo;
+	}
 
 	@Override
 	public String toString()
 	{
-		return "KOPKOK [aaaa=" + getAslider() + " a=" + a + ", b=" + b + ", aa=" + aa + ", checkBoxTrue=" + checkBoxTrue + ", checkBoxFalse=" + checkBoxFalse + ", checkBoxDepend=" + checkBoxDepend + ", classeB=" + classeB + ", classeZ=" + classeZ + "]\r\n" + "[File1 = " + file_1 + "]\r\n" + "[File2 = " + file_xml + "]\r\n" + "[Dir1 = " + file_directory1 + "]\r\n" + "[Dir2 = " + file_directory2 + "]\r\n" + "[Dir3 = " + file_directory3 + "]\r\n"+"Font = "+unefonte+"\r\n";
+		return "KOPKOK ["+ref_MaterialCombo+"] [aaaa=" + getAslider() + " a=" + a + ", b=" + b + ", aa=" + aa + ", checkBoxTrue=" + checkBoxTrue + ", checkBoxFalse=" + checkBoxFalse + ", checkBoxDepend=" + checkBoxDepend + ", classeB=" + classeB + ", classeZ=" + classeZ + "]\r\n" + "[File1 = " + file_1 + "]\r\n" + "[File2 = " + file_xml + "]\r\n" + "[Dir1 = " + file_directory1 + "]\r\n" + "[Dir2 = " + file_directory2 + "]\r\n" + "[Dir3 = " + file_directory3 + "]\r\n"+"Font = "+unefonte+"\r\n";
 
 	}
 	

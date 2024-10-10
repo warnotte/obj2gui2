@@ -74,6 +74,7 @@ import org.jdom2.JDOMException;
 import io.github.warnotte.obj2gui2.ArrayGeneratorForsingleObject.TableMagiquePlugin1D;
 import io.github.warnotte.obj2gui2.ArrayGeneratorForsingleObject.TableMagiquePlugin2D;
 import io.github.warnotte.obj2gui2.Plugins.OBJ2GUIPlug;
+import io.github.warnotte.obj2gui2.Plugins.OBJ2GUIPlug2;
 import io.github.warnotte.obj2gui2.Validators.ValidationException;
 import io.github.warnotte.obj2gui2.Validators.Validator;
 //import io.github.warnotte.waxlib3.core.Identifiable.Identifiable;
@@ -106,6 +107,9 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	private static final Logger log = LogManager.getLogger("JPanelMagique");
 
 	static Map<Class<?>, OBJ2GUIPlug<?, ?>>	map_plugins					= null;
+	
+	// Pour les classe speciale genre les Identifiable... voire MaterialComboBox
+	static List<OBJ2GUIPlug2<?, ?>>	map_plugins2					= null;
 
 	// TODO : Ceci devrai disparaitre un jour (a moins que...)
 	// Si true, alors on ne mets plus valeurs differentes dans les textfield quand c'est le cas.
@@ -130,6 +134,8 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 		{
 			valeur_differentes = "Valeurs différentes";
 		}
+		
+		map_plugins2 = new ArrayList<>();
 
 	}
 
@@ -343,6 +349,13 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 						Object value = null;
 						OBJ2GUIPlug<?, ?> plugin = getPlugin(valueClass);
 
+						OBJ2GUIPlug2<?, ?> plugin2 = getPlugin2(valueClass, Objectcls, name);
+						
+						
+						if (plugin2 != null)
+						{
+							value = plugin2.getValue(e.getSource());
+						} else
 						if (plugin != null)
 						{
 							value = plugin.getValue(e.getSource());
@@ -824,10 +837,29 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 		// TODO : Et les plugin ici ???!
 		OBJ2GUIPlug<?, ?> plugin = getPlugin(rm.getNom().getReturnType());
 
+		
+			Class<?> returnType = rm.getNom().getReturnType();
+			int offset = 3;
+			if ((returnType == boolean.class) || (returnType == Boolean.class))
+				offset = 2;
+			String varName = rm.getNom().getName().substring(offset);
+			
+			OBJ2GUIPlug2<?, ?> plugin2 = getPlugin2(returnType, selection2.get(0).getClass(), varName);
+			
+		
 		//Class<?> returnType = rm.getNom().getReturnType();
 
 		component.setBackground(Color.white);
 
+		if (plugin2 != null)
+		{
+			plugin2.refresh(value, component);
+			//component.setBackground(Color.white);
+			if (rm.isEquals() == false)
+			{
+				//component.setBackground(Color.orange);
+			}
+		} else
 		if (plugin != null)
 		{
 			plugin.refresh(value, component);
@@ -984,10 +1016,10 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 								// TODO : allez voir dans le binding apres
 								Class<?> valueClass = setMeth.getParameterTypes()[0];
 
-								int offset = 3;
+								offset = 3;
 								if ((valueClass == boolean.class) || (valueClass == Boolean.class))
 									offset = 2;
-								String varName = rm.getNom().getName().substring(offset);
+								varName = rm.getNom().getName().substring(offset);
 								Binding bind = getBinding(rm.getOwnerclass(), varName.toLowerCase());
 
 								if (bind != null)
@@ -2091,6 +2123,8 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 
 		OBJ2GUIPlug<?, ?> plugin = getPlugin(returnType);
 
+		OBJ2GUIPlug2<?, ?> plugin2 = getPlugin2(returnType, selection2.get(0).getClass(), varName);
+				
 		// Est-ce une array ?
 		if (returnType.isArray())
 		{
@@ -2110,7 +2144,13 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 			{
 				//	comp.setBackground(Color.orange);
 			}
-		} else if (plugin != null)
+		} else if (plugin2 != null)
+		{
+			comp = (JComponent) plugin2.build(value, selection2, rm.getNom(), rm.getHasSet(), panel);
+			comp.setBackground(Color.white);
+			//if (rm.isEquals()==false)
+			//	comp.setBackground(Color.orange);
+		}else if (plugin != null)
 		{
 			comp = (JComponent) plugin.build(value, selection2, rm.getNom(), rm.getHasSet(), panel);
 			comp.setBackground(Color.white);
@@ -2560,10 +2600,62 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 			map_plugins.put(plugin.getType(), plugin);
 	}
 
+	public static void registerPlugin2(OBJ2GUIPlug2<?, ?> plugin)
+	{
+		map_plugins2.add(plugin);
+	}
+
 	public static OBJ2GUIPlug<?, ?> getPlugin(Class<?> cls)
 	{
 		return map_plugins.get(cls);
+	}	
+	public static OBJ2GUIPlug2<?, ?> getPlugin2(Class<?> cls, Class<? extends Object> userTargetClass, String varName)
+	{
+		
+		for (int i = 0; i < map_plugins2.size(); i++) {
+			OBJ2GUIPlug2 plug = map_plugins2.get(i);
+			
+			
+			if ((plug.getType() == cls) || (sontClassesEquivalentes(plug.getType(), cls)))
+				if (plug.getUserTargetClass()==userTargetClass)
+					if (plug.getUserTargetVariable().equalsIgnoreCase(varName))
+				{
+					
+					return plug;
+				}
+		}
+		
+		return null;
 	}
+	
+	 private static final Map<Class<?>, Class<?>> PRIMITIVE_TO_WRAPPER = new HashMap<>();
+	    private static final Map<Class<?>, Class<?>> WRAPPER_TO_PRIMITIVE = new HashMap<>();
+
+	    static {
+	        PRIMITIVE_TO_WRAPPER.put(int.class, Integer.class);
+	        PRIMITIVE_TO_WRAPPER.put(double.class, Double.class);
+	        PRIMITIVE_TO_WRAPPER.put(boolean.class, Boolean.class);
+	        PRIMITIVE_TO_WRAPPER.put(char.class, Character.class);
+	        PRIMITIVE_TO_WRAPPER.put(long.class, Long.class);
+	        PRIMITIVE_TO_WRAPPER.put(float.class, Float.class);
+	        PRIMITIVE_TO_WRAPPER.put(short.class, Short.class);
+	        PRIMITIVE_TO_WRAPPER.put(byte.class, Byte.class);
+
+	        // Inverse mapping for wrapper to primitive
+	        for (Map.Entry<Class<?>, Class<?>> entry : PRIMITIVE_TO_WRAPPER.entrySet()) {
+	            WRAPPER_TO_PRIMITIVE.put(entry.getValue(), entry.getKey());
+	        }
+	    }
+
+	    public static boolean sontClassesEquivalentes(Class<?> classe1, Class<?> classe2) {
+	        if (classe1.equals(classe2)) {
+	            return true; // Même classe
+	        }
+	        // Comparaison après conversion
+	        return (PRIMITIVE_TO_WRAPPER.getOrDefault(classe1, classe1).equals(PRIMITIVE_TO_WRAPPER.getOrDefault(classe2, classe2)) ||
+	                WRAPPER_TO_PRIMITIVE.getOrDefault(classe1, classe1).equals(WRAPPER_TO_PRIMITIVE.getOrDefault(classe2, classe2)));
+	    }
+	
 
 	public static OBJ2GUIPlug<?, ?> getPlugin(JComponent component)
 	{
@@ -2583,15 +2675,42 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 		}
 		return null;
 	}
+	public static OBJ2GUIPlug2<?, ?> getPlugin2(JComponent component)
+	{/*
+		Set<Entry<Class<?>, OBJ2GUIPlug2<?, ?>>> set = map_plugins2.entrySet();
+		for (Iterator<Entry<Class<?>, OBJ2GUIPlug2<?, ?>>> iterator = set.iterator(); iterator.hasNext();)
+		{
+			//Entry<Class<?>, OBJ2GUIPlug<?, ?>> entry = iterator.next();
+			for (Iterator<Entry<Class<?>, OBJ2GUIPlug2<?, ?>>> iterator2 = set.iterator(); iterator2.hasNext();)
+			{
+				Entry<Class<?>, OBJ2GUIPlug2<?, ?>> entry2 = iterator2.next();
+				OBJ2GUIPlug2<?, ?> plugin = entry2.getValue();
+				if (plugin.getComponent() == component.getClass())
+				{
+					System.err.println("TU");
+				}
+			}
+		}*/
+		return null;
+	}
 
 	public static void removePlugin(Class<?> cls)
 	{
 		map_plugins.remove(cls);
 	}
 
+	public static void removePlugin2(Class<?> cls)
+	{
+		map_plugins2.remove(cls);
+	}
+
 	public static void clearPlugins(Class<?> cls)
 	{
 		map_plugins.clear();
+	}
+	public static void clearPlugins2(Class<?> cls)
+	{
+		map_plugins2.clear();
 	}
 
 	// TODO : Un convertisseur comme dans JIDE qui permettrait par exemple de tapper 1 et le convertisseur retournerai un objet d'un autre type
