@@ -1,16 +1,21 @@
 package io.github.warnotte.obj2gui2.Plugins;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.JComponent;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import io.github.warnotte.obj2gui2.JPanelMagique;
-import io.github.warnotte.obj2gui2.Tests.SimpleType.Material;
 
 public abstract class OBJ2GUIPlug2<T, U>{
-
-	//protected T class_target;
-	//protected U component;
+	
+	protected static final Logger			logger		= LogManager.getLogger(OBJ2GUIPlug2.class);
 	
 	private Class<T>	type; // Le type de la va
 	private Class<U>	component;
@@ -18,15 +23,31 @@ public abstract class OBJ2GUIPlug2<T, U>{
 	// Ceci pourrait permettre de ne cible que certaines classe user et certaines m�thodes.
 	// Du genre je vx appliquer le Datechoooser magique a l'objet Task methode getStart();
 	
-	private Class 		userTargetClass; // La classe "Chaussure" par exemple.
+	private Class/*<T>*/ 		userTargetClass; // La classe "Chaussure" par exemple.
 	private String 		userTargetVariable; // La classe "Chaussure" par exemple.
 	
 	
-	public OBJ2GUIPlug2(Class userTargetClass, String userTargetVariable) {
+	public OBJ2GUIPlug2(Class/*<T>*/ userTargetClass, String userTargetVariable) {
 		this.type = (Class<T>) ((java.lang.reflect.ParameterizedType)this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 		this.component = (Class<U>) ((java.lang.reflect.ParameterizedType)this.getClass().getGenericSuperclass()).getActualTypeArguments()[1];
 		this.userTargetVariable = userTargetVariable;
 		this.userTargetClass = userTargetClass;
+		
+		// Check if userTargetVariable exists.
+		/*try {
+			// Peut-être faudra il utiliser la methode getFields() de JPanelMagique ???
+			userTargetClass.getDeclaredField(userTargetVariable);			
+		} catch (NoSuchFieldException | SecurityException e) {
+			logger.fatal(e, e);
+			e.printStackTrace();
+		}*/
+		
+		boolean isOk = isFieldExist(userTargetClass, userTargetVariable);
+		if (isOk==false)
+		{
+			logger.fatal("Field "+userTargetVariable+" doesn't exist in "+userTargetClass);
+			
+		}
 		
 	}
 
@@ -34,6 +55,19 @@ public abstract class OBJ2GUIPlug2<T, U>{
 		//System.err.println("Class = "+this.type.getName());
 		//System.err.println("component = "+this.component.getName());
    }
+	
+	
+	
+	static boolean isFieldExist(Class<?> classType, String fieldName)
+	{
+		Field[] fields = JPanelMagique.getAllFields(classType);
+		for (int i = 0; i < fields.length; i++) {
+			if (fields[i].getName().equalsIgnoreCase(fieldName))
+				return true;
+		}
+		
+		return false;
+	}
 	
 	/**
 	 * Crée un composant avec la value, et ajoute un listener (a implementer toi même);

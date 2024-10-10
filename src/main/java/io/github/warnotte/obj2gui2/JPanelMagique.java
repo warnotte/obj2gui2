@@ -2037,7 +2037,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	 * @param classType
 	 * @return all Field of the classType and all this parent class
 	 */
-	static Field[] getAllFields(Class<?> classType)
+	public static Field[] getAllFields(Class<?> classType)
 	{
 
 		List<Field> retour = new ArrayList<Field>();
