@@ -15,7 +15,8 @@ import io.github.warnotte.obj2gui2.JPanelMagique;
  * editer TimeSlot genre TimeSlotPanel
  * 
  * @author Warnotte Renaud
- *
+ * @param <T> Type de la variable a representer
+ * @param <U> Composant Swing
  */
 public abstract class OBJ2GUIPlug<T, U> {
 	// protected T class_target;

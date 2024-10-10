@@ -14,8 +14,8 @@ import io.github.warnotte.obj2gui2.JPanelMagique;
  * Similaire a OBJ2GUIPlug2, mais on rajoute ici un class Target ainsi que la
  * variable concernée (en esperant que le Getter et Setter soient bien mis)
  * 
- * @param <T>
- * @param <U>
+ * @param <T> Type de la variable a representer
+ * @param <U> Composant Swing
  */
 public abstract class OBJ2GUIPlugExtended<T, U> {
 
