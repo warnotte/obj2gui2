@@ -49,7 +49,7 @@ public class MaterialCombobox extends OBJ2GUIPlugExtended<Integer, JComboBox> {
 			@Override
 			public Component getListCellRendererComponent(JList<? extends Integer> list, Integer value, int index, boolean isSelected, boolean cellHasFocus) {
 				int id_material = value;
-				Material mat = mainPluginTest.list_mats2.stream().filter(e -> e.getId() == id_material).collect(Collectors.toList()).getFirst();
+				Material mat = mainPluginTest.list_mats2.stream().filter(e -> e.getId() == id_material).collect(Collectors.toList()).get(0);
 				return new JLabel(mat.getId()+") "+mat.getNamed());
 			}
 			
