@@ -74,7 +74,7 @@ import org.jdom2.JDOMException;
 import io.github.warnotte.obj2gui2.ArrayGeneratorForsingleObject.TableMagiquePlugin1D;
 import io.github.warnotte.obj2gui2.ArrayGeneratorForsingleObject.TableMagiquePlugin2D;
 import io.github.warnotte.obj2gui2.Plugins.OBJ2GUIPlug;
-import io.github.warnotte.obj2gui2.Plugins.OBJ2GUIPlug2;
+import io.github.warnotte.obj2gui2.Plugins.OBJ2GUIPlugExtended;
 import io.github.warnotte.obj2gui2.Validators.ValidationException;
 import io.github.warnotte.obj2gui2.Validators.Validator;
 //import io.github.warnotte.waxlib3.core.Identifiable.Identifiable;
@@ -98,8 +98,8 @@ import net.miginfocom.swing.MigLayout;
 //      : Ne fonctionne pas avec les lists ou table, en effet on dirait que le code utilisateur envoye les objets, mais dans l'ordre visuel de la table ou quoi
 
 /**
- * @author Warnotte Renaud 2011-2023
- * @date 2011-2023
+ * @author Warnotte Renaud 2011-2024
+ * @date 2011-2024
  */
 public class JPanelMagique extends JPanel implements ActionListener, MyEventListener, ChangeListener, ItemListener, FocusListener, DocumentListener
 {
@@ -109,7 +109,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	static Map<Class<?>, OBJ2GUIPlug<?, ?>>	map_plugins					= null;
 	
 	// Pour les classe speciale genre les Identifiable... voire MaterialComboBox
-	static List<OBJ2GUIPlug2<?, ?>>	map_plugins2					= null;
+	static List<OBJ2GUIPlugExtended<?, ?>>	map_plugins2					= null;
 
 	// TODO : Ceci devrai disparaitre un jour (a moins que...)
 	// Si true, alors on ne mets plus valeurs differentes dans les textfield quand c'est le cas.
@@ -348,9 +348,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 					{
 						Object value = null;
 						OBJ2GUIPlug<?, ?> plugin = getPlugin(valueClass);
-
-						OBJ2GUIPlug2<?, ?> plugin2 = getPlugin2(valueClass, Objectcls, name);
-						
+						OBJ2GUIPlugExtended<?, ?> plugin2 = getPlugin2(valueClass, Objectcls, name);
 						
 						if (plugin2 != null)
 						{
@@ -844,7 +842,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 				offset = 2;
 			String varName = rm.getNom().getName().substring(offset);
 			
-			OBJ2GUIPlug2<?, ?> plugin2 = getPlugin2(returnType, selection2.get(0).getClass(), varName);
+			OBJ2GUIPlugExtended<?, ?> plugin2 = getPlugin2(returnType, selection2.get(0).getClass(), varName);
 			
 		
 		//Class<?> returnType = rm.getNom().getReturnType();
@@ -2123,7 +2121,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 
 		OBJ2GUIPlug<?, ?> plugin = getPlugin(returnType);
 
-		OBJ2GUIPlug2<?, ?> plugin2 = getPlugin2(returnType, selection2.get(0).getClass(), varName);
+		OBJ2GUIPlugExtended<?, ?> plugin2 = getPlugin2(returnType, selection2.get(0).getClass(), varName);
 				
 		// Est-ce une array ?
 		if (returnType.isArray())
@@ -2600,7 +2598,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 			map_plugins.put(plugin.getType(), plugin);
 	}
 
-	public static void registerPlugin2(OBJ2GUIPlug2<?, ?> plugin)
+	public static void registerPlugin2(OBJ2GUIPlugExtended<?, ?> plugin)
 	{
 		map_plugins2.add(plugin);
 	}
@@ -2609,11 +2607,11 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	{
 		return map_plugins.get(cls);
 	}	
-	public static OBJ2GUIPlug2<?, ?> getPlugin2(Class<?> cls, Class<? extends Object> userTargetClass, String varName)
+	public static OBJ2GUIPlugExtended<?, ?> getPlugin2(Class<?> cls, Class<? extends Object> userTargetClass, String varName)
 	{
 		
 		for (int i = 0; i < map_plugins2.size(); i++) {
-			OBJ2GUIPlug2 plug = map_plugins2.get(i);
+			OBJ2GUIPlugExtended plug = map_plugins2.get(i);
 			
 			
 			if ((plug.getType() == cls) || (sontClassesEquivalentes(plug.getType(), cls)))
@@ -2675,7 +2673,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 		}
 		return null;
 	}
-	public static OBJ2GUIPlug2<?, ?> getPlugin2(JComponent component)
+	public static OBJ2GUIPlugExtended<?, ?> getPlugin2(JComponent component)
 	{/*
 		Set<Entry<Class<?>, OBJ2GUIPlug2<?, ?>>> set = map_plugins2.entrySet();
 		for (Iterator<Entry<Class<?>, OBJ2GUIPlug2<?, ?>>> iterator = set.iterator(); iterator.hasNext();)

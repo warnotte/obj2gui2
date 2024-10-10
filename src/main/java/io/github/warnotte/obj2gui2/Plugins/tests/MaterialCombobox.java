@@ -12,10 +12,10 @@ import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 
 import io.github.warnotte.obj2gui2.JPanelMagique;
-import io.github.warnotte.obj2gui2.Plugins.OBJ2GUIPlug2;
+import io.github.warnotte.obj2gui2.Plugins.OBJ2GUIPlugExtended;
 import io.github.warnotte.obj2gui2.Tests.SimpleType.Material;
 
-public class MaterialCombobox extends OBJ2GUIPlug2<Integer, JComboBox> {
+public class MaterialCombobox extends OBJ2GUIPlugExtended<Integer, JComboBox> {
 
 	public MaterialCombobox(Class userTargetClass, String userTargetVariable) {
 		super(userTargetClass, userTargetVariable);
