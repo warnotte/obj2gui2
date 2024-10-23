@@ -127,7 +127,7 @@ public class JPanel_MultiPropsEditor extends JPanel implements MyEventListener
 		scrollPane.setName("ScrollPaneOfMultipropseditor");
 		//scrollPane.setBackground(Color.BLUE);
 		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
-
+		scrollPane.setBorder(null); // sinon y'a une sale bordure
 		centre.add(scrollPane, "FULL"); //$NON-NLS-1$
 
 		centre.add(noselectionpanel, "NONE"); //$NON-NLS-1$
