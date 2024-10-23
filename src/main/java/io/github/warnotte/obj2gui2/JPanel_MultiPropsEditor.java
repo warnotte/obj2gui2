@@ -119,7 +119,7 @@ public class JPanel_MultiPropsEditor extends JPanel implements MyEventListener
 		noselectionpanel = new JPanel();
 		noselectionpanel.setLayout(new java.awt.GridBagLayout());
 		JLabel label_nothingselected = new JLabel(text_nothing_selected); //$NON-NLS-1$
-		label_nothingselected.setFont(new Font("Tahoma", Font.BOLD, 16)); //$NON-NLS-1$
+		//label_nothingselected.setFont(new Font("Tahoma", Font.BOLD, 16)); //$NON-NLS-1$
 		noselectionpanel.add(label_nothingselected);
 
 		centre.setLayout(cardlayout);
