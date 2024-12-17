@@ -700,12 +700,32 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	}
 
 	/**
-	 * @param class1
-	 *            class de l'objet conteneur (material.class)
+	 * Ceci cherche le binding pour une classe donnée pour une variable nommée de cette classe
+	 * Ajout 17-12-2024 : Verifie que la classe peut être une classe héritée (Flotteur et Flotteur_Prismatique).
+	 * @param class1 class de l'objet conteneur (material.class)
 	 * @param string
 	 *            La nom de la variable.
 	 * @return
 	 */
+	public Binding getBinding(Class<?> class1, String string)
+	{
+		if (bindList_identifiables != null)
+		{
+			for (int i = 0; i < bindList_identifiables.size(); i++)
+			{
+				Binding bind = bindList_identifiables.get(i);
+				// if (bind.class1 == class1) Modification du 17-12-2024
+				if (bind.class1.isAssignableFrom(class1)) // Vérifie si class1 est une sous-classe ou la même classe					
+					if (bind.variable.equalsIgnoreCase(string))
+						return bind;
+			}
+		}
+		return null;
+	}
+	
+	
+	/*
+	 * TODO : Supprimer ceci si je vois que tout va bien.
 	public Binding getBinding(Class<?> class1, String string)
 	{
 		if (bindList_identifiables != null)
@@ -719,7 +739,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 			}
 		}
 		return null;
-	}
+	}*/
 
 	/**
 	 * @param class1
@@ -735,13 +755,30 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 			for (int i = 0; i < bindList.size(); i++)
 			{
 				BindingEnum bind = bindList.get(i);
-				if (bind.class1 == class1)
+				// if (bind.class1 == class1) Modification 17-12-2024
+				if (bind.class1.isAssignableFrom(class1)) // Vérifie si class1 est une sous-classe ou la même classe
 					if (bind.variable.equalsIgnoreCase(string))
 						return bind;
 			}
 		}
 		return null;
 	}
+	/*
+	 * Modification du 4 17-12-2024
+	public BindingEnum getBindingEnum(Class<?> class1, String string)
+	{
+		if (bindList != null)
+		{
+			for (int i = 0; i < bindList.size(); i++)
+			{
+				BindingEnum bind = bindList.get(i);
+				if (bind.class1 == class1)
+					if (bind.variable.equalsIgnoreCase(string))
+						return bind;
+			}
+		}
+		return null;
+	}*/
 
 	/**
 	 * Refresh the GUI (not recreating a new panel, refreshing all component
@@ -2615,7 +2652,8 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 			
 			
 			if ((plug.getType() == cls) || (sontClassesEquivalentes(plug.getType(), cls)))
-				if (plug.getUserTargetClass()==userTargetClass)
+				//if (plug.getUserTargetClass()==userTargetClass) // Modification 17-12-2024
+				if (plug.getUserTargetClass().isAssignableFrom(userTargetClass))					
 					if (plug.getUserTargetVariable().equalsIgnoreCase(varName))
 				{
 					
