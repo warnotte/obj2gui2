@@ -77,6 +77,7 @@ import io.github.warnotte.obj2gui2.Plugins.OBJ2GUIPlug;
 import io.github.warnotte.obj2gui2.Plugins.OBJ2GUIPlugExtended;
 import io.github.warnotte.obj2gui2.Validators.ValidationException;
 import io.github.warnotte.obj2gui2.Validators.Validator;
+import io.github.warnotte.obj2gui2.experimentOBJ2GUIPlugin3.OBJ2GUI2Plug3Experiment;
 //import io.github.warnotte.waxlib3.core.Identifiable.Identifiable;
 import io.github.warnotte.waxlib3.core.TemplatePropertyMerger.ResultatMerge;
 import io.github.warnotte.waxlib3.core.TemplatePropertyMerger.TemplatePropertyMergerV2;
@@ -111,6 +112,10 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	// Pour les classe speciale genre les Identifiable... voire MaterialComboBox
 	static List<OBJ2GUIPlugExtended<?, ?>>	map_plugins2					= null;
 
+	// Pour les classe speciale genre les Identifiable... voire MaterialComboBox
+	// TODO : Experimental
+	static List<OBJ2GUI2Plug3Experiment<?, ?, ?>>	map_plugins3					= null;
+
 	// TODO : Ceci devrai disparaitre un jour (a moins que...)
 	// Si true, alors on ne mets plus valeurs differentes dans les textfield quand c'est le cas.
 	// Mais la valeur pour le dernier objet.
@@ -136,6 +141,8 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 		}
 		
 		map_plugins2 = new ArrayList<>();
+		
+		map_plugins3 = new ArrayList<>();
 
 	}
 
@@ -349,7 +356,11 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 						Object value = null;
 						OBJ2GUIPlug<?, ?> plugin = getPlugin(valueClass);
 						OBJ2GUIPlugExtended<?, ?> plugin2 = getPlugin2(valueClass, Objectcls, name);
-						
+						OBJ2GUI2Plug3Experiment<?, ?, ?> plugin3 = getPlugin3(valueClass, Objectcls, name);
+						if (plugin3 != null)
+						{
+							value = plugin3.getValue(e.getSource());
+						} else
 						if (plugin2 != null)
 						{
 							value = plugin2.getValue(e.getSource());
@@ -881,11 +892,25 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 			
 			OBJ2GUIPlugExtended<?, ?> plugin2 = getPlugin2(returnType, selection2.get(0).getClass(), varName);
 			
+			OBJ2GUI2Plug3Experiment<?, ?, ?> plugin3 = getPlugin3(returnType, selection2.get(0).getClass(), varName);
+			
+			//	
+
 		
 		//Class<?> returnType = rm.getNom().getReturnType();
 
 		component.setBackground(Color.white);
 
+		
+		if (plugin3 != null)
+		{
+			plugin3.refresh(value, component);
+			//component.setBackground(Color.white);
+			if (rm.isEquals() == false)
+			{
+				//component.setBackground(Color.orange);
+			}
+		} else
 		if (plugin2 != null)
 		{
 			plugin2.refresh(value, component);
@@ -2159,6 +2184,8 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 		OBJ2GUIPlug<?, ?> plugin = getPlugin(returnType);
 
 		OBJ2GUIPlugExtended<?, ?> plugin2 = getPlugin2(returnType, selection2.get(0).getClass(), varName);
+		
+		OBJ2GUI2Plug3Experiment<?, ?, ?> plugin3 = getPlugin3(returnType, selection2.get(0).getClass(), varName);
 				
 		// Est-ce une array ?
 		if (returnType.isArray())
@@ -2179,10 +2206,16 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 			{
 				//	comp.setBackground(Color.orange);
 			}
-		} else if (plugin2 != null)
+		} else 
+			if (plugin3!=null)
+			{
+				comp = (JComponent) plugin3.build(value, selection2, rm.getNom(), rm.getHasSet(), panel);
+				comp.setBackground(Color.white);
+			}else
+			if (plugin2 != null)
 		{
-			comp = (JComponent) plugin2.build(value, selection2, rm.getNom(), rm.getHasSet(), panel);
-			comp.setBackground(Color.white);
+				comp = (JComponent) plugin2.build(value, selection2, rm.getNom(), rm.getHasSet(), panel);
+				comp.setBackground(Color.white);
 			//if (rm.isEquals()==false)
 			//	comp.setBackground(Color.orange);
 		}else if (plugin != null)
@@ -2640,15 +2673,42 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 		map_plugins2.add(plugin);
 	}
 
+	public static void registerPlugin3(OBJ2GUI2Plug3Experiment<?, ?, ?> plugin)
+	{
+		map_plugins3.add(plugin);
+	}
+
 	public static OBJ2GUIPlug<?, ?> getPlugin(Class<?> cls)
 	{
 		return map_plugins.get(cls);
 	}	
+	
 	public static OBJ2GUIPlugExtended<?, ?> getPlugin2(Class<?> cls, Class<? extends Object> userTargetClass, String varName)
 	{
 		
 		for (int i = 0; i < map_plugins2.size(); i++) {
 			OBJ2GUIPlugExtended plug = map_plugins2.get(i);
+			
+			
+			if ((plug.getType() == cls) || (sontClassesEquivalentes(plug.getType(), cls)))
+				//if (plug.getUserTargetClass()==userTargetClass) // Modification 17-12-2024
+				if (plug.getUserTargetClass().isAssignableFrom(userTargetClass))					
+					if (plug.getUserTargetVariable().equalsIgnoreCase(varName))
+				{
+					
+					return plug;
+				}
+		}
+		
+		return null;
+	}
+	
+	
+	public static OBJ2GUI2Plug3Experiment<?, ?, ?> getPlugin3(Class<?> cls, Class<? extends Object> userTargetClass, String varName)
+	{
+		
+		for (int i = 0; i < map_plugins3.size(); i++) {
+			OBJ2GUI2Plug3Experiment plug = map_plugins3.get(i);
 			
 			
 			if ((plug.getType() == cls) || (sontClassesEquivalentes(plug.getType(), cls)))
@@ -2740,6 +2800,11 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 		map_plugins2.remove(cls);
 	}
 
+	public static void removePlugin3(Class<?> cls)
+	{
+		map_plugins3.remove(cls);
+	}
+	
 	public static void clearPlugins(Class<?> cls)
 	{
 		map_plugins.clear();
@@ -2748,7 +2813,13 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	{
 		map_plugins2.clear();
 	}
+	public static void clearPlugins3(Class<?> cls)
+	{
+		map_plugins3.clear();
+	}
 
+	
+	
 	// TODO : Un convertisseur comme dans JIDE qui permettrait par exemple de tapper 1 et le convertisseur retournerai un objet d'un autre type
 
 	// BETA : Validators;

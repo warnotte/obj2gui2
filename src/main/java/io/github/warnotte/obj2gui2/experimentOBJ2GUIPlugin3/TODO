@@ -1,0 +1,11 @@
+TODO : Attention que le nom des variables n'est peut être pas Bean Compliant
+TODO : Voire ce que c'est alors BeansCompliant...
+TODO : Check warning in test plugin (JCombobox in yellow).
+
+----> extractVariableNameFromGetterMethod() devrait peut être s'arranger pour trouver la bonne variable peux importe si y'a des majuscule ou pas ...
+
+Fait un test avec un JComboBox<Integer> ou un JComboboxMaterial
+
+OBJ2GUI2Plug3Experiment<String, JTextField, Flotteur>
+OBJ2GUI2Plug3Experiment<Integer, JComboBox<Integer ??>, Flotteur> --> Integer ID_PanneauSolaire
+OBJ2GUI2Plug3Experiment<Material, JComboBox<Material ??>, Flotteur> --> Material Material
