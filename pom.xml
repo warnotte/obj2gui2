@@ -198,15 +198,15 @@
 		<dependency>
 			<groupId>io.github.warnotte</groupId>
 			<artifactId>waxlib3</artifactId>
-			<version>0.0.2.6</version>
+			<version>0.0.2.7</version>
 		</dependency>
-
+		<!--
 		<dependency>
 			<groupId>javax.vecmath</groupId>
 			<artifactId>vecmath</artifactId>
 			<version>1.5.2</version>
 		</dependency>
-		
+		-->
 		<dependency>
 		  <groupId>org.apache.commons</groupId>
 		  <artifactId>commons-lang3</artifactId>
