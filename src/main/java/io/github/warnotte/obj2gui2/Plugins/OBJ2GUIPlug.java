@@ -75,7 +75,11 @@ public abstract class OBJ2GUIPlug<T, U> {
 	public abstract void refresh(T value, U component, boolean dummy);
 
 	public void refresh(Object value, JComponent component) {
-		refresh((T) value, (U) component, true);
+		// 23-12-2024 : Ajout d'un test pour eviter que par exemple les combobox n'ecrase les valeurs quand on change 
+		// une autre propriété d'un ou des objets
+		//if (value != null)
+		//	if (value.equals(getValue(component)) == false)
+				refresh((T) value, (U) component, true);
 		// return null;
 	}
 

@@ -1024,7 +1024,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 			{
 				componentM.removeActionListener(old_listeners[i]);
 			}
-
+			
 			//componentM.setBackground(Color.white);
 			// Identifialbe or enum ? : TODO : y'a un bug avec les id surement ...
 			if (rm.isEquals() == false)
@@ -2282,7 +2282,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 				{
 					Object o = enums[i];
 					((JComboBox<Object>) comp).insertItemAt(o, i);
-					if (rm.isEquals() == true)
+					//if (rm.isEquals() == true) // CECI A ETE COMMENTE LE 23-12-2024
 						if (value == o)
 							((JComboBox<?>) comp).setSelectedIndex(i);
 				}
@@ -2290,8 +2290,8 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 
 			if (rm.isEquals() == false)
 			{
-				((JComboBox<?>) comp).setSelectedIndex(-1);
-				//((JComboBox<?>)comp).setBackground(Color.orange);
+				//((JComboBox<?>) comp).setSelectedIndex(-1); // CECI A ETE COMMENTE LE 23-12-2024
+
 			}
 			((JComboBox<?>) comp).addActionListener(panel);
 		} else
