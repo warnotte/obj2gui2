@@ -1,5 +1,7 @@
 package io.github.warnotte.obj2gui2.Plugins;
 
+import java.io.Serializable;
+import java.lang.invoke.SerializedLambda;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
@@ -32,23 +34,13 @@ public abstract class OBJ2GUIPlugExtended<T, U> {
 		this.component = (Class<U>) ((java.lang.reflect.ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[1];
 		this.userTargetVariable = userTargetVariable;
 		this.userTargetClass = userTargetClass;
-
-		// Check if userTargetVariable exists.
-		/*
-		 * try { // Peut-être faudra il utiliser la methode getFields() de JPanelMagique
-		 * ??? userTargetClass.getDeclaredField(userTargetVariable); } catch
-		 * (NoSuchFieldException | SecurityException e) { logger.fatal(e, e);
-		 * e.printStackTrace(); }
-		 */
-
 		boolean isOk = isFieldExist(userTargetClass, userTargetVariable);
 		if (isOk == false) {
 			logger.fatal("Field " + userTargetVariable + " doesn't exist in " + userTargetClass);
-
 		}
-
 	}
-
+	
+	
 	private OBJ2GUIPlugExtended() {
 		// System.err.println("Class = "+this.type.getName());
 		// System.err.println("component = "+this.component.getName());
@@ -63,6 +55,7 @@ public abstract class OBJ2GUIPlugExtended<T, U> {
 
 		return false;
 	}
+
 
 	/**
 	 * Crée un composant avec la value, et ajoute un listener (a implementer toi
@@ -95,10 +88,11 @@ public abstract class OBJ2GUIPlugExtended<T, U> {
 
 	public void refresh(Object value, JComponent component) {
 		// 23-12-2024 : Ajout d'un test pour eviter que par exemple les combobox n'ecrase les valeurs quand on change 
-		// une autre propriété d'un ou des objets
+		// une autre propriété d'un ou des objets. 
+		// Je desactive les 2 lignes rajoutée, ca cela est fait dans JPanelMagique...
 		//if (value != null)
 		//	if (value.equals(getValue(component)) == false)
-				refresh((T) value, (U) component, true);
+		refresh((T) value, (U) component, true);
 		// return null;
 	}
 
