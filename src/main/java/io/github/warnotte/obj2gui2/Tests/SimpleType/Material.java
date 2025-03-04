@@ -1,6 +1,6 @@
 package io.github.warnotte.obj2gui2.Tests.SimpleType;
 
-import io.github.warnotte.obj2gui2.Identifiable;
+import io.github.warnotte.waxlib3.core.Identifiable.Identifiable;
 
 /**
  * 

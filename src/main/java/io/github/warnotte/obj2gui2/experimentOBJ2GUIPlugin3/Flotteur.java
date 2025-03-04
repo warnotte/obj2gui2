@@ -60,8 +60,9 @@ public class Flotteur {
 
 	@Override
 	public String toString() {
-		return "Flotteur [ID_ObjetSurFlotteur=" + ID_ObjetSurFlotteur + "]";
+		return "Flotteur [ID_ObjetSurFlotteur=" + ID_ObjetSurFlotteur + ", material=" + material + ", materialSupported=" + materialSupported + ", idMaterial=" + idMaterial + "]";
 	}
-    
+
+	
     
 }

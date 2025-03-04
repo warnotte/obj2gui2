@@ -17,7 +17,7 @@ public class MaterialCombobox extends OBJ2GUI2Plug3Experiment<Material, JComboBo
 	}
 
 	@Override
-	protected JComboBox build(Material value, Object parent, Method setter, Method method, JPanelMagique panel_magique_parent, boolean dummy) {
+	protected JComboBox build(Material value, Object parent, Method getter, Method setter, JPanelMagique panel_magique_parent, boolean dummy) {
 		ComboBoxModel		model		= new DefaultComboBoxModel() {
 											@Override
 											public int getSize() {

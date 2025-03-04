@@ -33,10 +33,10 @@ public class mainPluginTest
 	static
 	{
 		list_mats2.add(new Material(1, "SteelA"));
-		list_mats2.add(new Material(2, "SteelB"));
-		list_mats2.add(new Material(3, "SteelC"));
-		list_mats2.add(new Material(4, "SteelD"));
-		list_mats2.add(new Material(5, "SteelE"));
+		list_mats2.add(new Material(20, "SteelB"));
+		list_mats2.add(new Material(30, "SteelC"));
+		list_mats2.add(new Material(40, "SteelD"));
+		list_mats2.add(new Material(50, "SteelE"));
 		
 	}
 	/**
@@ -49,16 +49,16 @@ public class mainPluginTest
 		
 		//public Flotteur(String iD_ObjetSurFlotteur, Material material, Material materialSupported, Integer idMaterial) {
 		
-		tps.add(new Flotteur("1", list_mats2.get(0), list_mats2.get(1), 5));
-		tps.add(new Flotteur("1", list_mats2.get(0), list_mats2.get(1), 5));
-		tps.add(new Flotteur("1", list_mats2.get(0), list_mats2.get(1), 5));
-		tps.add(new Flotteur("8", list_mats2.get(0), list_mats2.get(1), 4));
-		tps.add(new Flotteur("1", list_mats2.get(0), list_mats2.get(1), 5));
+		tps.add(new Flotteur("1", list_mats2.get(0), list_mats2.get(1), 20));
+		tps.add(new Flotteur("1", list_mats2.get(0), list_mats2.get(1), 20));
+		tps.add(new Flotteur("1", list_mats2.get(0), list_mats2.get(1), 30));
+		tps.add(new Flotteur("8", list_mats2.get(0), list_mats2.get(1), 20));
+		tps.add(new Flotteur("1", list_mats2.get(0), list_mats2.get(1), 20));
 		
 		
 		JPanelMagique.registerPlugin3(new TextFieldID());
 		JPanelMagique.registerPlugin3(new MaterialCombobox()); // TODO : Doesn't work
-		//JPanelMagique.registerPlugin3(new MaterialIDCombobox()); // TODO : Solve that problem
+		JPanelMagique.registerPlugin3(new MaterialIDCombobox()); // TODO : Solve that problem
 		
 		JPanelMagique jp = JPanelMagique.GenerateJPanelFromSelectionAndBindings(tps, null, null);
 		

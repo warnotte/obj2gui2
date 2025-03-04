@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.commons.lang3.ClassUtils;
 
+import io.github.warnotte.waxlib3.core.Identifiable.Identifiable;
+
 
 /**
  * 

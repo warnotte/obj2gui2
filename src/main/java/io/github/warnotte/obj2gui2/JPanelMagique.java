@@ -78,6 +78,7 @@ import io.github.warnotte.obj2gui2.Plugins.OBJ2GUIPlugExtended;
 import io.github.warnotte.obj2gui2.Validators.ValidationException;
 import io.github.warnotte.obj2gui2.Validators.Validator;
 import io.github.warnotte.obj2gui2.experimentOBJ2GUIPlugin3.OBJ2GUI2Plug3Experiment;
+import io.github.warnotte.waxlib3.core.Identifiable.Identifiable;
 //import io.github.warnotte.waxlib3.core.Identifiable.Identifiable;
 import io.github.warnotte.waxlib3.core.TemplatePropertyMerger.ResultatMerge;
 import io.github.warnotte.waxlib3.core.TemplatePropertyMerger.TemplatePropertyMergerV2;

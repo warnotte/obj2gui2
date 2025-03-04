@@ -8,7 +8,6 @@ import io.github.warnotte.obj2gui2.JPanelMagique;
 
 public class TextFieldID extends OBJ2GUI2Plug3Experiment<String, JTextField, Flotteur> {
 
-	
 	public TextFieldID() {
 		super(Flotteur::getID_ObjetSurFlotteur);
 	}
