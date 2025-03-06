@@ -187,6 +187,9 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 
 	private final JPanel						panelFields							= new JPanel();
 	private final JPanel						panelSons							= new JPanel();
+	// Permet de retenir quelle variable appartient a quel JPanelMagique fils pour que le refresh fonctionne.
+	Map<String, JPanelMagique>					map_filed_panel_fils				= new HashMap<>();
+	
 	private final JPanel						panelLists							= new JPanel();
 
 	private final List<JFrameTreeView>			FrameTreeViews						= new ArrayList<JFrameTreeView>();
@@ -226,6 +229,8 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	 */
 	JPanelMagique								parent;
 
+	boolean recursive;
+	
 	/**
 	 * @param selection
 	 *            L'arrayList avec des elements (du meme type) a afficher/editer
@@ -307,9 +312,9 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		if (e.getID()==ActionEvent.ACTION_PERFORMED) {
+		//if (e.getID()==ActionEvent.ACTION_PERFORMED) {
 			//System.err.println("****");
-		}
+		//}
 		if (PRINT_DEBUG == true)
 			log.info("JPanelMagique::actionPerformed(" + e + ")");
 
@@ -819,6 +824,41 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 					setBorder(BorderFactory.createTitledBorder(titledBorder));
 
 			}
+			
+			
+			// Rajoute de 06-03-2025
+			// Rafraichir aussi les fils ne marchait pas en fait ...
+			// TODO : Le probleme va surement se poser pour les listes.
+			Class<?> objectClass = obj.getClass();
+			Field[] fields = getAllFields(objectClass);
+
+			if (recursive)
+			{
+				for (int i = 0; i < fields.length; i++)
+				{
+					Annotation anot;
+					anot = fields[i].getAnnotation(PROPERTY_FIELD_XXXABLE.class);
+					if (anot != null)/* || (OnlyAnnotatedMethods==false)) */
+					{
+						List<Object> selection_fils = new ArrayList<Object>();
+						for (int j = 0; j < selection.size(); j++)
+						{
+							Object objM = selection.get(j);
+							fields[i].setAccessible(true);
+							Object objFils = fields[i].get(objM);
+							if (objFils != null)
+								selection_fils.add(objFils);
+							else
+								log.info("Field = " + fields[i] + " has a NULL son");
+						}
+						JPanelMagique panelfils = map_filed_panel_fils.get(fields[i].getName());
+						panelfils.setSelection(selection_fils);
+						panelfils.refresh();
+						
+					}
+				}
+			}
+			
 		}
 
 		// TODO : Y'a pas un leak avec les listener????
@@ -1449,6 +1489,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 		boolean PanelSonsFilled = false;
 		boolean PanelListsFilled = false;
 
+		panel.recursive = recursive;
 		// Remplissage
 		// Analyser pour avoir les variables
 		List<?> merged = TemplatePropertyMergerV2.MergeCollection(selection, OnlyAnnotatedMethods);
@@ -1579,6 +1620,10 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 					}
 
 					panel.panelSons.add(panelfils);
+					
+					panel.map_filed_panel_fils .put(fields[i].getName(), panelfils);
+					
+					
 					//panelfils.addMyEventListener(panel); // Deja fait dans GenerateJPanel je pense.
 					PanelSonsFilled = true;
 				}
