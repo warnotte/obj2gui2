@@ -43,5 +43,5 @@ The difference with OBJ2GUI is that OBJ2GUI2 can support collection of Object in
 
 ```
 // https://mvnrepository.com/artifact/io.github.warnotte/obj2gui2
-implementation 'io.github.warnotte:obj2gui2:1.4.0'
+implementation 'io.github.warnotte:obj2gui2:1.4.1'
 ```
