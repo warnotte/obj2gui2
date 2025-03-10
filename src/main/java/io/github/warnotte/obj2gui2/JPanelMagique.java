@@ -23,6 +23,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -2482,10 +2483,15 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 					String displayFormat = anot.displayFormat(); // "#0.0###E0"
 					//System.err.println("Display : "+displayFormat);
 					//System.err.println("Edit : "+editFormat);
-
-					NumberFormatter defaultFormat = new NumberFormatter(new DecimalFormat(displayFormat));
-					NumberFormatter textFormatter = new NumberFormatter(new DecimalFormat(displayFormat));
-					NumberFormatter editFormatter = new NumberFormatter(new DecimalFormat(editFormat));
+				
+					// Added 10-03-2025
+				    DecimalFormatSymbols decimalSymbols = DecimalFormatSymbols.getInstance();
+				    decimalSymbols.setDecimalSeparator('.');
+					
+					NumberFormatter defaultFormat = new NumberFormatter(new DecimalFormat(displayFormat, decimalSymbols));
+					NumberFormatter textFormatter = new NumberFormatter(new DecimalFormat(displayFormat, decimalSymbols));
+					NumberFormatter editFormatter = new NumberFormatter(new DecimalFormat(editFormat, decimalSymbols));
+					
 					comp = new JFormattedTextFieldW(new DefaultFormatterFactory(defaultFormat, textFormatter, editFormatter));
 
 					if ((rm.isEquals() == false) && (newSystem == false))
