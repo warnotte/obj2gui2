@@ -1,8 +1,10 @@
 package io.github.warnotte.obj2gui2;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
-
-import org.apache.commons.lang3.ClassUtils;
+import java.util.Set;
 
 import io.github.warnotte.waxlib3.core.Identifiable.Identifiable;
 
@@ -38,7 +40,7 @@ public class Binding
 	public static boolean isImplementingIndentifiable(Object o)
 	{
 		Class cls = o.getClass();
-		List<Class<?>> allSuperInterfaces = ClassUtils.getAllInterfaces(cls);
+		List<Class<?>> allSuperInterfaces = getAllInterfaces(cls);
 		for (Iterator<Class<?>> iterator = allSuperInterfaces.iterator(); iterator.hasNext();) {
 			Class<?> class1 = iterator.next();
 			if (class1==Identifiable.class)
@@ -46,5 +48,46 @@ public class Binding
 		}
 		return false;
 	}
+	
+	
+	/**
+	  * Gets a {@link List} of all interfaces implemented by the given class and its superclasses.
+	  *
+	  * <p>
+	  * The order is determined by looking through each interface in turn as declared in the source file and following its
+	  * hierarchy up. Then each superclass is considered in the same way. Later duplicates are ignored, so the order is
+	  * maintained.
+	  * </p>
+	  *
+	  * @param cls the class to look up, may be {@code null}
+	  * @return the {@link List} of interfaces in order, {@code null} if null input
+	  */
+	 public static List<Class<?>> getAllInterfaces(final Class<?> cls) {
+	     if (cls == null) {
+	         return null;
+	     }
+
+	     final LinkedHashSet<Class<?>> interfacesFound = new LinkedHashSet<>();
+	     getAllInterfaces(cls, interfacesFound);
+	     return new ArrayList<>(interfacesFound);
+	 }
+
+	 /**
+	  * Gets the interfaces for the specified class.
+	  *
+	  * @param cls the class to look up, may be {@code null}
+	  * @param interfacesFound the {@link Set} of interfaces for the class
+	  */
+	 private static void getAllInterfaces(Class<?> cls, final HashSet<Class<?>> interfacesFound) {
+	     while (cls != null) {
+	         final Class<?>[] interfaces = cls.getInterfaces();
+	         for (final Class<?> i : interfaces) {
+	             if (interfacesFound.add(i)) {
+	                 getAllInterfaces(i, interfacesFound);
+	             }
+	         }
+	         cls = cls.getSuperclass();
+	     }
+	 }
 	
 }
