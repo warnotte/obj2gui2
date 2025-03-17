@@ -13,7 +13,7 @@ import javax.swing.text.DefaultFormatterFactory;
  * @author Warnotte Renaud
  *
  */
-public class JFormattedTextFieldW extends JFormattedTextField/* implements FocusListener*/
+public class JFormattedTextFieldW extends JFormattedTextField
 {
 
 	/**
