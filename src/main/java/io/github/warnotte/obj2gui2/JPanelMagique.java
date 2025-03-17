@@ -2631,20 +2631,23 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	 * @see java.awt.event.FocusListener#focusGained(java.awt.event.FocusEvent)
 	 */
 	@Override
-	public void focusGained(FocusEvent e)
-	{
-		
+	public void focusGained(FocusEvent e) {
+
 		/**
-		 * ADDITION MAURICIO 20-09-2023
-		 * Remove the comment if something weird ...
-		 * Normalement ceci devrait pas poser de problèmes
+		 * ADDITION MAURICIO 20-09-2023 Remove the comment if something weird ... Normalement ceci devrait pas poser de problèmes
 		 */
 		Component comp = e.getComponent();
-		if (comp instanceof JTextField)
-		{
-			((JTextField)comp).selectAll();
-		}
-		
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				if (comp instanceof JTextField) {
+					((JTextField) comp).selectAll();
+				} else if (comp instanceof JFormattedTextFieldW) {
+					((JFormattedTextFieldW) comp).selectAll();
+				}
+			}
+		});
+
 	}
 
 	/*

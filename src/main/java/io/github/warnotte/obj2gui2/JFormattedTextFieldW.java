@@ -3,6 +3,9 @@
  */
 package io.github.warnotte.obj2gui2;
 
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+
 import javax.swing.JFormattedTextField;
 import javax.swing.text.DefaultFormatterFactory;
 
@@ -10,7 +13,7 @@ import javax.swing.text.DefaultFormatterFactory;
  * @author Warnotte Renaud
  *
  */
-public class JFormattedTextFieldW extends JFormattedTextField
+public class JFormattedTextFieldW extends JFormattedTextField/* implements FocusListener*/
 {
 
 	/**
@@ -29,7 +32,6 @@ public class JFormattedTextFieldW extends JFormattedTextField
 	@Override
 	public void setValue(Object value)
 	{
-	//	System.err.println("Value is = "+value);
 		super.setValue(value);
 	}
 	
@@ -37,12 +39,9 @@ public class JFormattedTextFieldW extends JFormattedTextField
 	public void setText(String value)
 	{
 		if (value.length()==0){
-			//System.err.println("TOTO");
 			return;
 		}
-			
-	//	System.err.println("Text is = "+value);
 		super.setText(value);
 	}
-
+	
 }
