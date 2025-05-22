@@ -2,8 +2,7 @@ package io.github.warnotte.obj2gui2;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -160,6 +159,11 @@ public class JPanel_MultiPropsEditor extends JPanel implements MyEventListener {
 				for (Iterator<?> iterator = sets.iterator(); iterator.hasNext();) {
 					Entry<Class<?>, List<Object>>	entry	= (Entry<Class<?>, List<Object>>) iterator.next();
 					JPanelMagique					jm		= JPanelMagique.GenerateJPanelFromSelectionAndBindings(null, entry.getValue(), isRecursive, binds, bindsEnum, OnlyAnnotatedMethods, showTreeViewButtons);
+					
+					 // On laisse la largeur s’étirer, mais pas la hauteur pour éviter d'avoir de l'espace inutilement perdus par des panneaux trop grand.
+				    Dimension pref = jm.getPreferredSize();
+				    jm.setMaximumSize(new Dimension(Integer.MAX_VALUE, pref.height));
+					
 					jm.addMyEventListener(this);
 					panel_all.add(jm);
 				}

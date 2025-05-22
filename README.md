@@ -36,7 +36,7 @@ The difference with OBJ2GUI is that OBJ2GUI2 can support collection of Object in
 <dependency>
     <groupId>io.github.warnotte</groupId>
     <artifactId>obj2gui2</artifactId>
-    <version>1.4.1</version>
+    <version>1.4.4</version>
 </dependency>
 ```
 
@@ -44,5 +44,5 @@ The difference with OBJ2GUI is that OBJ2GUI2 can support collection of Object in
 
 ```
 // https://mvnrepository.com/artifact/io.github.warnotte/obj2gui2
-implementation 'io.github.warnotte:obj2gui2:1.4.1'
+implementation 'io.github.warnotte:obj2gui2:1.4.4'
 ```
