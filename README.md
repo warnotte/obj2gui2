@@ -470,6 +470,68 @@ public class Financial {
 }
 ```
 
+## 🗂️ JPanel_MultiPropsEditor — Universal Inspector Panel
+
+`JPanel_MultiPropsEditor` is a *ready-to-use* property inspector that can display and edit a **heterogeneous selection** of domain objects inside a single, scrollable Swing panel.  
+Think of it as the “Inspector” you find in tools like Unity, Blender or IntelliJ designer — generated for you, in one line of code.
+
+### Feature highlights
+
+- **Drop-in inspector** for *mixed* selections (different runtime classes).
+- **Graceful empty state** – shows a “Nothing selected” card until items are provided.
+- **Automatic grouping** – partitions the current selection by class and stacks one `JPanelMagique` per group.
+- **Bidirectional event relay** – implements `MyEventListener` and forwards every `MyChangedEvent` to its own listeners, so you only have to register once.
+- **Programmatic refresh** – call `refresh()` to redraw all embedded panels after model changes.
+- **Highly tunable constructor** – toggle recursion, “only-annotated” mode, custom `Binding` / `BindingEnum` lists and tree-view buttons directly in the constructor.
+- **Localisable UI strings** – edit `JPanel_MultiPropsEditor.text_nothing_selected` to translate the placeholder.
+
+### How it works
+
+| What happens | Internal mechanism |
+|--------------|--------------------|
+| *Selection is empty* | A `CardLayout` switches to a placeholder card called **NONE**. |
+| *Mixed classes in selection* | `setTaskProperties` groups by `Class<?>` (`Collectors.groupingBy`) and creates one `JPanelMagique` per bucket. |
+| *Each sub-panel stretches horizontally* | After creation, each panel’s max width is set to `Integer.MAX_VALUE` while preserving its preferred height. |
+| *Scrollable inspector* | All sub-panels live inside a `JScrollPane` with smoother scroll (`unitIncrement = 16`). |
+| *Change propagation* | Every sub-panel registers the inspector as a `MyEventListener`; `myEventOccurred` relays to external listeners. |
+| *Runtime updates* | `refresh()` loops through child `JPanelMagique` instances and calls their own `refresh()` method. |
+
+### Quick start
+
+    // 1. Build a mixed selection
+    List<Object> selection = List.of(new Sphere(), new Cube(), new PointLight());
+
+    // 2. Create the inspector (recursive editing enabled)
+    JPanel_MultiPropsEditor inspector = new JPanel_MultiPropsEditor(true);
+    inspector.setTaskProperties(selection);
+
+    // 3. Listen to change events just once
+    inspector.addMyEventListener(evt -> System.out.println("Something changed!"));
+
+    // 4. Plug into your UI
+    frame.add(inspector, BorderLayout.EAST);
+
+### Advanced usage
+
+    List<Binding> binds = List.of(
+        new Binding(materials, Product.class, "materialId"));
+    List<BindingEnum> bindsEnum = List.of(/* … */);
+
+    JPanel_MultiPropsEditor inspector = new JPanel_MultiPropsEditor(
+            /* isRecursive           */ true,
+            /* binds                 */ binds,
+            /* bindsEnum             */ bindsEnum,
+            /* onlyAnnotatedMethods  */ false,
+            /* showTreeViewButtons   */ true);
+
+    inspector.setTaskProperties(selection);
+
+### Localisation tip
+
+    // Change the placeholder text globally
+    JPanel_MultiPropsEditor.text_nothing_selected = "No objects selected";
+
+
 ## 📖 API Reference
 
 ### Main Classes
