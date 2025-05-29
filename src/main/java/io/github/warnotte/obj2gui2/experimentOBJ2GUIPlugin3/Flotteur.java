@@ -4,34 +4,36 @@ import io.github.warnotte.obj2gui2.Tests.SimpleType.Material;
 import io.github.warnotte.waxlib3.core.TemplatePropertyMerger.property_mode;
 import io.github.warnotte.waxlib3.core.TemplatePropertyMerger.Annotations.PROPERTY_interface;
 
-
 public class Flotteur {
-	
-    private String ID_ObjetSurFlotteur;
-    
-    private Material material;
-    private Material materialSupported;
-    private Integer idMaterial;
-    
-    public Flotteur(String iD_ObjetSurFlotteur, Material material, Material materialSupported, Integer idMaterial) {
+
+	private String ID_ObjetSurFlotteur;
+
+	private Material material;
+	private Material materialSupported;
+	private Integer idMaterial;
+
+	private double valeur;
+
+	public Flotteur(String iD_ObjetSurFlotteur, Material material, Material materialSupported, Integer idMaterial,
+			double valeur) {
 		super();
 		ID_ObjetSurFlotteur = iD_ObjetSurFlotteur;
 		this.material = material;
 		this.materialSupported = materialSupported;
 		this.idMaterial = idMaterial;
+		this.valeur = valeur;
 	}
 
 	@PROPERTY_interface(Operation = property_mode.PROPERTY_MERGEABLE, orderDisplay = 10)
-    public String getID_ObjetSurFlotteur() {
-        return ID_ObjetSurFlotteur;
-    }
+	public String getID_ObjetSurFlotteur() {
+		return ID_ObjetSurFlotteur;
+	}
 
-    public void setID_ObjetSurFlotteur(String ID_ObjetSurFlotteur) {
-        this.ID_ObjetSurFlotteur = ID_ObjetSurFlotteur;
-    }
+	public void setID_ObjetSurFlotteur(String ID_ObjetSurFlotteur) {
+		this.ID_ObjetSurFlotteur = ID_ObjetSurFlotteur;
+	}
 
-    
-    @PROPERTY_interface(Operation = property_mode.PROPERTY_MERGEABLE, orderDisplay = 20)
+	@PROPERTY_interface(Operation = property_mode.PROPERTY_MERGEABLE, orderDisplay = 20)
 	public Material getMaterial() {
 		return material;
 	}
@@ -58,11 +60,20 @@ public class Flotteur {
 		this.idMaterial = idMaterial;
 	}
 
-	@Override
-	public String toString() {
-		return "Flotteur [ID_ObjetSurFlotteur=" + ID_ObjetSurFlotteur + ", material=" + material + ", materialSupported=" + materialSupported + ", idMaterial=" + idMaterial + "]";
+	@PROPERTY_interface(Operation = property_mode.PROPERTY_MERGEABLE, orderDisplay = 50)
+	public double getValeur() {
+		return valeur;
 	}
 
-	
-    
+	public void setValeur(double valeur) {
+		this.valeur = valeur;
+	}
+
+	@Override
+	public String toString() {
+		return "Flotteur [ID_ObjetSurFlotteur=" + ID_ObjetSurFlotteur + ", material=" + material
+				+ ", materialSupported=" + materialSupported + ", idMaterial=" + idMaterial + ", valeur=" + valeur
+				+ "]";
+	}
+
 }

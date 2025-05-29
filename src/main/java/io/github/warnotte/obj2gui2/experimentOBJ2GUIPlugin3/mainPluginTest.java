@@ -49,16 +49,17 @@ public class mainPluginTest
 		
 		//public Flotteur(String iD_ObjetSurFlotteur, Material material, Material materialSupported, Integer idMaterial) {
 		
-		tps.add(new Flotteur("1", list_mats2.get(0), list_mats2.get(1), 20));
-		tps.add(new Flotteur("1", list_mats2.get(0), list_mats2.get(1), 20));
-		tps.add(new Flotteur("1", list_mats2.get(0), list_mats2.get(1), 30));
-		tps.add(new Flotteur("8", list_mats2.get(0), list_mats2.get(1), 20));
-		tps.add(new Flotteur("1", list_mats2.get(0), list_mats2.get(1), 20));
+		tps.add(new Flotteur("1", list_mats2.get(0), list_mats2.get(1), 20, 0.35));
+		tps.add(new Flotteur("1", list_mats2.get(0), list_mats2.get(1), 20, 0.35));
+		tps.add(new Flotteur("1", list_mats2.get(0), list_mats2.get(1), 30, 0.35));
+		tps.add(new Flotteur("8", list_mats2.get(0), list_mats2.get(1), 20, 0.35));
+		tps.add(new Flotteur("1", list_mats2.get(0), list_mats2.get(1), 20, 0.35));
 		
 		
 		JPanelMagique.registerPlugin3(new TextFieldID());
 		JPanelMagique.registerPlugin3(new MaterialCombobox()); // TODO : Doesn't work
 		JPanelMagique.registerPlugin3(new MaterialIDCombobox()); // TODO : Solve that problem
+		JPanelMagique.registerPlugin3(new RenderedTextFieldValue());
 		
 		JPanelMagique jp = JPanelMagique.GenerateJPanelFromSelectionAndBindings(tps, null, null);
 		
