@@ -13,7 +13,7 @@ public class RenderedTextFieldValue extends OBJ2GUI2Plug3Experiment<Double, JTex
 	Color coldefault;
 	
 	public RenderedTextFieldValue() {
-		super(Flotteur__::getValeur);
+		super(Flotteur__::getValeur); // Ici je n'ai pas d'erreur
 		coldefault = component.getBackground();
 		
 	}

@@ -78,7 +78,7 @@ public abstract class OBJ2GUI2Plug3Experiment<T, U, V> {
 	}
 
 	@FunctionalInterface
-	interface MethodReference<V, T> extends Serializable {
+	public interface MethodReference<V, T> extends Serializable {
 		T apply(V v);
 	}
 
