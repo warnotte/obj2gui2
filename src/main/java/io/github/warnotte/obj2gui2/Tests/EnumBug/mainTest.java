@@ -41,17 +41,17 @@ public class mainTest
 		JTreeMagique.PRINT_DEBUG=true;
 		TemplatePropertyMergerV2.PRINT_DEBUG=false;
 		
-		final List<Ilot> selection = new ArrayList<>();
-		selection.add(new Ilot(0, Axe.X));
-		selection.add(new Ilot(1, Axe.X));
-		selection.add(new Ilot(2, Axe.X));
+		final List<Ilot_> selection = new ArrayList<>();
+		selection.add(new Ilot_(0, Axe_.X));
+		selection.add(new Ilot_(1, Axe_.X));
+		selection.add(new Ilot_(2, Axe_.X));
 		
 		CreateExemple(selection);
 		
-		final List<Ilot> selection2 = new ArrayList<>();
-		selection2.add(new Ilot(3, Axe.X));
-		selection2.add(new Ilot(4, Axe.X));
-		selection2.add(new Ilot(5, Axe.Y));
+		final List<Ilot_> selection2 = new ArrayList<>();
+		selection2.add(new Ilot_(3, Axe_.X));
+		selection2.add(new Ilot_(4, Axe_.X));
+		selection2.add(new Ilot_(5, Axe_.Y));
 		
 		CreateExemple(selection2);
 	}
@@ -62,7 +62,7 @@ public class mainTest
 	 * @throws IOException
 	 * @throws JDOMException
 	 */
-	private static JFrame CreateExemple(List<Ilot> selection) throws Exception, IOException, JDOMException
+	private static JFrame CreateExemple(List<Ilot_> selection) throws Exception, IOException, JDOMException
 	{
 		
 		//final JPanelMagique panel = JPanelMagique.GenerateJPanelFromSelectionAndBindings(selection, null, null);

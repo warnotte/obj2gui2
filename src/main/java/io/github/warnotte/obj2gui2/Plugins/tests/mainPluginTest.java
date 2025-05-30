@@ -19,7 +19,7 @@ import io.github.warnotte.obj2gui2.JPanelMagique;
 import io.github.warnotte.obj2gui2.Tests.Complex.A;
 import io.github.warnotte.obj2gui2.Tests.Complex.B;
 import io.github.warnotte.obj2gui2.Tests.Complex.cards;
-import io.github.warnotte.obj2gui2.Tests.SimpleType.Material;
+import io.github.warnotte.obj2gui2.Tests.SimpleType.Material_;
 
 /**
  * @author Warnotte Renaud
@@ -28,14 +28,14 @@ import io.github.warnotte.obj2gui2.Tests.SimpleType.Material;
 public class mainPluginTest
 {
 
-	static List<Material> list_mats2 = new ArrayList<Material>();
+	static List<Material_> list_mats2 = new ArrayList<Material_>();
 	static
 	{
-		list_mats2.add(new Material(1, "SteelA"));
-		list_mats2.add(new Material(5, "SteelB"));
-		list_mats2.add(new Material(8, "SteelC"));
-		list_mats2.add(new Material(9, "SteelD"));
-		list_mats2.add(new Material(11, "SteelE"));
+		list_mats2.add(new Material_(1, "SteelA"));
+		list_mats2.add(new Material_(5, "SteelB"));
+		list_mats2.add(new Material_(8, "SteelC"));
+		list_mats2.add(new Material_(9, "SteelD"));
+		list_mats2.add(new Material_(11, "SteelE"));
 		
 	}
 	/**
@@ -52,13 +52,13 @@ public class mainPluginTest
 		tps.add(b);
 		
 		// Pour la classe A on a besoin d'avoir une liste de reference...
-		List<Material> list_mats = new ArrayList<Material>();
+		List<Material_> list_mats = new ArrayList<Material_>();
 		
-		list_mats.add(new Material(1, "SteelA"));
-		list_mats.add(new Material(5, "SteelB"));
-		list_mats.add(new Material(8, "SteelC"));
-		list_mats.add(new Material(9, "SteelD"));
-		list_mats.add(new Material(11, "SteelE"));
+		list_mats.add(new Material_(1, "SteelA"));
+		list_mats.add(new Material_(5, "SteelB"));
+		list_mats.add(new Material_(8, "SteelC"));
+		list_mats.add(new Material_(9, "SteelD"));
+		list_mats.add(new Material_(11, "SteelE"));
 		
 		//JideDateExcomboboxPlug plugin1 = new JideDateExcomboboxPlug(manager);
 		//JideDateChooserPlug2 plugin2 = new JideDateChooserPlug2(manager);

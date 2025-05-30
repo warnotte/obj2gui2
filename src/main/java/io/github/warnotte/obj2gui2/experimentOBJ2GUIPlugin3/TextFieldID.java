@@ -6,10 +6,10 @@ import javax.swing.JTextField;
 
 import io.github.warnotte.obj2gui2.JPanelMagique;
 
-public class TextFieldID extends OBJ2GUI2Plug3Experiment<String, JTextField, Flotteur> {
+public class TextFieldID extends OBJ2GUI2Plug3Experiment<String, JTextField, Flotteur__> {
 
 	public TextFieldID() {
-		super(Flotteur::getID_ObjetSurFlotteur);
+		super(Flotteur__::getID_ObjetSurFlotteur);
 	}
 
 	@Override

@@ -1,20 +1,20 @@
 package io.github.warnotte.obj2gui2.experimentOBJ2GUIPlugin3;
 
-import io.github.warnotte.obj2gui2.Tests.SimpleType.Material;
+import io.github.warnotte.obj2gui2.Tests.SimpleType.Material_;
 import io.github.warnotte.waxlib3.core.TemplatePropertyMerger.property_mode;
 import io.github.warnotte.waxlib3.core.TemplatePropertyMerger.Annotations.PROPERTY_interface;
 
-public class Flotteur {
+public class Flotteur__ {
 
 	private String ID_ObjetSurFlotteur;
 
-	private Material material;
-	private Material materialSupported;
+	private Material_ material;
+	private Material_ materialSupported;
 	private Integer idMaterial;
 
 	private double valeur;
 
-	public Flotteur(String iD_ObjetSurFlotteur, Material material, Material materialSupported, Integer idMaterial,
+	public Flotteur__(String iD_ObjetSurFlotteur, Material_ material, Material_ materialSupported, Integer idMaterial,
 			double valeur) {
 		super();
 		ID_ObjetSurFlotteur = iD_ObjetSurFlotteur;
@@ -34,20 +34,20 @@ public class Flotteur {
 	}
 
 	@PROPERTY_interface(Operation = property_mode.PROPERTY_MERGEABLE, orderDisplay = 20)
-	public Material getMaterial() {
+	public Material_ getMaterial() {
 		return material;
 	}
 
-	public void setMaterial(Material material) {
+	public void setMaterial(Material_ material) {
 		this.material = material;
 	}
 
 	@PROPERTY_interface(Operation = property_mode.PROPERTY_MERGEABLE, orderDisplay = 30)
-	public Material getMaterialSupported() {
+	public Material_ getMaterialSupported() {
 		return materialSupported;
 	}
 
-	public void setMaterialSupported(Material materialSupported) {
+	public void setMaterialSupported(Material_ materialSupported) {
 		this.materialSupported = materialSupported;
 	}
 

@@ -10,7 +10,7 @@ import io.github.warnotte.waxlib3.core.Identifiable.Identifiable;
  * @author Warnotte Renaud
  *
  */
-public class Material implements Identifiable
+public class Material_ implements Identifiable
 {
 	int id;
 	/**
@@ -22,7 +22,7 @@ public class Material implements Identifiable
 	 * @param ID
 	 * @param string 
 	 */
-	public Material(int ID, String string)
+	public Material_(int ID, String string)
 	{
 		this.id = ID;
 		this.named = string;

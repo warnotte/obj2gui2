@@ -20,7 +20,7 @@ import io.github.warnotte.obj2gui2.JPanelMagique;
 import io.github.warnotte.obj2gui2.Tests.Complex.A;
 import io.github.warnotte.obj2gui2.Tests.Complex.B;
 import io.github.warnotte.obj2gui2.Tests.Complex.cards;
-import io.github.warnotte.obj2gui2.Tests.SimpleType.Material;
+import io.github.warnotte.obj2gui2.Tests.SimpleType.Material_;
 
 /**
  * @author Warnotte Renaud
@@ -29,14 +29,14 @@ import io.github.warnotte.obj2gui2.Tests.SimpleType.Material;
 public class mainPluginTest
 {
 
-	public static List<Material> list_mats2 = new ArrayList<Material>();
+	public static List<Material_> list_mats2 = new ArrayList<Material_>();
 	static
 	{
-		list_mats2.add(new Material(1, "SteelA"));
-		list_mats2.add(new Material(20, "SteelB"));
-		list_mats2.add(new Material(30, "SteelC"));
-		list_mats2.add(new Material(40, "SteelD"));
-		list_mats2.add(new Material(50, "SteelE"));
+		list_mats2.add(new Material_(1, "SteelA"));
+		list_mats2.add(new Material_(20, "SteelB"));
+		list_mats2.add(new Material_(30, "SteelC"));
+		list_mats2.add(new Material_(40, "SteelD"));
+		list_mats2.add(new Material_(50, "SteelE"));
 		
 	}
 	/**
@@ -45,15 +45,15 @@ public class mainPluginTest
 	 */
 	public static void main(String[] args) throws Exception
 	{
-		List<Flotteur> tps = new ArrayList<>();
+		List<Flotteur__> tps = new ArrayList<>();
 		
 		//public Flotteur(String iD_ObjetSurFlotteur, Material material, Material materialSupported, Integer idMaterial) {
 		
-		tps.add(new Flotteur("1", list_mats2.get(0), list_mats2.get(1), 20, 0.35));
-		tps.add(new Flotteur("1", list_mats2.get(0), list_mats2.get(1), 20, 0.35));
-		tps.add(new Flotteur("1", list_mats2.get(0), list_mats2.get(1), 30, 0.35));
-		tps.add(new Flotteur("8", list_mats2.get(0), list_mats2.get(1), 20, 0.35));
-		tps.add(new Flotteur("1", list_mats2.get(0), list_mats2.get(1), 20, 0.35));
+		tps.add(new Flotteur__("1", list_mats2.get(0), list_mats2.get(1), 20, 0.35));
+		tps.add(new Flotteur__("1", list_mats2.get(0), list_mats2.get(1), 20, 0.35));
+		tps.add(new Flotteur__("1", list_mats2.get(0), list_mats2.get(1), 30, 0.35));
+		tps.add(new Flotteur__("8", list_mats2.get(0), list_mats2.get(1), 20, 0.35));
+		tps.add(new Flotteur__("1", list_mats2.get(0), list_mats2.get(1), 20, 0.35));
 		
 		
 		JPanelMagique.registerPlugin3(new TextFieldID());
@@ -73,7 +73,7 @@ public class mainPluginTest
 			{
 				int cpt = 0;
 				for (Iterator iterator = tps.iterator(); iterator.hasNext();) {
-					Flotteur flotteur = (Flotteur) iterator.next();
+					Flotteur__ flotteur = (Flotteur__) iterator.next();
 					System.err.println(cpt+ ") "+ flotteur);
 				}
 				

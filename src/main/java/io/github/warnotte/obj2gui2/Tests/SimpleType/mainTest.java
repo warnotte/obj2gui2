@@ -52,13 +52,13 @@ public class mainTest
 	private static JFrame CreateExemple() throws Exception, IOException, JDOMException
 	{
 		
-		List<Material> list_mats = new ArrayList<Material>();
+		List<Material_> list_mats = new ArrayList<Material_>();
 		
-		list_mats.add(new Material(1, "SteelA"));
-		list_mats.add(new Material(5, "SteelB"));
-		list_mats.add(new Material(8, "SteelC"));
-		list_mats.add(new Material(9, "SteelD"));
-		list_mats.add(new Material(11, "SteelE"));
+		list_mats.add(new Material_(1, "SteelA"));
+		list_mats.add(new Material_(5, "SteelB"));
+		list_mats.add(new Material_(8, "SteelC"));
+		list_mats.add(new Material_(9, "SteelD"));
+		list_mats.add(new Material_(11, "SteelE"));
 				
 		final List<ObjectExemple> selection = new ArrayList<ObjectExemple>();
 		selection.add(new ObjectExemple());

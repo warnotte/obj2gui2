@@ -12,12 +12,12 @@ import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 
 import io.github.warnotte.obj2gui2.JPanelMagique;
-import io.github.warnotte.obj2gui2.Tests.SimpleType.Material;
+import io.github.warnotte.obj2gui2.Tests.SimpleType.Material_;
 
-public class MaterialIDCombobox extends OBJ2GUI2Plug3Experiment<Integer, JComboBox, Flotteur> {
+public class MaterialIDCombobox extends OBJ2GUI2Plug3Experiment<Integer, JComboBox, Flotteur__> {
 
 	public MaterialIDCombobox() {
-		super(Flotteur::getIdMaterial);
+		super(Flotteur__::getIdMaterial);
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class MaterialIDCombobox extends OBJ2GUI2Plug3Experiment<Integer, JComboB
 				if (value==null)
 					return new JLabel("--");
 				int id_material = value;
-				Material mat = mainPluginTest.list_mats2.stream().filter(e -> e.getId() == id_material).collect(Collectors.toList()).get(0);
+				Material_ mat = mainPluginTest.list_mats2.stream().filter(e -> e.getId() == id_material).collect(Collectors.toList()).get(0);
 				JLabel label = new JLabel(mat.getId()+") "+mat.getNamed());
 				label.setOpaque(true);
 				if (isSelected) {

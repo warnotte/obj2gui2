@@ -13,7 +13,7 @@ import javax.swing.ListCellRenderer;
 
 import io.github.warnotte.obj2gui2.JPanelMagique;
 import io.github.warnotte.obj2gui2.Plugins.OBJ2GUIPlugExtended;
-import io.github.warnotte.obj2gui2.Tests.SimpleType.Material;
+import io.github.warnotte.obj2gui2.Tests.SimpleType.Material_;
 
 public class MaterialCombobox extends OBJ2GUIPlugExtended<Integer, JComboBox> {
 
@@ -49,7 +49,7 @@ public class MaterialCombobox extends OBJ2GUIPlugExtended<Integer, JComboBox> {
 			@Override
 			public Component getListCellRendererComponent(JList<? extends Integer> list, Integer value, int index, boolean isSelected, boolean cellHasFocus) {
 				int id_material = value;
-				Material mat = mainPluginTest.list_mats2.stream().filter(e -> e.getId() == id_material).collect(Collectors.toList()).get(0);
+				Material_ mat = mainPluginTest.list_mats2.stream().filter(e -> e.getId() == id_material).collect(Collectors.toList()).get(0);
 				return new JLabel(mat.getId()+") "+mat.getNamed());
 			}
 			

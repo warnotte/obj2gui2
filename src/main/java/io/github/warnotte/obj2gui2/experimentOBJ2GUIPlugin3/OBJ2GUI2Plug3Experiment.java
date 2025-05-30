@@ -34,7 +34,7 @@ public abstract class OBJ2GUI2Plug3Experiment<T, U, V> {
 
 	public static void main(String[] args) {
 		// Création correcte de l'instance avec types explicites
-		OBJ2GUI2Plug3Experiment<String, JTextField, Flotteur> c = new OBJ2GUI2Plug3Experiment<>(Flotteur::getID_ObjetSurFlotteur) {
+		OBJ2GUI2Plug3Experiment<String, JTextField, Flotteur__> c = new OBJ2GUI2Plug3Experiment<>(Flotteur__::getID_ObjetSurFlotteur) {
 
 			@Override
 			protected JTextField build(String value, Object parent, Method setter, Method method, JPanelMagique panel_magique_parent, boolean dummy) {

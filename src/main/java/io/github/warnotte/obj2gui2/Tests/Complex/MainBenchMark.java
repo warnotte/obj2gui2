@@ -14,7 +14,7 @@ import io.github.warnotte.obj2gui2.BindingEnum;
 import io.github.warnotte.obj2gui2.JPanelMagique;
 import io.github.warnotte.obj2gui2.MyChangedEvent;
 import io.github.warnotte.obj2gui2.MyEventListener;
-import io.github.warnotte.obj2gui2.Tests.SimpleType.Material;
+import io.github.warnotte.obj2gui2.Tests.SimpleType.Material_;
 
 /**
  * @author Warnotte Renaud
@@ -23,7 +23,7 @@ import io.github.warnotte.obj2gui2.Tests.SimpleType.Material;
 public class MainBenchMark
 {
 
-	static List<Material> list_mats;
+	static List<Material_> list_mats;
 	static List<A> selection;
 	static ArrayList<Binding> binds;
 	static ArrayList<BindingEnum> bindsEnum ;
@@ -38,13 +38,13 @@ public class MainBenchMark
 	{
 		String file = JPanelMagique.class.getResource("log4j_OBJ2GUI2.xml").getFile();
 		
-		list_mats = new ArrayList<Material>();
+		list_mats = new ArrayList<Material_>();
 		
-		list_mats.add(new Material(1, "SteelA"));
-		list_mats.add(new Material(5, "SteelB"));
-		list_mats.add(new Material(8, "SteelC"));
-		list_mats.add(new Material(9, "SteelD"));
-		list_mats.add(new Material(11, "SteelE"));
+		list_mats.add(new Material_(1, "SteelA"));
+		list_mats.add(new Material_(5, "SteelB"));
+		list_mats.add(new Material_(8, "SteelC"));
+		list_mats.add(new Material_(9, "SteelD"));
+		list_mats.add(new Material_(11, "SteelE"));
 				
 		selection = new ArrayList<A>();
 		selection.add(new A());

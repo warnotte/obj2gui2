@@ -8,16 +8,16 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
 import io.github.warnotte.obj2gui2.JPanelMagique;
-import io.github.warnotte.obj2gui2.Tests.SimpleType.Material;
+import io.github.warnotte.obj2gui2.Tests.SimpleType.Material_;
 
-public class MaterialCombobox extends OBJ2GUI2Plug3Experiment<Material, JComboBox, Flotteur> {
+public class MaterialCombobox extends OBJ2GUI2Plug3Experiment<Material_, JComboBox, Flotteur__> {
 
 	public MaterialCombobox() {
-		super(Flotteur::getMaterial);
+		super(Flotteur__::getMaterial);
 	}
 
 	@Override
-	protected JComboBox build(Material value, Object parent, Method getter, Method setter, JPanelMagique panel_magique_parent, boolean dummy) {
+	protected JComboBox build(Material_ value, Object parent, Method getter, Method setter, JPanelMagique panel_magique_parent, boolean dummy) {
 		ComboBoxModel		model		= new DefaultComboBoxModel() {
 											@Override
 											public int getSize() {
@@ -31,7 +31,7 @@ public class MaterialCombobox extends OBJ2GUI2Plug3Experiment<Material, JComboBo
 											}
 
 										};
-		JComboBox<Material>	component	= new JComboBox<Material>(model);
+		JComboBox<Material_>	component	= new JComboBox<Material_>(model);
 		component.setSelectedItem(value);
 		component.addFocusListener(panel_magique_parent);
 		component.addActionListener(panel_magique_parent);
@@ -39,14 +39,14 @@ public class MaterialCombobox extends OBJ2GUI2Plug3Experiment<Material, JComboBo
 	}
 
 	@Override
-	protected Material getValue(JComboBox component, boolean dummy) {
+	protected Material_ getValue(JComboBox component, boolean dummy) {
 		System.err.println(component.getName() + " GETVALUE");
 
-		return (Material) component.getSelectedItem();
+		return (Material_) component.getSelectedItem();
 	}
 
 	@Override
-	public void refresh(Material value, JComboBox component, boolean dummy) {
+	public void refresh(Material_ value, JComboBox component, boolean dummy) {
 		{
 			System.err.println(component.getName() + " REFRESH : " + value);
 

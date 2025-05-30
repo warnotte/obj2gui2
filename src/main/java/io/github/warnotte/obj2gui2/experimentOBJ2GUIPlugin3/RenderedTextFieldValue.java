@@ -7,13 +7,13 @@ import javax.swing.JTextField;
 
 import io.github.warnotte.obj2gui2.JPanelMagique;
 
-public class RenderedTextFieldValue extends OBJ2GUI2Plug3Experiment<Double, JTextField, Flotteur> {
+public class RenderedTextFieldValue extends OBJ2GUI2Plug3Experiment<Double, JTextField, Flotteur__> {
 
 	JTextField component = new JTextField();
 	Color coldefault;
 	
 	public RenderedTextFieldValue() {
-		super(Flotteur::getValeur);
+		super(Flotteur__::getValeur);
 		coldefault = component.getBackground();
 		
 	}
