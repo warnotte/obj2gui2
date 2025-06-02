@@ -807,7 +807,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	public void refresh() throws Exception
 	{
 		
-		log.info("Refresh()");
+		//log.info("Refresh()");
 		
 		if ((selection != null) && (selection.size() != 0))
 		{
@@ -1425,7 +1425,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	public static JPanelMagique GenerateJPanelFromSelectionAndBindings(JPanelMagique parent, final List<?> selection, boolean recursive, final List<Binding> binds, final List<BindingEnum> bindsEnum, boolean OnlyAnnotatedMethods, boolean showTreeViewButtons) throws Exception
 	{
 		
-		log.info("GenerateJPanelFromSelectionAndBindings");
+		//log.info("GenerateJPanelFromSelectionAndBindings");
 		
 		// Si on donne une liste vide alors on retourne un panneau avec un label dedans indiquant que y'a pas de selection.
 		if (selection.size() == 0)
