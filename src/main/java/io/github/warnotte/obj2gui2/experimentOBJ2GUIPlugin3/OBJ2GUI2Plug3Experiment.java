@@ -145,9 +145,11 @@ public abstract class OBJ2GUI2Plug3Experiment<T, U, V> {
 
 	/**
 	 * Crée un composant avec la value, et ajoute un listener (a implementer toi même);
-	 * 
 	 * @param value
-	 * @param panel_parent
+	 * @param parent TODO : Je me demande a quoi ca sert au final ...
+	 * @param getter TODO : Je me demande a quoi ca sert au final ...
+	 * @param setter TODO : Je me demande a quoi ca sert au final ...
+	 * @param panel_magique_parent TODO : Je me demande a quoi ca sert au final ...
 	 * @return
 	 */
 	public U build(Object value, Object parent, Method getter, Method setter, JPanelMagique panel_magique_parent) {
