@@ -69,7 +69,7 @@ public abstract class OBJ2GUI2Plug3Experiment<T, U, V> {
 		// Extraction du nom de la variable à partir de la référence de méthode (getter)
 		String variableName = extractVariableNameFromGetterMethod(reference);
 		this.userTargetVariable = variableName;
-		System.out.println("Nom de la variable : " + variableName);
+		//System.out.println("Nom de la variable : " + variableName);
 
 		// Vérification que le champ existe dans la classe cible
 		if (!isFieldExist(userTargetClass, userTargetVariable)) {

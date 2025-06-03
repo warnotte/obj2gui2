@@ -2263,7 +2263,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 			if (plugin3!=null)
 			{
 				comp = (JComponent) plugin3.build(value, selection2, rm.getNom(), rm.getHasSet(), panel);
-				comp.setBackground(Color.white);
+				//comp.setBackground(Color.white); // Je pense qu'il faut faire cela sinon pour le cas "RenderedTextFieldValue" on a un probleme
 			}else
 			if (plugin2 != null)
 		{
