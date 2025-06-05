@@ -47,7 +47,7 @@ import net.miginfocom.swing.MigLayout;
 public class JTreeMagique extends JPanel implements TreeSelectionListener, MyEventListener
 {
 
-	private static final Logger LOGGER = LogManager.getLogger("JTreeMagique");
+	private static final Logger LOGGER = LogManager.getLogger(JTreeMagique.class);
 
 	
 	public static boolean PRINT_DEBUG = false;

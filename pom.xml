@@ -1,15 +1,19 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.warnotte</groupId>
 	<artifactId>obj2gui2</artifactId>
-	<version>1.4.6</version>
+	<version>1.4.7</version>
 	<name>Wax Obj2gui2</name>
-	<description>This library aimed to generated swing interface base on introspection and annotation of DTOs</description>
+	<description>This library aimed to generated swing interface base on
+		introspection and annotation of DTOs</description>
 	<url>https://github.com/warnotte/obj2gui2</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<!-- <maven.compiler.source>11</maven.compiler.source> <maven.compiler.target>9</maven.compiler.target> -->
+		<!-- <maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>9</maven.compiler.target> -->
 		<maven.compiler.release>11</maven.compiler.release>
 	</properties>
 
@@ -94,41 +98,8 @@
 				</configuration>
 			</plugin>
 
+			
 			<!--
-			<plugin>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<version>3.1.0</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<configuration>
-						
-						</configuration>
-						<goals>
-							<goal>run</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			-->
-			<!-- Il faut ajouter ceci dans les paramètre de la VM -Dgpg.passphrase=mypassphrase -->
-			<!--  https://maven.apache.org/plugins/maven-gpg-plugin/usage.html -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-gpg-plugin</artifactId>
-				<version>3.2.7</version>
-				<executions>
-					<execution>
-						<id>sign-artifacts</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>sign</goal>
-						</goals>
-					</execution>
-				</executions>
-
-			</plugin>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
@@ -148,6 +119,28 @@
 					<doclint>none</doclint>
 				</configuration>
 			</plugin>
+			-->
+
+			<!-- Javadoc -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.11.2</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<source>11</source>
+					<detectJavaApiLink>false</detectJavaApiLink>
+					<additionalOptions>-Xdoclint:none</additionalOptions>
+					<doclint>none</doclint>
+				</configuration>
+			</plugin>
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -162,20 +155,33 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>flatten-maven-plugin</artifactId> 
-				<version>1.1.0</version> <configuration> <updatePomFile>true</updatePomFile> 
-				<flattenMode>oss</flattenMode> <pomElements> <distributionManagement>remove</distributionManagement> 
-				<repositories>remove</repositories> </pomElements> </configuration> <executions> 
-				<execution> <id>flatten</id> <phase>process-resources</phase> <goals> <goal>flatten</goal> 
-				</goals> </execution> <execution> <id>flatten.clean</id> <phase>clean</phase> 
-				<goals> <goal>clean</goal> </goals> </execution> </executions> </plugin> -->
 
+
+<!-- Il faut ajouter ceci dans les paramètre de la VM
+			-Dgpg.passphrase=mypassphrase -->
+			<!--  https://maven.apache.org/plugins/maven-gpg-plugin/usage.html -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>3.2.7</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+
+			</plugin>
 
 			<plugin>
 				<groupId>org.sonatype.plugins</groupId>
 				<artifactId>nexus-staging-maven-plugin</artifactId>
 				<version>1.7.0</version>
-				<!--<version>1.6.13</version>--> <!-- Des bug avec les version suivante semblent exister -->
+				<!--<version>1.6.13</version>--> <!-- Des bug avec les version suivante
+				semblent exister -->
 				<extensions>true</extensions>
 				<configuration>
 					<serverId>ossrh</serverId>
@@ -191,18 +197,10 @@
 		<dependency>
 			<groupId>io.github.warnotte</groupId>
 			<artifactId>waxlib3</artifactId>
-			<version>0.3.6</version>
+			<version>0.3.7</version>
 		</dependency>
-		<!--
-		<dependency>
-		  <groupId>org.apache.commons</groupId>
-		  <artifactId>commons-lang3</artifactId>
-		  <version>3.17.0</version>
-		</dependency>
-		-->
-	</dependencies>
-	
 
+	</dependencies>
 
 
 	<distributionManagement>
@@ -212,7 +210,8 @@
 		</snapshotRepository>
 		<repository>
 			<id>ossrh</id>
-			<url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+			<url>
+				https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
 	</distributionManagement>
 
