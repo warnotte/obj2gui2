@@ -11,6 +11,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -42,6 +43,8 @@ public class JPanel_MultiPropsEditor extends JPanel implements MyEventListener {
 	List<BindingEnum>				bindsEnum				= null;
 	boolean							OnlyAnnotatedMethods	= true;
 	boolean							showTreeViewButtons		= false;
+	
+	boolean 						titledBorderVisible 	= true;
 
 	public static String			text_nothing_selected	= "Nothing selected";
 
@@ -89,7 +92,7 @@ public class JPanel_MultiPropsEditor extends JPanel implements MyEventListener {
 	 * 
 	 * @param gui_ViewerMPX
 	 */
-	public JPanel_MultiPropsEditor(/* GUI_ViewerSimuloic gui_ViewerMPX */) {
+	public JPanel_MultiPropsEditor() {
 		initialize();
 	}
 
@@ -130,12 +133,22 @@ public class JPanel_MultiPropsEditor extends JPanel implements MyEventListener {
 		getPanel_boutons().setVisible(false);
 	}
 
+	@Deprecated
+	/**
+	 * This method is deprecated and should not be used. Use setSelection(List<?>) instead.
+	 */
 	public void setTaskProperties(final List<?> selection) {
-		/*
-		 * if (this.selection.containsAll(selection)) { System.err.println("Meme objets qu'avant"); return; }
-		 */
+		setSelection(selection);
+	}
+	
+	/**
+	 * Add selected objects to the panel.
+	 * @param selection The list of objects to display in the panel.
+	 */
+	public void setSelection(final List<?> selection) {
+		
 
-		this.setSelection(selection);
+		this.selection = selection;
 		if (selection == null)
 			Logger.fatal("Ceci ne devrait pas arriver wax (654e6e5321e) - Selection vide. OSEF normalement..."); //$NON-NLS-1$
 
@@ -159,7 +172,8 @@ public class JPanel_MultiPropsEditor extends JPanel implements MyEventListener {
 				for (Iterator<?> iterator = sets.iterator(); iterator.hasNext();) {
 					Entry<Class<?>, List<Object>>	entry	= (Entry<Class<?>, List<Object>>) iterator.next();
 					JPanelMagique					jm		= JPanelMagique.GenerateJPanelFromSelectionAndBindings(null, entry.getValue(), isRecursive, binds, bindsEnum, OnlyAnnotatedMethods, showTreeViewButtons);
-					
+					if (titledBorderVisible==false)
+						jm.setBorder(BorderFactory.createEmptyBorder());
 					 // On laisse la largeur s’étirer, mais pas la hauteur pour éviter d'avoir de l'espace inutilement perdus par des panneaux trop grand.
 				    Dimension pref = jm.getPreferredSize();
 				    jm.setMaximumSize(new Dimension(Integer.MAX_VALUE, pref.height));
@@ -190,7 +204,7 @@ public class JPanel_MultiPropsEditor extends JPanel implements MyEventListener {
 	public void addMyEventListener(MyEventListener listener) {
 
 		if (listener == null) {
-			// log.fatal("Grave erreur ... 654");
+			Logger.fatal("You shoulnd't pass a NULL listener");
 			System.exit(-1);
 		}
 		listenerList.add(MyEventListener.class, listener);
@@ -215,11 +229,6 @@ public class JPanel_MultiPropsEditor extends JPanel implements MyEventListener {
 				e.printStackTrace();
 			}
 		}
-
-		/*
-		 * try { setTaskProperties(selection); } catch (Exception e1) { e1.printStackTrace(); Logs.getLogger().fatal(e1, e1); }
-		 */
-
 	}
 
 	/*
@@ -240,12 +249,12 @@ public class JPanel_MultiPropsEditor extends JPanel implements MyEventListener {
 	public List<?> getSelection() {
 		return selection;
 	}
-
+/*
 	public void setSelection(List<?> selection) {
 		this.selection = selection;
 
 	}
-
+*/
 	/**
 	 * @return the isRecursive
 	 */
@@ -258,7 +267,8 @@ public class JPanel_MultiPropsEditor extends JPanel implements MyEventListener {
 	 */
 	public void setRecursive(boolean isRecursive) {
 		this.isRecursive = isRecursive;
-		setTaskProperties(getSelection());
+		//setTaskProperties(getSelection());
+		setSelection(getSelection());
 	}
 
 	/**
@@ -303,7 +313,8 @@ public class JPanel_MultiPropsEditor extends JPanel implements MyEventListener {
 	 */
 	public void setOnlyAnnotatedMethods(boolean onlyAnnotatedMethods) {
 		OnlyAnnotatedMethods = onlyAnnotatedMethods;
-		setTaskProperties(getSelection());
+		//setTaskProperties(getSelection());
+		setSelection(getSelection());
 	}
 
 	/**
@@ -318,8 +329,17 @@ public class JPanel_MultiPropsEditor extends JPanel implements MyEventListener {
 	 */
 	public void setShowTreeViewButtons(boolean showTreeViewButtons) {
 		this.showTreeViewButtons = showTreeViewButtons;
-		setTaskProperties(getSelection());
+		//setTaskProperties(getSelection());
+		setSelection(getSelection());
 
+	}
+
+	public boolean isTitledBorderVisible() {
+		return titledBorderVisible;
+	}
+
+	public void setTitledBorderVisible(boolean titledBorderVisible) {
+		this.titledBorderVisible = titledBorderVisible;
 	}
 
 }

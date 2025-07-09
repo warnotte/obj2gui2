@@ -74,13 +74,13 @@ OBJ2GUI2 is a powerful Java library that automatically generates Swing GUI inter
 <dependency>
     <groupId>io.github.warnotte</groupId>
     <artifactId>obj2gui2</artifactId>
-    <version>1.4.4</version>
+    <version>1.4.9</version>
 </dependency>
 ```
 
 ### Gradle
 ```gradle
-implementation 'io.github.warnotte:obj2gui2:1.4.4'
+implementation 'io.github.warnotte:obj2gui2:1.4.9'
 ```
 
 ## 🚀 Quick Start
