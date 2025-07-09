@@ -22,8 +22,6 @@
 
 [Features](#features) • [Installation](#installation) • [Quick Start](#quick-start) • [Documentation](#documentation) • [Examples](#examples)
 
-</div>
-
 ## 📋 Table of Contents
 
 - [Overview](#overview)
