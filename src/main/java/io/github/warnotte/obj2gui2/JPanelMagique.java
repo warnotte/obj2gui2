@@ -1512,7 +1512,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 			String name = rm.getNom().getName().substring(offset);
 
 			PROPERTY_MIG_GRID class_miglayout_prop = rm.getNom().getAnnotation(PROPERTY_MIG_GRID.class);
-
+			
 			JComponent component = createComponent(panel, rm, selection);
 
 			//	if (component.getName().equals("Commentaire"))
@@ -1729,8 +1729,9 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 							//e.printStackTrace();
 						}
 						//panelfils.setBorder(new TitledBorder("Miaou : "+borderTitle));
-
-						JPanel panelfils = create_Panel_List_Editor(panel, dlm, BorderTitle, (List<Object>) objFils, bestType);
+						boolean showAddRemoveButton = ((PROPERTY_FIELD_LISTABLE)anot).showAddorRemoveButton();
+						
+						JPanel panelfils = create_Panel_List_Editor(panel, dlm, BorderTitle, (List<Object>) objFils, bestType, showAddRemoveButton);
 						panel.panelLists.add(panelfils, BorderLayout.CENTER);
 						PanelListsFilled = true;
 					} else
@@ -1881,9 +1882,10 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	 * @param parentList
 	 * @param bestType
 	 * @param clazzDetected
+	 * @param showAddRemoveButton show add or remove button
 	 * @return
 	 */
-	private static JPanel create_Panel_List_Editor(final JPanelMagique panel_parent, final DefaultListModel<Object> dlm, String borderTitle, final List<Object> parentList, final Type bestType)
+	private static JPanel create_Panel_List_Editor(final JPanelMagique panel_parent, final DefaultListModel<Object> dlm, String borderTitle, final List<Object> parentList, final Type bestType, boolean showAddRemoveButton)
 	{
 		final JList<Object> jliste = new JList<Object>(dlm);
 
@@ -2082,10 +2084,13 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 			}
 		});
 
-		panelfilsboutons.add(boutonAddElement, "cell 0 1, growx");
-		panelfilsboutons.add(boutonRemoveElement, "cell 0 2, growx");
 		panelfilsboutons.add(boutonEdit, "cell 0 0, growx");
-
+		
+		if (showAddRemoveButton)
+		{
+			panelfilsboutons.add(boutonAddElement, "cell 0 1, growx");
+			panelfilsboutons.add(boutonRemoveElement, "cell 0 2, growx");
+		}
 		return panelfils;
 	}
 

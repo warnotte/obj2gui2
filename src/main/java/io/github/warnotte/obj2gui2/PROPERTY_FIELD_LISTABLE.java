@@ -19,5 +19,5 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface PROPERTY_FIELD_LISTABLE
 {
-
+	boolean showAddorRemoveButton() default true;
 }
