@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.warnotte</groupId>
 	<artifactId>obj2gui2</artifactId>
-	<version>1.4.9</version>
+	<version>1.5.0</version>
 	<name>Wax Obj2gui2</name>
 	<description>This library aimed to generated swing interface base on
 		introspection and annotation of DTOs</description>

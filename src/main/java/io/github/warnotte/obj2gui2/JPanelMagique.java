@@ -91,6 +91,7 @@ import io.github.warnotte.waxlib3.waxlibswingcomponents.FileChooser.FileChooser;
 import io.github.warnotte.waxlib3.waxlibswingcomponents.Swing.Component.JColorChooserButton;
 import io.github.warnotte.waxlib3.waxlibswingcomponents.Swing.Component.JWColor;
 import io.github.warnotte.waxlib3.waxlibswingcomponents.Swing.Component.GlassPanes.InfiniteProgressGlassPane;
+import io.github.warnotte.waxlib3.waxlibswingcomponents.Swing.Component.JList.OrderedSelectionJList.OrderedSelectionJList;
 import io.github.warnotte.waxlib3.waxlibswingcomponents.Swing.Component.WaxSlider.WFlatSlider;
 import net.miginfocom.swing.MigLayout;
 
@@ -1887,7 +1888,7 @@ public class JPanelMagique extends JPanel implements ActionListener, MyEventList
 	 */
 	private static JPanel create_Panel_List_Editor(final JPanelMagique panel_parent, final DefaultListModel<Object> dlm, String borderTitle, final List<Object> parentList, final Type bestType, boolean showAddRemoveButton)
 	{
-		final JList<Object> jliste = new JList<Object>(dlm);
+		final JList<Object> jliste = new OrderedSelectionJList<Object>(dlm);
 
 		jliste.addKeyListener(new KeyListener()
 		{
