@@ -54,19 +54,19 @@ import io.github.warnotte.waxlib3.waxlibswingcomponents.Swing.Component.WaxSlide
 import io.github.warnotte.waxlib3.waxlibswingcomponents.Swing.Component.WaxSlider.WRoundSlider;
 
 // TODO : Penser a enventuelement faire un systeme de gestion des classes 
-// TODO : Dans le sens ou 2 classes != peuvent avoir une variable au meme nom mais dont le label et le tooltips pourrait devoir �tre diff�rent.
+// TODO : Dans le sens ou 2 classes != peuvent avoir une variable au meme nom mais dont le label et le tooltips pourrait devoir être différent.
 
 /**
- * Classe permettant de sauvegarder/charger un XML � partir ou vers un GUI
+ * Classe permettant de sauvegarder/charger un XML à partir ou vers un GUI
  * genere par ParseurAnnotations afin de customiser les labels ainsi que les
- * tooltips gener� par le guiifieur et qui sont plutot codeur orient�
+ * tooltips generé par le guiifieur et qui sont plutot codeur orienté
  * 
  * @author Warnotte Renaud Novembre 2007
  */
 public class GUI2XMLLabel
 {
 
-	private static final Logger log = LogManager.getLogger("GUI2XMLLabel");
+	private static final Logger log = LogManager.getLogger(GUI2XMLLabel.class);
 	
 
 	private static GUI2XMLLabel	instance	= new GUI2XMLLabel();
@@ -87,7 +87,7 @@ public class GUI2XMLLabel
 		 * final Test objet = new Test(); JFrame frame = new JFrame();
 		 * frame.setSize(320,200); frame.setPreferredSize(new
 		 * Dimension(320,200)); frame.setVisible(true); frame.setLayout(new
-		 * BorderLayout()); // Cr�e ces 3 panels sans ajouter la variable change
+		 * BorderLayout()); // Crée ces 3 panels sans ajouter la variable change
 		 * listener qui pompe les ressources si 10000 de changements final
 		 * JWPanel panel = (JWPanel)
 		 * ParseurAnnotations.CreatePanelFromObject("Main configuration",
